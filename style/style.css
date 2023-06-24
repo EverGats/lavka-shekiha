@@ -1,0 +1,341 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+/*/////////////////////*/
+
+
+#knopka_katalog a {	
+background-color:#dfcc7e;
+padding:2px;
+font-size:14px;
+color: #5f1b13;
+text-decoration:none;   
+border-radius: 4px 4px 4px 4px; 
+box-shadow: 0 0px 6px rgba(0,0,0,0.9);
+width: 100%;
+display:block;
+
+}
+
+
+#knopka_katalog a:hover{
+background-color:#caac52;
+color: #5f1b13;;
+}
+
+/*/////////////Элементы галереи товаров начало////////*/
+
+#blok_stat  { 
+width:100%;
+background:#fff;
+padding-top: 15px;
+padding-bottom: 15px;
+padding-left:3px; 
+padding-right:3px; 
+position:relative;
+border: 1px solid #dfcc7e;
+border-radius: 3px;
+-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+}
+
+a.blok_stat_zag {
+font-size: 16px;
+text-decoration: none;
+font-weight:600;
+}
+
+
+
+
+/*/////////////Элементы галереи товаров конец////////*/
+
+
+/*/////////////Страница товара начало////////*/
+
+
+
+
+/*/////////////Страница товара конец////////*/
+
+
+#divH2{
+font-weight:600;
+background-color:#a6caf0; 
+padding:3px; 
+border-radius: 3px; 
+border:3px solid #D9E0E7; 
+text-align:center;		
+}
+
+#img_auto{
+width:60%;
+position:relative;
+padding:0.9em;
+background:#fff;
+-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+
+}
+
+#img_auto_img {width:100%;}
+
+#ssilka_mob{
+font-size: 17px;}
+
+#pod_foto_text{
+font-size: 15px;	
+padding:2px;
+}
+
+
+#liniya_st{
+border-bottom-color: #d3ba6a;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+padding-bottom: 0px;
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 5px;
+}
+
+
+#forma_standart{
+border: solid #d3ba6a; 
+border-width: 1px; 
+background-color:#F2F2F2; 
+width:60%;
+margin:0 auto;
+text-align: left;
+}
+
+@media screen and (max-width: 1200) {
+#forma_standart  {width: 100%;}
+}
+
+
+#views{
+color: #777;
+font-size: 15px;
+font-weight: 500;
+}
+
+
+
+#views_2{
+color: #FFFFFF;
+font-weight: 500;
+}
+
+
+#content_block{
+width:100%;
+position:relative;
+padding-bottom: 15px;
+background:#fff;
+-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+-webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+-moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;	
+}
+
+/*
+/////////////////////////////////////////////////
+Блок списка статей начало
+///////////////////////////////////////////////// 
+*/
+
+
+
+#knopka_tag {
+padding-top:17px;
+}
+
+#knopka_tag a{
+text-decoration:none; 
+border: 2px solid #DAE1E8; 
+padding:7px; 
+font-size:14px;	
+background-color:#1678b2;
+font-weight:600;
+color:#FFFFFF;
+}
+
+#knopka_tag a:hover{
+color:#FFFFFF;
+background-color:#0c558a;
+}
+
+/*
+/////////////////////////////////////////////////
+Блок списка статей конец
+///////////////////////////////////////////////// 
+*/
+
+
+
+
+a.knopka_1 {
+
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+  padding: .5em 1em;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #0c558a;
+  background: #5f1b13;
+  box-shadow: inset 0px 0px 1px white, 0px 1px 2px #0c558a;
+  transition: .2s ease-in-out;
+  width:280px;  
+}
+
+a.knopka_1:hover:not(:active) {
+  background: #cdb35a;
+}
+
+a.knopka_1:active {
+background: #cdb35a;
+}
+
+
+
+ #oblast_text iframe{
+max-width:100%;	
+padding-top:5px;
+padding-bottom:5px;	
+}
+
+
+#oblast_text table{
+width:100%;
+border: 1px solid #CCCCCC; 	
+}
+
+#oblast_text td{
+border: 1px solid #CCCCCC;
+padding: 4px; 
+max-width:100%;		
+}
+
+/*
+/////////////////////////////////////////////////
+Кнопка скроллинга 
+///////////////////////////////////////////////// 
+*/
+#back-top {
+	position: fixed;
+	margin-left:10px;
+	bottom: 10px;
+	z-index:1000;
+}
+#back-top a {
+	width: 70px;
+	display: block;
+	text-align: center;
+	font: 11px/100% Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #000;
+	/* background color transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+}
+#back-top a:hover {
+	color: #000;
+}
+/* arrow icon (span tag) */
+#back-top span {
+	width: 70px;
+	height: 54px;
+	display: block;
+	background: #F4F4F4 url(../img/up-arrow.png) no-repeat center center;
+	/* rounded corners */
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=40); /* IE 5.5+*/
+-moz-opacity: 0.70; /* Mozilla 1.6 и ниже */
+-khtml-opacity: 0.70; /* Konqueror 3.1, Safari 1.1 */
+opacity: 0.70; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9 */
+	
+	/* background color transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+	border:2px solid #0c558a;
+}
+
+
+
+
+#back-top a:hover span {
+	background-color: #0c558a;
+}
+
+/*
+/////////////////////////////////////////////////
+Кнопка скроллинга 
+///////////////////////////////////////////////// 
+*/
+
+
+/*voting style */
+.voting_wrapper {display:inline-block;margin-left: 5px;}
+.voting_wrapper .down_button {background: url(../img/thumbs.png) no-repeat;float: left;height: 14px;width: 16px;cursor:pointer;margin-top: 3px;}
+.voting_wrapper .down_button:hover {background: url(../img/thumbs.png) no-repeat 0px -16px;}
+.voting_wrapper .up_button {background: url(../img/thumbs.png) no-repeat -16px 0px;float: left;height: 14px;width: 16px;cursor:pointer;}
+.voting_wrapper .up_button:hover{background: url(../img/thumbs.png) no-repeat -16px -16px;;}
+.voting_btn{float:left;margin-right:5px;}
+.voting_btn span{font-size: 12px;float: left;margin-left: 3px;}
+/*voting style */
+
+
+
+/*/
+
+   
+/* Для ширины 1024 пикселей и меньше */
+@media screen and (max-width: 1024px) {
+.blok_stat_zag {font-size: 16px;}
+#img_auto{width:50%;}
+}
+   
+   
+/* Для ширины 600 пикселей и меньше */
+@media screen and (max-width: 600px) {
+#img_auto{width:90%;}
+#ssilka_mob{font-size: 9px;}
+#forma_standart{width:98%;}
+#blok_stat_img {margin-bottom:10px;}
+a.blok_stat_knopka {bottom:14px; left:14px;}
+#blok_stat_otstup {height:40px;}
+#knopka_tag a{font-size:12px; padding:4px;}
+#knopka_tag {padding-top:9px;}
+}
+
+/*////////////////Размеры областей ////////////////////////////*/
+
+
+
+
+
+
+
+

@@ -1,0 +1,207 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*//////////////Меню брендов с левой стороны начало//////////////////*/
+
+.sidebarmenu99 ul{ 
+margin: 0.5; 
+padding: 0; 
+list-style-type: none; 
+font-size: 17px;
+font-family: Tahoma, Verdana, sans-serif;
+padding-top: -41px;
+} 
+   
+.sidebarmenu99 ul li{ 
+position: relative;
+padding-top: 1px; 
+} 
+
+/* Стили ссылок для основного списка меню */
+.sidebarmenu99 ul li a{ 
+color: #5f1b13;;  /*цвет шрифта*/
+display: block; 
+overflow: auto; /*force hasLayout in IE7 */
+text-decoration: none;  /*убрали подчеркивание*/
+padding: 12px; /*отступы*/
+border-bottom: 1px solid #FFFFFF; 
+
+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, rgba(255, 255, 255, 0.7)), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.3)));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  -webkit-box-shadow: inset -1px 0 1px rgba(255, 255, 255, 0.4), inset 1px 0 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4);
+  -moz-box-shadow: inset -1px 0 1px rgba(255, 255, 255, 0.4), inset 1px 0 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: inset -1px 0 1px rgba(255, 255, 255, 0.4), inset 1px 0 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4);
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+/*border-right: 1px solid #1A1011;*/ 
+} 
+.sidebarmenu99 ul li a:link, .sidebarmenu99 ul li a:visited, 
+.sidebarmenu99 ul li a:active{ 
+background-color: #eedf8e; /*фоновый цвет основного списка*/
+color:#5f1b13;
+} 
+.sidebarmenu99 ul li a:visited{ 
+color: #5f1b13; /*цвет шрифта после наведения курсора*/ 
+} 
+.sidebarmenu99 ul li a:hover{ 
+background-color: #5f1b13;; /*цвет фона после наведения курсора*/
+color:#FFFFFF;
+} 
+/*Стили для подменю */
+.sidebarmenu99 ul li ul{ 
+position: absolute; 
+width: 230px; /*ширина подменю */
+top: 0; 
+visibility: hidden; 
+} 
+
+
+
+/* Holly Hack for IE \\*/
+* html .sidebarmenu99 ul li { float: left; height: 1%; } 
+* html .sidebarmenu99 ul li a { height: 1%; } 
+/* End */	
+
+
+/*//////////////Меню с левой стороны конец//////////////////*/
+
+/*//////////////Меню верхнее начало//////////////////*/
+
+ul.gradient-menu {
+  padding: 6px;
+  margin: 0 auto;
+  list-style: none;
+  display: inline-block;
+  font-size: 17px;
+  height: 54px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.3);
+  -o-box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.3);
+}
+ul.gradient-menu {
+*display:inline;
+}
+ul.gradient-menu li {
+  display: inline;
+}
+ul.blue li a {
+  background-color: #eedf8e;
+  border: 2px solid #5f1b13;
+}
+
+ul.gradient-menu li a {
+  display: block;
+  padding: 0 25px;
+  height: 52px;
+  line-height: 50px;
+  text-decoration: none;
+  color: #5f1b13;
+  font-weight:800;
+  float: left;
+  margin-right: -1px;
+  text-align: center;
+  height: 52px;
+  
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, rgba(255, 255, 255, 0.7)), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.3)));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0.2) 50%, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+  -webkit-box-shadow: inset -1px 0 1px rgba(255, 255, 255, 0.4), inset 1px 0 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4);
+  -moz-box-shadow: inset -1px 0 1px rgba(255, 255, 255, 0.4), inset 1px 0 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: inset -1px 0 1px rgba(255, 255, 255, 0.4), inset 1px 0 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4);
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+ul.gradient-menu li:first-child a {
+  -moz-border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 10px;
+}
+ul.gradient-menu li:last-child a {
+  -moz-border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
+}
+ul.gradient-menu li a:hover {
+  line-height: 52px;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, rgba(255, 255, 255, 0.2)), color-stop(0.5, rgba(255, 255, 255, 0)), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.2)));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 50%, transparent 50%, rgba(255, 255, 255, 0.2) 100%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 50%, transparent 50%, rgba(255, 255, 255, 0.2) 100%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 50%, transparent 50%, rgba(255, 255, 255, 0.2) 100%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 50%, transparent 50%, rgba(255, 255, 255, 0.2) 100%);
+  -webkit-box-shadow: inset -1px 0 1px rgba(0, 0, 0, 0.4), inset 1px 0 1px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: inset -1px 0 1px rgba(0, 0, 0, 0.4), inset 1px 0 1px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: inset -1px 0 1px rgba(0, 0, 0, 0.4), inset 1px 0 1px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.4);
+}
+ul.blue li a:active {
+  background-color: #f0d22d;
+}
+ul.gradient-menu li a:active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 1024px) {
+ul.gradient-menu li a {padding: 0 10px;}
+ul.gradient-menu {font-size:16px;}
+}
+
+@media screen and (max-width: 700px) {
+
+#mini_hide{ display:none; }
+ul.gradient-menu li a {padding: 0 8px;}
+ul.gradient-menu {font-size:15px;}
+}
+/*//////////////Меню верхнее конец//////////////////*/
+
+
+
+/*//////////////Всплывающее модальное окно начало//////////////////*/
+
+#myModal {
+  width: 300px; height: 430px;
+  margin: 0 auto;
+  padding: 18px 9px;
+  border-radius: 4px;
+  background: #fafafa;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+  display: none;
+  opacity: 0;
+  z-index: 38;
+  text-align: center;
+}
+#myModal #myModal__close {
+  width: 21px; height: 21px;
+  position: absolute;
+  top: 1px; right: 11px;
+  cursor: pointer;
+  display: block;
+  font-size: 29px;
+}
+#myOverlay {
+  z-index: 37;
+  position: fixed;
+  background-color: rgba(0,0,0,.7);
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  cursor :pointer;
+  display :none;
+}
+
+
+
+
+/*//////////////Всплывающее модальное окно конец//////////////////*/

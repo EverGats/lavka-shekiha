@@ -1,0 +1,14 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtemsWay/exchange1c"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "*", 
+        "artemsway/exchange1c": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

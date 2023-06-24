@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Демонстрация слайдера FlexSlider</title>
+	
+	<!-- Часть для слайдера FlexSlider -->
+	<link rel="stylesheet" href="flexslider.css" type="text/css" media="screen" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="jquery.flexslider.js"></script>
+	
+	<!-- Стили для демонстрационной страницы -->
+	<link rel="stylesheet" href="demo-stuff/demo.css" type="text/css" media="screen" />
+	
+	<!-- Запуск слайдера FlexSlider -->
+	<script type="text/javascript">
+		$(window).load(function() {
+			$('.flexslider').flexslider();
+		});
+	</script>
+</head>
+<body>
+	<div id="container">
+		<h2>Демонстрация слайдера FlexSlider - <a href="http://ruseller.com">описание на русском языке на сайте RUSELLER.COM</a></h2>
+		
+		<!--=============================
+		Разметка для анимации FADE (затухание) - используется по умолчанию
+		=================================-->
+		<div class="flexslider">
+	    <ul class="slides">
+	    	<li>
+	    		<img src="demo-stuff/inacup_samoa.jpg" />
+	    		<p class="flex-caption">Заголовки и надписи. Для лучшего восприятия изображений.</p>
+	    	</li>
+	    	<li>
+	    		<a href="#"><img src="demo-stuff/inacup_pumpkin.jpg" /></a>
+	    		<p class="flex-caption">Изображение, которое содержится в ссылке.</p>
+	    	</li>
+	    	<li>
+	    		<img src="demo-stuff/inacup_donut.jpg" />
+	    	</li>
+	    	<li>
+	    		<img src="demo-stuff/inacup_vanilla.jpg" />
+	    	</li>
+	    </ul>
+	  </div>
+
+		<!--============================
+		Разметка для анимации SLIDE (скольжение)
+		Нужен дополнительный контейнер для выступающих элементов.
+		
+		Функция flexslider() должна включать следующие опции:
+		
+		<script type="text/javascript">
+			$(window).load(function() {
+				$('.flexslider').flexslider({
+				  animation: "slide",
+				  controlsContainer: ".flexslider-container"
+			  });
+			});
+		</script>
+		=================================
+		<div class="flexslider-container">
+			<div class="flexslider">
+		    <ul class="slides">
+		    	<li>
+		    		<img src="demo-stuff/inacup_samoa.jpg" />
+		    		<p class="flex-caption">Заголовки и надписи. Для лучшего восприятия изображений.</p>
+		    	</li>
+		    	<li>
+		    		<a href="#"><img src="demo-stuff/inacup_pumpkin.jpg" /></a>
+		    		<p class="flex-caption">Изображение, которое содержится в ссылке.</p>
+		    	</li>
+		    	<li>
+		    		<img src="demo-stuff/inacup_donut.jpg" />
+		    	</li>
+		    	<li>
+		    		<img src="demo-stuff/inacup_vanilla.jpg" />
+		    	</li>
+		    </ul>
+		  </div>
+	 	</div>
+		==================================-->
+	</div>
+</body>
+</html>
