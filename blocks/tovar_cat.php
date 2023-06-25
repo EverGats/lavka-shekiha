@@ -11,8 +11,8 @@ if (isset($_GET['id'])) {$id =$_GET['id'];
     }
 
 
-    $result_tovar_cat = mysql_query ("SELECT * FROM post_cat1 WHERE id='$id' ");
-    $myrow_tovar_cat =  mysql_fetch_array($result_tovar_cat);
+    $result_tovar_cat = $db->query("SELECT * FROM post_cat1 WHERE id='$id' ");
+    $myrow_tovar_cat =  $result_tovar_cat->fetch_array();
 }
 //////////////////////////////////////////////////////////////////////
 if (isset($_GET['pol'])) {$pol =$_GET['pol'];
@@ -157,8 +157,8 @@ if ($poisk==1 and !$pol and !$id and !$ml){
 }
 
 
-$result_all_stat = mysql_query("SELECT * FROM tovari $where_view $parametr ORDER BY id DESC LIMIT 16");
-$myrow_all_stat=mysql_fetch_array ($result_all_stat);
+$result_all_stat = $db->query("SELECT * FROM tovari $where_view $parametr ORDER BY id DESC LIMIT 16");
+$myrow_all_stat=$result_all_stat->fetch_array();
 
 
 

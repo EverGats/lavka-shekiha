@@ -27,29 +27,6 @@ color: #241515;;
 
 /*/////////////Элементы галереи товаров начало////////*/
 
-#blok_stat  { 
-width:100%;
-background:#fff;
-padding-top: 15px;
-padding-bottom: 15px;
-padding-left:3px; 
-padding-right:3px; 
-position:relative;
-border: 1px solid #dfcc7e;
-border-radius: 3px;
--webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
--moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
--webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
--moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-}
-
-a.blok_stat_zag {
-font-size: 16px;
-text-decoration: none;
-font-weight:600;
-}
 
 
 

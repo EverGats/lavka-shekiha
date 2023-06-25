@@ -2,7 +2,7 @@
 /* CSS Document */
 
 html, body {
-background-color: #FFFFFF;
+background-color: #FFFCF1;
 font-size: 16px;	
 margin: 0;
 padding: 0;
@@ -55,19 +55,17 @@ a:hover {
 #content {
 	 padding-top:2px;
 	 padding-bottom:15px;
-     background: #FFFFFF;
+     background: #FFFCF1;
 	 float: right;
      width: 73%;
      height: 100%;
 	 box-sizing: border-box;
 	 padding-left:7px;
 	 padding-right:13px;
-	 border: solid #d3ba6a;
-     border-width: 0px 1px 1px;
 }
 
 #sidebar {
-	 background: #FFFFFF;
+	 background: #FFFCF1;
      float: left;
      width: 26%;
      height: 100%;
@@ -78,13 +76,13 @@ a:hover {
 #header {
 width: 100%;
 height: 253px;
-background: #FFFFFF url(../img/logo_3500.jpg) no-repeat center top;
+background: #FFFCF1 url(../img/logo_3500.jpg) no-repeat center top;
 }
  
  
 #footer {
 background: #eedf8e url(../img/uzor.png);
-	color:#FFFFFF;
+	color:#FFFCF1;
 	width: 100%;
 	height: 100%;
 }
@@ -113,10 +111,10 @@ height: 100%;
 /*border: 5px solid #d1e231;*/
 display: grid;
 row-gap: 25px;
-column-gap: 20px;
+
 /*grid-template-columns: repeat(auto-fill, minmax(223px, 1fr));*/
 grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-
+background-color: #FFFCF1;
 
 
 }

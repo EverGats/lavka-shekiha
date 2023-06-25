@@ -4,23 +4,24 @@
 <style>
 
 a.blok_stat_knopka {
-  font-size: 80%;
+  font-size: 120%;
   font-weight: 700;
-  color: #241515;
+  color: #ffffff;
+    text-align: center;
   text-decoration: none;
-  text-shadow: 0 -1px 2px rgba(0,0,0,.2);
   padding: .3em 0.8em;
-  border-radius: 3px;
-  border: 1px solid #241515;
-  background: #dfcc7e;
-  box-shadow: inset 0px 0px 1px white, 0px 1px 2px #0c558a;
   transition: .2s ease-in-out;
-  width: 79%;
-  display: inline-block ;
-  /*display: block;*/
-
-
+  width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+    background-color: rgb(131, 115, 102);
+    opacity: 1;
+    letter-spacing: 2.31px;
+    align-items: center;
 }
+
 
 a.blok_stat_knopka:hover:not(:active) {
   background: #caac52;
@@ -31,26 +32,66 @@ background: #caac52;
 }
 
 
-#blok_stat_img img {
-height:160px;
-max-width:94%;
-padding:2px;
-background:#fff;
--webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
--moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-border:0;
+@media (min-width: 1000px) {
+
+    #blok_stat  {
+        height: 650px;
+        position:relative;
+        justify-content: center;
+    }
+
+    a.blok_stat_zag {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-align: left;
+        font-size: 18px;
+        text-decoration: none;
+        font-weight:700;
+        text-transform: uppercase;
+    }
+    #blok_stat_img img {
+        height:300px;
+        max-width:94%;
+        padding:2px;
+        background:#fff;
+    }
+    #blok_stat_img {
+        height: 350px;
+        background-color: #fff;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
+@media (max-width: 1000px) {
 
+    #blok_stat  {
+        position:relative;
+    }
 
-#blok_stat_img a img {
-border: 1px solid #CCCCCC;
+    a.blok_stat_zag {
+        text-align: left;
+        font-size: 17px;
+        text-decoration: none;
+        font-weight:700;
+        text-transform: uppercase;
+    }
+    #blok_stat_img img {
+        height:300px;
+        max-width:94%;
+        padding:2px;
+        background:#fff;
+    }
+    #blok_stat_img {
+        height: 350px;
+        background-color: #fff;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
-
-#blok_stat_img a:hover img{
-border: 1px solid #241515;
-}
-
 #filters_tovar a{
 text-decoration: none;
 }
@@ -124,7 +165,7 @@ if ($myrow_all_stat['id']){
 
 <!--noindex-->  
 <div style='height:5px;'></div>
-<div class='grid'>";
+<div class='grid row' >";
 
 do {
     $volumes = explode('--', trim($myrow_all_stat['po_ml'], '-'));
@@ -175,26 +216,34 @@ if ($last_komment>4 and $last_komment<10){$komm="отзывов";}
 
 
 
+$image_path = "../foto/mini/$myrow_all_stat[image].jpg";
+$default_image_path = "/img/default.jpeg";
 
+if (!file_exists($image_path)) {
+    $image_path = $default_image_path;
+}
 
 
 echo"
-<div id='blok_stat' align='center'>
+<div id='blok_stat' class='col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3' align='center'>
 
 <div id='blok_stat_img'>
 <a href='../$myrow_all_stat[seo_url]'>
-<img src='../foto/mini/$myrow_all_stat[image].jpg' alt='$myrow_all_stat[nazvanie]' title='$myrow_all_stat[nazvanie]'>
+<img src='$image_path' alt='$myrow_all_stat[nazvanie]' title='$myrow_all_stat[nazvanie]'>
 </a>
 </div>
 <div style='height:5px;'></div>
 
 <div><a class='blok_stat_zag' href='../$myrow_all_stat[seo_url]'>$myrow_all_stat[nazvanie]</a></div>
 
-<div style='height:5px;'></div>";
+<div style='height:17px;'></div>
+<div class='blok_stat_ml'>
+";
 
 
 
 //////////////////////////////////////////////////////////
+
 $result_po_ml = $db->query("SELECT * FROM tovari_po_ml WHERE id_tovar='$myrow_all_stat[id]' ORDER by name DESC");
 $myrow_po_ml= $result_po_ml->num_rows;
 
@@ -207,8 +256,8 @@ do {
 
 $prise_format = number_format($myrow_po_ml['prise'],0,'',' ');
 
-echo"<div style='padding:1px;'><strong>$myrow_po_ml[name] мл.</strong> - $prise_format р.</div>
-<div style='height:2px;'></div>
+echo"<div style='text-align: left;'><span style='font-weight: 600; font-size: 18px'>$myrow_po_ml[name] мл.</span> <span style='font-size: 18px' >- $prise_format р.</span></div>
+<div style='height:4px;'></div>
 ";
 
 
@@ -216,41 +265,34 @@ echo"<div style='padding:1px;'><strong>$myrow_po_ml[name] мл.</strong> - $pris
 while ($myrow_po_ml = $result_po_ml->fetch_array());
 
 echo"
-<div id='liniya_st'></div>
-<div style='height:2px;'></div>
+</div>
+<div style='height:17px;'></div>
 ";
 }
 
 /////////////////////////////////////////////////////////
 
 
-echo"
+/*echo" ОТЗЫВЫ И КОММЕНТАРИИ
 <div align='center'>
 <div id='views'><img src='../img/views.png' width='12' height='8' align='baseline' /> $prosmotrov $prsm&nbsp; 
 <div style='height:1px;'></div>
 <img src='../img/comment.png' width='12' height='11' align='baseline' /> $myrow_kom $komm </div>
 <div style='height:10px;'></div>
 </div>
-";
+";*/
 
 
 if ($_SESSION['id_klient']){$id_klient=$_SESSION['id_klient'];}else{$id_klient="0";}
 
 
 
-
 echo"
-<div style='height:55px;'></div>
-<div style='position:absolute; bottom:15px; width:100%;'>";
+<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>В корзину</a>";
 
-if ($myrow_all_stat['status']==0){
-echo"
-<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>В корзину +</a>";}
-else{echo"<span style='font-size:14px; color:#ff0000'>нет в наличии!</span> ";}
 
 echo"  
 <div style='height:7px;'></div>
-<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>Подробнее >></a></div>
 ";
 
 //echo"<div style='position:absolute; bottom:0px; background-color:#0099FF; width:100%;'>txt</div>";
@@ -328,3 +370,6 @@ echo"
 }
 
 ?>
+<style>
+
+</style>
