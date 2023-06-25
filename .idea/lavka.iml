@@ -7,11 +7,15 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/artemsway/exchange1c" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/artemsway/parser1c" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twbs/bootstrap" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-1.12.4" level="application" />
     <orderEntry type="library" name="jquery-ui" level="application" />
     <orderEntry type="library" name="jqueryui-touch-punch" level="application" />
+    <orderEntry type="library" name="bootstrap-grid" level="application" />
   </component>
 </module>

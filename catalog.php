@@ -14,36 +14,42 @@ echo"
             ПАРФЮМЕРИЯ
         </div>
 
-        <div class='parfum-blocks-container'>
+        <div class='container'>
         
-            <div class='parfum-first-row'>
+            <div class='row'>
             
-                <div class='parfum-block'>
+            
+                <div class='parfum-block parfum-block-left col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
                     <a class='pafrum-block-text'>Для него</a>
+                    <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-man.png'>
+                    </div>
                 </div>
                 
-                <div class='parfum-block'>
-                    <a class='pafrum-block-text'>Дня неё</a>
+                <div class='parfum-block parfum-block-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
+                    <a class='pafrum-block-text'>Для неё</a>
+                    <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-woman.png'>
+                    </div>
                 </div>
             
-            </div>
-            
-            <div class='parfum-second-row'>
-            
-                <div class='parfum-block'>
+           
+                <div class='parfum-block parfum-block-left col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
                     <a class='pafrum-block-text'>Для всех</a>
+                    <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-unisex.png'>
+                    </div>
                 </div>
                 
-                <div class='parfum-block'>
+                <div class='parfum-block parfum-block-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
                     <a class='pafrum-block-text'>Все <br>бренды</a>
+                    <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-all.png'>
+                    </div>
                 </div>
             
-            </div>
-        
+            
+         </div>
         </div>
     </div>
 </body>
@@ -64,39 +70,41 @@ body {
  overflow: hidden;
 }
 
-.parfum-blocks-container{
-   margin-left: 310px;
-   margin-right: 310px;
 
-   
-}
 
 .parfum-title{
     font-family: 'TupoVyazWebBold';		
     text-align: center;
     font-size: 80px;
     letter-spacing: 25px;
+    margin-bottom: 30px;
 }
 
-.parfum-first-row{
-    margin-top: 50px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 100px;
-
+.image-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
-.parfum-second-row{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 80px;
+.image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
 
+.parfum-img {
+    display: block;
+    z-index: 0;
+    
 }
 
 .parfum-block{
     
-    width: 363px;
-    height: 363px;
+    
     position: relative; 
     display: flex;
     justify-content: center;
@@ -104,20 +112,8 @@ body {
     overflow: hidden;
 
 }
-.parfum-img{
-  
-}
 
-.parfum-block::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
-    z-index: 1;
-}
+
 
 .pafrum-block-text{
 
@@ -130,7 +126,24 @@ body {
     margin-top: 42px;
     z-index: 10;
 }
- 
+
+@media(min-width: 1000px){
+.parfum-block-left {
+padding-left: 120px;
+}
+.parfum-block-right {
+padding-right: 120px;
+}
+.parfum-block-left:first-of-type {
+top:0;
+margin-bottom: 30px;
+}
+.parfum-block-right:first-of-type {
+
+margin-bottom: 30px;
+}
+}
+
 </style>
 ";
 
