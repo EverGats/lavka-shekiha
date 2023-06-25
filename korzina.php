@@ -175,14 +175,14 @@ border: 1px solid #1678b2;
 	display: block;
 	height: 34px;
 	padding: 0 15px;
-	border: 1px solid #5f1b13;;
+	border: 1px solid #241515;;
 	border-radius: 3px;
 	box-shadow: inset 0px 0px 1px white, 0px 1px 2px #dfcc7e;
 	background: #dfcc7e; /* Old browsers */
 	text-align: center;
 	font-size: 18px;
 	font-weight: bold;
-	color: #5f1b13;
+	color: #241515;
 	cursor: pointer;
 	width: 300px;	
 }

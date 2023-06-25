@@ -10,7 +10,7 @@
 background-color:#dfcc7e;
 padding:2px;
 font-size:14px;
-color: #5f1b13;
+color: #241515;
 text-decoration:none;
 border-radius: 4px 4px 4px 4px; 
 box-shadow: 0 0px 6px rgba(0,0,0,0.9);
@@ -22,7 +22,7 @@ display:block;
 
 #knopka_katalog a:hover{
 background-color:#caac52;
-color: #5f1b13;;
+color: #241515;;
 }
 
 /*/////////////Элементы галереи товаров начало////////*/
@@ -97,13 +97,10 @@ padding:2px;
 
 
 #liniya_st{
-border-bottom-color: #d3ba6a;
-border-bottom-style: solid;
-border-bottom-width: 1px;
-padding-bottom: 0px;
+margin-bottom: 40px;
 padding-left: 15px;
 padding-right: 15px;
-padding-top: 5px;
+margin-top: 40px;
 }
 
 
@@ -196,7 +193,7 @@ a.knopka_1 {
   outline: none;
   border-radius: 3px;
   border: 1px solid #0c558a;
-  background: #5f1b13;
+  background: #241515;
   box-shadow: inset 0px 0px 1px white, 0px 1px 2px #0c558a;
   transition: .2s ease-in-out;
   width:280px;  

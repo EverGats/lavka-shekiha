@@ -113,10 +113,7 @@ body {
 
 }
 
-
-
 .pafrum-block-text{
-
     position: absolute; 
     font-size: 40px;
     color: #FFFAEE;
@@ -134,17 +131,48 @@ padding-left: 120px;
 .parfum-block-right {
 padding-right: 120px;
 }
-.parfum-block-left:first-of-type {
-top:0;
-margin-bottom: 30px;
-}
-.parfum-block-right:first-of-type {
 
-margin-bottom: 30px;
 }
+@media(max-width: 1000px){
+
 }
 
 </style>
+<script>
+function updateMargins() {
+    var blocksLeft = document.getElementsByClassName('parfum-block-left');
+    var blocksRight = document.getElementsByClassName('parfum-block-right');
+    if(window.innerWidth > 1000) {
+        if (blocksLeft.length > 0) {
+            blocksLeft[0].style.marginBottom = '80px';
+        }
+        if (blocksRight.length > 0) {
+            blocksRight[0].style.marginBottom = '80px';
+        }
+        if (blocksLeft.length > 1) {
+            blocksLeft[1].style.marginBottom = '30px';
+        }
+        if (blocksRight.length > 1) {
+            blocksRight[1].style.marginBottom = '30px';
+        }
+    } else {
+        if (blocksLeft.length > 0) {
+            blocksLeft[0].style.marginBottom = '60px';
+        }
+        if (blocksRight.length > 0) {
+            blocksRight[0].style.marginBottom = '60px';
+        }
+        if (blocksLeft.length > 1) {
+            blocksLeft[1].style.marginBottom = '60px';
+        }
+        if (blocksRight.length > 1) {
+            blocksRight[1].style.marginBottom = '60px';
+        }
+    }
+}
+window.onload = updateMargins;
+window.onresize = updateMargins;
+</script>
 ";
 
 

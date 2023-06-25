@@ -95,7 +95,6 @@ html, body {
 html, body {
 margin: 0;
 padding: 0;
-font-family: tahoma,arial,verdana,sans-serif,Lucida Sans;
 color:#000000;
 }
 
@@ -104,13 +103,13 @@ a.knopka_404 {
   display: inline-block;
   font-size: 20px;
   font-weight: 700;
-  color: #5f1b13;
+  color: #241515;
   text-decoration: none;
   text-shadow: 0 -1px 2px rgba(0,0,0,.2);
   padding: .5em 1em;
   outline: none;
   border-radius: 3px;
-  border: 1px solid #5f1b13;
+  border: 1px solid #241515;
   background: #dfcc7e;
   box-shadow: inset 0px 0px 1px white, 0px 1px 2px #0c558a;
   transition: .2s ease-in-out;

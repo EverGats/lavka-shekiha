@@ -6,7 +6,7 @@
     <file url="file://$PROJECT_DIR$/blocks/filters_tovar.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/filters_tovar_arc.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/footer.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/blocks/header.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blocks/header_old.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/in_cart.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/left_meny.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/navigation.php" charset="UTF-8" />
@@ -15,9 +15,9 @@
     <file url="file://$PROJECT_DIR$/blocks/spisok_tovara_arc.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/tovar_cat.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/tovar_cat_arc.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/index.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/index3.php" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/index_arc.php" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/index_old.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/korzina.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myroute.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/otzivi.php" charset="UTF-8" />

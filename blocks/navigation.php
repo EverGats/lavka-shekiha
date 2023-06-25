@@ -1,4 +1,4 @@
-<div style="height:3px; background-color:#5f1b13;"></div>
+<div style="height:3px; background-color:#241515;"></div>
 <div align="center" style="background: #eedf8e  url(../img/uzor.png); margin-top:0px; padding:4px;">
 <ul class="gradient-menu blue">
 <li><a href="/">Главная</a></li>
@@ -11,7 +11,7 @@
 <li><a class="myLinkModal" href="#"><img style="margin-top:5px;" src='../img/dop_meny.png' height='80%'/></a></li>
 </ul>
 </div>
-<div style="height:3px; background-color:#5f1b13;"></div>
+<div style="height:3px; background-color:#241515;"></div>
 <div id='liniya_st'></div>
 
 

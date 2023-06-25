@@ -1,72 +1,92 @@
-
-<style>
-
-.block7   {
-  width: 25px;
-  height: 25px;
-  background-color: red;
-  border-radius: 50%;
-  transform: scale(.85);
-  animation: pulse 2s ease-in-out infinite;
-  position:fixed;
-  color:#FFFFFF;
-  text-decoration:none;
-  z-index: 991; 
-  line-height:24px;
-  text-align:center;
-  cursor: pointer;
-  margin-top:-4px;
-}
-
-.block7 a:hover{
-font-weight:800;
-color:#FFFFFF;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale(.85);
-  }
-  50% {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(.85);
-  }
-}
-
-</style>
 <?php
-$result_korz = $db->query("SELECT COUNT(*) FROM vibranie_tovari WHERE talon='".$_SESSION['talon']."' limit 9");
-$myrow_korz = $result_korz->fetch_array();
+require_once 'vendor/autoload.php';
+?>
+    <link rel="stylesheet"
+          href="/style/bootstrap-grid.min.css"/>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap' rel='stylesheet'>
 
-echo '
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-';
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-echo"
-<div style='position:fixed; background-color: #FFFFFF; padding-top:8px; padding-bottom:8px; margin-left:-8px; width:100%;  opacity: 0.90; z-index: 990; border-bottom: 2px solid #5f1b13;'>
-<div align='center'>";
+<?php
+echo "
+<body>
 
-if ($_SESSION['id_admin'] and $_SESSION['login_admin']){
-    echo"<strong><a style='text-decoration: none;' href='/admin'>Вход в админку</a></strong> <strong style='color:#5f1b13'>|</strong> ";
-}
-
-echo"
-<strong><a style='text-decoration: none;' href='#'>Вход в личный кабинет</a></strong>  <strong style='color:#5f1b13'>|</strong> <strong><a style='text-decoration: none;' href='../korzina'>Корзина</a></strong>";
-
-if ($myrow_korz[0]>0){
-    echo"
-    <a href='../korzina' class='block7'>$myrow_korz[0]</a>&nbsp;&nbsp;&nbsp;&nbsp;";
-}
-
-echo"<a href='../korzina'><img style='margin-top:-6px; position:fixed;' src='../img/basket.png' height='45px' border='0' /></a>";
-
-echo"</div>
-</div>
+    <div class='backgroundContainer'>
+        <div class='container'>  
+            <div class='row'>  
+                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
+                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
+                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
+                <a href='#' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
+                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
+                <a href='#' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Корзина</a>       
+            </div>
+        </div>
+    </div>
+    
+</body>
 ";
 
-echo"<div id='header'></div>";
+echo "
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FFFCF1;
+}
+
+.no-wrap {
+        white-space: nowrap;
+}
+
+
+
+.item-header {
+  color: #000;
+  font-weight: 400;
+  font-size: 27px;
+  text-decoration: none;
+  transition: font-weight 0.08s ease;
+}
+
+
+.item-header:hover {
+  font-weight: 600;
+}
+
+@media (min-width: 1000px){
+.backgroundContainer a{
+  text-align: center;
+}
+.backgroundContainer .container {
+  padding-top: 100px;
+  margin-bottom: 80px;
+}
+}
+
+@media (max-width: 999px){
+.backgroundContainer a{
+  height: 60px;
+  font-weight: 500;
+  font-size: 33px;
+}
+.backgroundContainer .row{
+  padding-left: 52px;
+  
+}
+.backgroundContainer .container {
+  padding-top: 170px;
+  max-width: 852px;
+  padding-bottom: 20px;
+}
+}
+
+
+</style>
+";
 ?>

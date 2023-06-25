@@ -20,7 +20,7 @@ padding-top: 1px;
 
 /* Стили ссылок для основного списка меню */
 .sidebarmenu99 ul li a{ 
-color: #5f1b13;;  /*цвет шрифта*/
+color: #241515;;  /*цвет шрифта*/
 display: block; 
 overflow: auto; /*force hasLayout in IE7 */
 text-decoration: none;  /*убрали подчеркивание*/
@@ -45,13 +45,13 @@ border-bottom: 1px solid #FFFFFF;
 .sidebarmenu99 ul li a:link, .sidebarmenu99 ul li a:visited, 
 .sidebarmenu99 ul li a:active{ 
 background-color: #eedf8e; /*фоновый цвет основного списка*/
-color:#5f1b13;
+color:#241515;
 } 
 .sidebarmenu99 ul li a:visited{ 
-color: #5f1b13; /*цвет шрифта после наведения курсора*/ 
+color: #241515; /*цвет шрифта после наведения курсора*/
 } 
 .sidebarmenu99 ul li a:hover{ 
-background-color: #5f1b13;; /*цвет фона после наведения курсора*/
+background-color: #241515;; /*цвет фона после наведения курсора*/
 color:#FFFFFF;
 } 
 /*Стили для подменю */
@@ -95,7 +95,7 @@ ul.gradient-menu li {
 }
 ul.blue li a {
   background-color: #eedf8e;
-  border: 2px solid #5f1b13;
+  border: 2px solid #241515;
 }
 
 ul.gradient-menu li a {
@@ -104,7 +104,7 @@ ul.gradient-menu li a {
   height: 52px;
   line-height: 50px;
   text-decoration: none;
-  color: #5f1b13;
+  color: #241515;
   font-weight:800;
   float: left;
   margin-right: -1px;

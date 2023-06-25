@@ -78,11 +78,11 @@ border:0;
 a.blok_stat_knopka_tovar {
   font-size: 90%;
   font-weight: 800;
-  color: #5f1b13;
+  color: #241515;
   text-decoration: none;
   padding: .5em 1.5em;
   border-radius: 3px;
-  border: 1px solid #5f1b13;
+  border: 1px solid #241515;
   background: #dfcc7e;
   box-shadow: inset 0px 0px 1px white, 0px 1px 2px #0c558a;
   transition: .2s ease-in-out;

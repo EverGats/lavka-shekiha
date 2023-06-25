@@ -6,12 +6,12 @@
 a.blok_stat_knopka {
   font-size: 80%;
   font-weight: 700;
-  color: #5f1b13;
+  color: #241515;
   text-decoration: none;
   text-shadow: 0 -1px 2px rgba(0,0,0,.2);
   padding: .3em 0.8em;
   border-radius: 3px;
-  border: 1px solid #5f1b13;
+  border: 1px solid #241515;
   background: #dfcc7e;
   box-shadow: inset 0px 0px 1px white, 0px 1px 2px #0c558a;
   transition: .2s ease-in-out;
@@ -48,7 +48,7 @@ border: 1px solid #CCCCCC;
 }
 
 #blok_stat_img a:hover img{
-border: 1px solid #5f1b13;
+border: 1px solid #241515;
 }
 
 #filters_tovar a{

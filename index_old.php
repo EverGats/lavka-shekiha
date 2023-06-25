@@ -51,7 +51,7 @@ echo"
 <body  id='top'>";
 
 include ("blocks/header.php");
-//include ("blocks/navigation.php");
+include ("blocks/navigation.php");
 
 echo"
 <div id='container_site'>    

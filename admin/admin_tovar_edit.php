@@ -4,14 +4,14 @@
 .orange-button2{
 	display: block;
 	padding: 10px 10px;
-	border: 1px solid #5f1b13;;
+	border: 1px solid #241515;;
 	border-radius: 3px;
 	box-shadow: inset 0px 0px 1px white, 0px 1px 2px #dfcc7e;
 	background: #dfcc7e; /* Old browsers */
 	text-align: center;
 	font-size: 15px;
 	font-weight: bold;
-	color: #5f1b13;
+	color: #241515;
 	cursor: pointer;
 }
 
@@ -38,7 +38,7 @@ border: 1px solid #CCCCCC;
 }
 
 #blok_stat_img a:hover img{	
-border: 1px solid #5f1b13; 
+border: 1px solid #241515; 
 }
 
 
@@ -775,10 +775,10 @@ echo"
 <div align='center' style='background-color:#CCCCCC;;'>
 <table align='center' width='100%' border='0' cellpadding='2' cellspacing='1'>
 <tr bgcolor='#dfcc7e;'>
-<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'>�����</div></td>
-<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'>����</div></td>
-<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'>���-��</div></td>
-<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'></div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#241515'>�����</div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#241515'>����</div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#241515'>���-��</div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#241515'></div></td>
 </tr>
 ";	
 	

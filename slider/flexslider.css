@@ -24,7 +24,6 @@
 
 /* Стиль заголовков */
 .flex-caption {
-font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;	
 width: 96%; padding: 2%; position: absolute; left: 0; bottom: 0; background: rgba(255, 255, 255,.7); color: #d31017; font-size: 15px; line-height: 18px; font-weight:bold;}
 
 /* Навигация */

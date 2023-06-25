@@ -27,8 +27,7 @@ $string_2="?";
 <style>
 
 .filter_blok ul{	
-font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-margin: 0.5; 
+margin: 0.5;
 padding: 0; 
 list-style-type: none; 
 font-size: 16px;
@@ -44,7 +43,7 @@ padding-top: 1px;
 } 
 
 .filter_blok ul li a{ 
-color: #5f1b13;;  /*цвет шрифта*/
+color: #241515;;  /*цвет шрифта*/
 display: block; 
 overflow: auto; /*force hasLayout in IE7 */
 text-decoration: none;  /*убрали подчеркивание*/

@@ -6,8 +6,8 @@ if ($id) {
     $myrow_brand = $result_brand->fetch_array();
 }
 
-$img_off = "<img src='../img/chek_off.png'  height='30' border='0'/>";
-$img_on = "<img src='../img/chek_on.png'  height='30' border='0'/>";
+$img_off = "<img src='../img/checkbox-off.png'  height='20' border='0'/>";
+$img_on = "<img src='../img/checkbox-on.png'  height='20' border='0'/>";
 
 if ($_GET['id']) {
     $brand_view = "../$myrow_brand[seo_url]";
@@ -20,8 +20,7 @@ if ($_GET['ml']) {
     $ml_view = "";
 }
 
-echo "<ul>
-<div>По полу</div>";
+echo "<ul>";
 
 $result_pol = $db->query("SELECT * FROM filters_pol ORDER BY id ASC");
 $myrow_pol = $result_pol->fetch_array();
@@ -58,76 +57,11 @@ do {
     } else {
         echo "/?pol=$myrow_pol[id]$ml_view$filters_view";
     }
-    echo "'>$view_vibor_pol $myrow_pol[name]</a></li>";
+    echo "'>$myrow_pol[name] $view_vibor_pol </a></li>";
 
 } while ($myrow_pol = $result_pol->fetch_array());
 
-echo "<div id='liniya_st'></div>
-<div style='height:3px;'></div>
-<div>По брендам</div>
-<div style='height:3px;'></div>";
-
-$result_cat_sobitiya = $db->query("SELECT * FROM post_cat1 ORDER BY name ASC");
-$myrow_cat_sobitiya = $result_cat_sobitiya->fetch_array();
-
-do {
-    $result = $db->query("SELECT * FROM tovari WHERE `status` = '0' and `cat` = '". $myrow_cat_sobitiya['id'] ."'")->fetch_array();
-
-    if($result) {
-        $pol_view = "";
-
-        if (!$_GET['id']) {
-            $view_vibor_brand = $img_off;
-        } else {
-            if ($_GET['id'] == $myrow_cat_sobitiya['id']) {
-                $view_vibor_brand = $img_on;
-            } else {
-                $view_vibor_brand = $img_off;
-            }
-        }
-
-        if ($_GET['filters'] and !$_GET['pol'] and !$_GET['ml']) {
-
-            if (!$_GET['id']) {
-                $filters_view = "--/&filters=1#tovar_gal";
-            }
-            if ($_GET['id'] == $myrow_cat_sobitiya['id']) {
-                $filters_view = "/?filters=1#tovar_gal";
-            } else {
-                $filters_view = "/?filters=1#tovar_gal";
-            }
-
-        } else {
-            $filters_view = "";
-        }
-
-        if ($_GET['filters'] and ($_GET['pol'])) {
-            $filters_view_dop = "&filters=1#tovar_gal";
-        } else {
-            $filters_view_dop = "";
-        }
-
-        if ($_GET['pol']) {
-            $pol_view = "/?pol=$pol$filters_view_dop";
-        }
-        if ($_GET['ml']) {
-            $pol_view = "/?ml=$ml$filters_view_dop";
-        }
-
-        echo "<li><a href='";
-        if ($_GET['id'] == $myrow_cat_sobitiya['id']) {
-            echo "../katalog$filters_view";
-        } else {
-            echo "../$myrow_cat_sobitiya[seo_url]$filters_view";
-        }
-        echo "$pol_view'>$view_vibor_brand $myrow_cat_sobitiya[name]</a></li>";
-    }
-} while ($myrow_cat_sobitiya = $result_cat_sobitiya->fetch_array());
-
-echo "<div id='liniya_st'></div>
-<div style='height:3px;'></div>
-<div>По объему</div>
-<div style='height:3px;'></div>";
+echo "<div id='liniya_st'></div>";
 
 $min_volume = isset($_GET['min_volume']) ? intval($_GET['min_volume']) : 0;
 $max_volume = isset($_GET['max_volume']) ? intval($_GET['max_volume']) : PHP_INT_MAX;
@@ -141,22 +75,31 @@ unset($get_params['max_volume']);
 $get_params_string = http_build_query($get_params);
 echo '
 <style>
+   .filter_blok {
+  background-color: #FFFCF1;
+  padding: 0px 20px 0px 20px;
+  border-right: 1px solid #241515;
+}
+
+    #sidebar {
+     background: #FFFCF1;
+     }
     .slider-container {
         max-width: 400px;
         width: 100%;
         margin-left: 7px;
     }
     .slider-range .ui-slider-handle {
-        background-color: #5f1b13;
-        border-color: #5f1b13;
+        background-color: #241515;
+        border-color: #241515;
     }
     .slider-range .ui-slider-range {
-        background-color: #5f1b13;
+        background-color: #241515;
     }
     .slider-all {
         display: flex;
         justify-content: space-between;
-        color: #5f1b13;
+        color: #241515;
         margin-bottom: 10px;
     }
     .slider-range {
@@ -188,7 +131,6 @@ $( function() {
                 $minVolume.text(ui.values[0]);
                 $maxVolume.text(ui.values[1]);
 
-                // Обновляем все остальные слайдеры с этими новыми значениями.
                 $(".slider-range").not(this).slider("values", ui.values);
                 $(".min-volume").not($minVolume).text(ui.values[0]);
                 $(".max-volume").not($maxVolume).text(ui.values[1]);
