@@ -1,0 +1,175 @@
+.catalog-tovarov-bg{
+    background-color: #837366;
+    padding-bottom: 80px;
+}
+
+.catalog-tovarov-bg a{
+    text-decoration: none;
+}
+
+.catalog-tovarov-block-text{
+    position: absolute;
+    font-size: 34px;
+    color: #FFFAEE;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-top: 42px;
+    z-index: 15;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.catalog-tovarov-block{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+
+.catalog-tovarov-img{
+    height: 365px;
+    width: 365px;
+    display: block;
+    z-index: 0;
+}
+
+.catalog-tovarov-title{
+    font-family: 'TupoVyazWebBold';
+    text-align: center;
+    font-size: 110px;
+    letter-spacing: 30px;
+    margin-bottom: 30px;
+    padding-top: 60px;
+    color: #FFFAEE;
+}
+
+@media (min-width: 1000px){
+    .catalog-tovarov-container{}
+    .backgroundContainer{
+        padding-bottom: 1100px;
+    }
+    .text-glavnaya{
+        text-align: center;
+        color: #FFFAEE;
+    }
+    .backgroundContainer .item-header{
+        text-align: center;
+        color: #FFFAEE;
+        font-weight: 600;
+        letter-spacing: 3px;
+    }
+    .backgroundContainer .container {
+        padding-top: 100px;
+        margin-bottom: 80px;
+    }
+    .text-glavnaya{
+        font-weight: 600 !important;
+        font-size: 40px !important;
+        letter-spacing: 13px;
+    }
+    .item-header:hover {
+        font-weight: 700;
+    }
+    .catalog-left{
+        padding-left: 120px;
+
+    }
+    .catalog-right{
+        padding-right: 120px;
+    }
+}
+@media (max-width: 1199px){
+    .tovarov{
+        display: none;
+    }
+}
+
+@media (max-width: 999px){
+    .catalog-tovarov-img{
+        height: 420px;
+        width: 420px;
+        display: block;
+        z-index: 0;
+    }
+    .catalog-tovarov-container{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .item-header:hover {
+        font-weight: 600;
+    }
+    .network-content{
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    .network{
+        height: 50px;
+    }
+    .backgroundContainer a{
+        height: 60px;
+        font-weight: 500;
+        font-size: 33px;
+        color: #FFFAEE;
+    }
+    .text-glavnaya{
+        font-weight: 600 !important;
+        font-size: 40px !important;
+        letter-spacing: 13px;
+    }
+    .backgroundContainer {
+        background-position-x: -350px;
+    }
+    .backgroundContainer .row{
+        padding-left: 52px;
+    }
+    .backgroundContainer .container {
+        padding-top: 170px;
+        max-width: 852px;
+        padding-bottom: 20px;
+    }
+    .search-container{
+        height: 3vh;
+    }
+}
+.catalog-tovarov-block {
+    transition: transform 0.3s ease-in-out;
+}
+
+.catalog-tovarov-block:hover {
+    transform: scale(1.05);
+}
+
+.image-wrapper::before {
+    transition: background 0.3s ease-in-out;
+}
+
+.catalog-tovarov-block:hover .image-wrapper::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.catalog-tovarov-block-text {
+    transition: color 0.3s ease-in-out;
+}
+
+.catalog-tovarov-block:hover .catalog-tovarov-block-text {
+    color: #FFF8DC;
+}

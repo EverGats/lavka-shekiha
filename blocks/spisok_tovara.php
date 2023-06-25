@@ -125,8 +125,8 @@ if (isset($currentParams['filters']) && $currentParams['filters'] == 1) {
 
 echo"<div style='float:right; margin-top:-22px;'>";
 
-if ($_GET['poisk']==1){ echo"<a href='../katalog/?poisk=2'><img src='../img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Скрыть поиск</a>";}
-if ($_GET['poisk']==2 || !$_GET['poisk']){ echo"<a href='../katalog/?poisk=1'><img src='../img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Октрыть поиск</a>";}
+if ($_GET['poisk']==1){ echo"<a href='../catalog/?poisk=2'><img src='../img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Скрыть поиск</a>";}
+if ($_GET['poisk']==2 || !$_GET['poisk']){ echo"<a href='../catalog/?poisk=1'><img src='../img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Октрыть поиск</a>";}
 
 echo"
 </div>

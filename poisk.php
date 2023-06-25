@@ -70,8 +70,8 @@ if ($dobavit==1){
 ////////////////////////////////////////////////////////////
 if ($nazvanie){
 	
-$result_all_stat = mysql_query ("SELECT * FROM tovari WHERE nazvanie  like '%".$nazvanie."%' ORDER BY id DESC");	
-$myrow_all_stat=mysql_fetch_array ($result_all_stat);	
+$result_all_stat = $db->query ("SELECT * FROM tovari WHERE nazvanie  like '%".$nazvanie."%' ORDER BY id DESC");
+$myrow_all_stat=$result_all_stat->fetch_array();
 
 if ($myrow_all_stat){
 
@@ -89,8 +89,8 @@ include ("blocks/spisok_tovara.php");
 if ($artikul){
 
 	
-$result_all_stat = mysql_query ("SELECT * FROM tovari WHERE id='$artikul' ORDER BY id DESC");	
-$myrow_all_stat=mysql_fetch_array ($result_all_stat);	
+$result_all_stat = $db->query ("SELECT * FROM tovari WHERE id='$artikul' ORDER BY id DESC");
+$myrow_all_stat=$result_all_stat->fetch_array();
 
 if ($myrow_all_stat){
 

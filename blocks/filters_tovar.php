@@ -78,7 +78,7 @@ echo '
    .filter_blok {
   background-color: #FFFCF1;
   padding: 1px 20px 1px 20px;
-  border-right: 2px solid #241515;
+  
 }
 .filter_blok a{
 width: 130px;

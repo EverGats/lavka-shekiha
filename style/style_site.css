@@ -68,7 +68,6 @@ a:hover {
 	 background: #FFFCF1;
      float: left;
      width: 26%;
-     height: 100%;
 	 text-align: center;
 }
 
@@ -90,7 +89,7 @@ background: #eedf8e url(../img/uzor.png);
 
 
 #container_site {
-     background: #FFFFFF;
+     background: #FFFCF1 !important;
      margin: auto auto;
      width: 80%;
      height: 100%; 
@@ -115,7 +114,7 @@ row-gap: 25px;
 /*grid-template-columns: repeat(auto-fill, minmax(223px, 1fr));*/
 grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
 background-color: #FFFCF1;
-
+    border-left: 2px solid #241515;
 
 }
 
@@ -150,7 +149,7 @@ background-color: #FFFCF1;
 body {font-size: 15px;}
 h1 { font-size: 23px;}
 h2 { font-size: 19px;}
-#header {height: 200px; background: #FFFFFF url(../img/logo_1024.jpg) no-repeat center top;}
+#header {height: 200px; background: #FFFCF1 url(../img/logo_1024.jpg) no-repeat center top;}
 #container_site {width: 94%;}
 #sidebar {width: 33%;}
 #content {width: 66%;}
@@ -167,7 +166,7 @@ h2 { font-size: 19px;}
 }
 
 @media screen and (max-width: 600px) {
-#header {height: 190px; background: #FFFFFF url(../img/logo_600.jpg) no-repeat center top;}	
+#header {height: 190px; background: #FFFCF1 url(../img/logo_600.jpg) no-repeat center top;}
 #sidebar {width: 0%;}
 #content {width: 100%;}
 #container_site {width: 98%;}

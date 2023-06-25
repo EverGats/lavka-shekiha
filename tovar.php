@@ -145,18 +145,9 @@ echo"
 $result_tovar_cat = $db->query("SELECT * FROM post_cat1 WHERE id='$myrow_tovar[cat]' ");
 $myrow_tovar_cat =  $result_tovar_cat->fetch_array();
 
-echo"
-<div style='height:6px;'></div>
-<div id='ssilka_mob'><a href='/'>�������</a>&nbsp;<em>&rarr;</em>&nbsp;";
 
-echo "<a href='../$myrow_tovar_cat[seo_url]'>$myrow_tovar_cat[name]</a>";
 
 echo"
-<em>&rarr;</em>&nbsp;</div>";
-
-echo"
-<div style='height:6px;'></div>
-<div id='liniya_st'></div>
 <div align='center'><h1>$myrow_tovar[nazvanie]</h1></div>
 
 <div id='liniya_st'></div>

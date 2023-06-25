@@ -68,7 +68,7 @@ visibility: hidden;
     <script src="/js/jq-sticky.js"></script>
 
 <script>
-    $('#sidebar').stickThis({
+    $('#sidebar ').stickThis({
         top: 130
     });
 </script>

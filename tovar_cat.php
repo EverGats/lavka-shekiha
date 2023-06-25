@@ -11,8 +11,8 @@ if (isset($_GET['id'])) {$id =$_GET['id'];
             }
 
 
-$result_tovar_cat = mysql_query ("SELECT * FROM post_cat1 WHERE id='$id' ");
-$myrow_tovar_cat =  mysql_fetch_array($result_tovar_cat);
+$result_tovar_cat = $db->query ("SELECT * FROM post_cat1 WHERE id='$id' ");
+$myrow_tovar_cat =  $result_tovar_cat->fetch_array();
 }
 //////////////////////////////////////////////////////////////////////
 if (isset($_GET['pol'])) {$pol =$_GET['pol'];
@@ -88,21 +88,12 @@ echo"
 <div id='content'>";
 
 
-echo"
-<div style='height:6px;'></div>
-<div id='ssilka_mob'><a href='/'>Главная</a>&nbsp;<em>&rarr;</em>&nbsp;";
 
-echo "$title";
 
 echo"
-<em>&rarr;</em>&nbsp;</div>";
-
-echo"
-<div style='height:6px;'></div>
-<div id='liniya_st'></div>
 <div align='center'><h1>";
 
-echo "$title";
+echo "<div class='title'>$title</div>";
 
 echo"</h1></div>
 
@@ -132,10 +123,13 @@ if ($poisk==1 and !$pol and !$id){
     if ($nazvanie){$parametr="nazvanie  like '%".$nazvanie."%'";}
     if ($artikul){$parametr="id='$artikul'";}
 }
-
+if(!empty($where_view) && !empty($parametr)){
 $result_all_stat = $db->query("SELECT * FROM tovari $where_view $parametr ORDER BY id DESC LIMIT 16");
 $myrow_all_stat = $result_all_stat->fetch_array();
-
+}else{
+    $result_all_stat = $db->query("SELECT * FROM tovari ORDER BY id DESC LIMIT 16");
+    $myrow_all_stat = $result_all_stat->fetch_array();
+}
 include ("blocks/spisok_tovara.php");
 
 ///////////////////////////////////////////////////////////////////////////////////////

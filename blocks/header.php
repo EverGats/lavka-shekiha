@@ -10,16 +10,17 @@ require_once 'vendor/autoload.php';
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <link rel='stylesheet' href='/fonts/Tupo-Vyaz/Tupo-Vyaz_Bold.css' type='text/css' charset='utf-8'>
 
 <?php
 echo "
 <body>
 
-    <div class='backgroundContainer'>
+    <div class='backgroundContainerHeader'>
         <div class='container'>  
             <div class='row'>  
                 <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
-                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
+                <a href='/catalog' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
                 <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
                 <a href='#' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
                 <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
@@ -34,6 +35,9 @@ echo "
 echo "
 <style>
 
+#container_site {
+     background: #FFFCF1 !important;
+}
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -44,7 +48,9 @@ body {
         white-space: nowrap;
 }
 
-
+#sidebar{
+height: auto;
+}
 
 .item-header {
   color: #000;
@@ -60,26 +66,26 @@ body {
 }
 
 @media (min-width: 1000px){
-.backgroundContainer a{
+.backgroundContainerHeader a{
   text-align: center;
 }
-.backgroundContainer .container {
+.backgroundContainerHeader .container {
   padding-top: 100px;
   margin-bottom: 80px;
 }
 }
 
 @media (max-width: 999px){
-.backgroundContainer a{
+.backgroundContainerHeader a{
   height: 60px;
   font-weight: 500;
-  font-size: 33px;
+  font-size: 20px;
 }
-.backgroundContainer .row{
+.backgroundContainerHeader .row{
   padding-left: 52px;
   
 }
-.backgroundContainer .container {
+.backgroundContainerHeader .container {
   padding-top: 170px;
   max-width: 852px;
   padding-bottom: 20px;

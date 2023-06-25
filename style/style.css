@@ -5,7 +5,13 @@
 
 
 /*/////////////////////*/
-
+.title {
+	font-family: 'TupoVyazWebBold', serif;
+	text-align: center;
+	font-size: 80px;
+	letter-spacing: 25px;
+	margin-bottom: 30px;
+}
 #knopka_katalog a {	
 background-color:#dfcc7e;
 padding:2px;
@@ -104,7 +110,7 @@ font-weight: 500;
 
 
 #views_2{
-color: #FFFFFF;
+color: #FFFCF1;
 font-weight: 500;
 }
 
@@ -113,7 +119,7 @@ font-weight: 500;
 width:100%;
 position:relative;
 padding-bottom: 15px;
-background:#fff;
+background:#FFFCF1;
 -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
 -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
 box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
