@@ -33,8 +33,7 @@ list-style-type: none;
 font-size: 16px;
 padding-top: -41px;
 text-align:left;
-} 
-
+}
 
 
 .filter_blok ul li{ 
@@ -56,20 +55,28 @@ position: absolute;
 width: 230px; /*ширина подменю */
 top: 0; 
 visibility: hidden; 
-} 
+}
 
 .filter_blok ul li img {
     vertical-align: middle;
 }
+#mini_hide {
+    transition: all 0.3s ease-in-out; /* добавление плавности */
+}
 
 </style>
+    <script src="/js/jq-sticky.js"></script>
 
-
+<script>
+    $('#sidebar').stickThis({
+        top: 130
+    });
+</script>
 
 <?
 
 echo"
-<div id='mini_hide' style='top:-15px; position:relative;'>";
+<div id='mini_hide' >";
 
 include ("blocks/filters_tovar.php");	
 

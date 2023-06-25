@@ -2,7 +2,7 @@
 <title>Каталог</title>
 <meta name="Robots" content="NOINDEX" />
 <?php
-include('blocks/header_new.php');
+include('blocks/header.php');
 
 echo"
 <body>

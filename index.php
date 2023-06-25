@@ -24,27 +24,8 @@ $myr_html[kodirovka]";
 
 
 <?
-echo"
-$myr_html[styl_skript_icon]    
+echo"$myr_html[styl_skript_icon]";
 
-<link rel='stylesheet' href='slider/flexslider.css' type='text/css' media='screen' />";
-?>
-<script defer src="slider/jquery.flexslider-min.js"></script>
-
-<!-- Запуск слайдера FlexSlider -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.flexslider').flexslider({
-            slideshow: true,
-            pauseOnAction: true,
-            pauseOnHover: true,
-            slideshowSpeed: 4000
-
-        });
-
-    });
-</script>
-<?
 
 echo"
 </head>
@@ -68,55 +49,7 @@ echo"
 <div id='liniya_st'></div>
 <div style='height:3px;'></div>";
 
-//////////////////////////////////////////////////////////////////////////////
-//<div id='container' style='width: 96%; max-width: 400px; margin: 0 auto;'>
 
-echo"
-
-<div id='container' style='width: 92%; max-width: 420px; margin: 0 auto;'>
-<div class='flexslider' style='display: flex;'>
-<ul class='slides'>";
-
-
-$res_slide = $db->query("SELECT * FROM tovari ORDER BY RAND() LIMIT 7");
-$myr_slide = $res_slide->fetch_array();
-
-do{
-
-
-    echo"
-<li style='margin: auto 0;'>
-<a href='../$myr_slide[seo_url]'>
-<img src='../foto/full/$myr_slide[image].jpg' />
-<p class='flex-caption'>$myr_slide[nazvanie]</p>
-</a>
-</li>
-";
-
-}
-
-while ($myr_slide = $res_slide->fetch_array());
-
-echo"           
-</ul>
-</div>
-</div>
-
-<div style='height:15px;'></div>";
-//////////////////////////////////////////////////////////////////////////
-
-
-
-
-echo"
-<div style='height:8px;'></div>
-<div id='liniya_st'></div>
-<div align='center'><h2><a href='#'>Новые поступления</a></h2></div>
-";
-?>
-
-
-<?
 echo"
 <div style='height:3px;'></div>";
 

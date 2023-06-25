@@ -6,8 +6,8 @@ if ($id) {
     $myrow_brand = $result_brand->fetch_array();
 }
 
-$img_off = "<img src='../img/checkbox-off.png'  height='20' border='0'/>";
-$img_on = "<img src='../img/checkbox-on.png'  height='20' border='0'/>";
+$img_off = "<img src='../img/checkbox-off.png' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
+$img_on = "<img src='../img/checkbox-on.png' style='float: right' height='20' border='0'/>";
 
 if ($_GET['id']) {
     $brand_view = "../$myrow_brand[seo_url]";
@@ -51,7 +51,7 @@ do {
         $ml_view = "";
     }
 
-    echo "<li><a href='$brand_view";
+    echo "<li><a style='position: relative' href='$brand_view";
     if ($_GET['pol'] == $myrow_pol['id']) {
         echo "$filters_view";
     } else {
@@ -77,8 +77,14 @@ echo '
 <style>
    .filter_blok {
   background-color: #FFFCF1;
-  padding: 0px 20px 0px 20px;
-  border-right: 1px solid #241515;
+  padding: 1px 20px 1px 20px;
+  border-right: 2px solid #241515;
+}
+.filter_blok a{
+width: 130px;
+font-size: 20px;
+margin-left: 5px;
+margin-bottom: 7px;
 }
 
     #sidebar {
