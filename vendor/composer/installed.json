@@ -1,0 +1,105 @@
+{
+    "packages": [
+        {
+            "name": "artemsway/exchange1c",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtemsWay/exchange1c.git",
+                "reference": "4dcd9248e393b9df030c7c654a241234c995f9b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtemsWay/exchange1c/zipball/4dcd9248e393b9df030c7c654a241234c995f9b8",
+                "reference": "4dcd9248e393b9df030c7c654a241234c995f9b8",
+                "shasum": ""
+            },
+            "require": {
+                "artemsway/parser1c": "dev-master"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "time": "2017-06-13T13:47:03+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "ArtemsWay\\Exchange1C\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "ArtemsWay\\Exchange1C\\Tests\\": "tests/src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Artem Miroshnichenko",
+                    "email": "artemsway@gmail.com"
+                }
+            ],
+            "description": "Package for exchange data with 1C.",
+            "support": {
+                "source": "https://github.com/ArtemsWay/exchange1c/tree/master",
+                "issues": "https://github.com/ArtemsWay/exchange1c/issues"
+            },
+            "install-path": "../artemsway/exchange1c"
+        },
+        {
+            "name": "artemsway/parser1c",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtemsWay/parser1c.git",
+                "reference": "f7fd51a8e9caed0bf2b088735adbf2b89bbefe55"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtemsWay/parser1c/zipball/f7fd51a8e9caed0bf2b088735adbf2b89bbefe55",
+                "reference": "f7fd51a8e9caed0bf2b088735adbf2b89bbefe55",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "time": "2017-06-13T10:58:09+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "ArtemsWay\\Parser1C\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Artem Miroshnichenko",
+                    "email": "artemsway@gmail.com",
+                    "homepage": "https://github.com/ArtemsWay"
+                }
+            ],
+            "description": "Package for parsing CommerceML2 files.",
+            "homepage": "https://github.com/artemsway/parser1c",
+            "keywords": [
+                "1c",
+                "commerceml",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/ArtemsWay/parser1c/issues",
+                "source": "https://github.com/ArtemsWay/parser1c/tree/master"
+            },
+            "install-path": "../artemsway/parser1c"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
