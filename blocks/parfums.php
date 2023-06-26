@@ -1,6 +1,5 @@
 
 <title>Каталог</title>
-<meta name="Robots" content="NOINDEX" />
 <?php
 include('blocks/header.php');
 
@@ -19,7 +18,7 @@ echo "
             
             
                 <div class='parfum-block parfum-block-left col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-                    <a class='pafrum-block-text'>Для него</a>
+                    <a href='' class='pafrum-block-text'>Для него</a>
                     <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-man.png'>
                     </div>
@@ -113,6 +112,7 @@ body {
 }
 
 .pafrum-block-text{
+    text-decoration: none;
     position: absolute; 
     font-size: 40px;
     color: #FFFAEE;
@@ -122,7 +122,29 @@ body {
     margin-top: 42px;
     z-index: 10;
 }
+.pafrum-block {
+    transition: transform 0.3s ease-in-out;
+}
 
+.pafrum-block:hover {
+    transform: scale(1.05);
+}
+
+.image-wrapper::before {
+    transition: background 0.3s ease-in-out;
+}
+
+.pafrum-block:hover .image-wrapper::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.pafrum-block-text {
+    transition: color 0.3s ease-in-out;
+}
+
+.pafrum-block:hover .pafrum-block-text {
+    color: #FFF8DC;
+}
 @media(min-width: 1000px){
 .parfum-block-left {
 padding-left: 120px;
@@ -174,6 +196,19 @@ function updateMargins() {
 }
 window.onload = updateMargins;
 window.onresize = updateMargins;
+
+document.querySelectorAll('.parfum-block').forEach((block) => {
+        const link = block.querySelector('.pafrum-block-text').getAttribute('href');
+
+        Array.from(block.children).forEach((child) => {
+            if (child.tagName !== 'A') {
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', link);
+                linkElement.appendChild(child.cloneNode(true));
+                block.replaceChild(linkElement, child);
+            }
+        });
+    });
 </script>
 ";
 

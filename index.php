@@ -16,28 +16,30 @@ echo "
 <div class='background-black'>
     <div class='backgroundContainer'>
     
+        <div class='backgroundContainerHeader'>
         <div class='container'>  
             <div class='row'>  
-                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
-                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
+                <a href='#' class='item-header item-header-bold col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
+                <a href='/catalog' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
                 <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
                 <a href='#' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
                 <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
                 <a href='#' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Корзина</a>       
             </div>
-        </div>    
-        
-        <div class='search-main-container'>
+        </div>
+    </div>
+        <div class='container'>
+        <div class='search-main-container col-lg-12 col-xl-12 col-md-12 col-sm-12 col-xs-12'>
             <div class='search-container'>
                 <input type='text' placeholder='Поиск'' />
             </div>
         </div>
-        <div class='logo-glavnaya-container'>
+        <div class='logo-glavnaya-container' style='user-select: none'>
             <img class='logo-glavnaya' src='/img/logo-glavnaya-big.png'>  
         </div>
         
         <div class='text-glavnaya'>
-               <a class='text-glavnaya'>ВАШ ОАЗИС АРОМАТОВ</a>
+               <a class='text-glavnaya' style='user-select: none'>ВАШ ОАЗИС АРОМАТОВ</a>
         </div>
         
         <div class='network-content row'>
@@ -45,14 +47,14 @@ echo "
             <img class='network mail' href='@'  src='/img/mail.png'>
             <img class='network' href='@' src='/img/tg.png'>
         </div>
-
+</div>
 
     </div>
 </div> 
 
 <div class='new-container'>
 
-    <div class='new-title'>
+    <div class='new-title' style='user-select: none'>
             НОВИНКИ
      </div>
 
@@ -78,7 +80,40 @@ echo "
 
 echo "
 <style>
+.item-header-bold {
+font-weight: 600 !important;
+}
+@media (min-width: 1000px){
+.backgroundContainerHeader a{
+  text-align: center;
+}
+.backgroundContainerHeader .container {
+  padding-top: 100px;
+  margin-bottom: 80px;
+}
+}
+@media (min-width: 800px) and (max-width: 1200px){
+.logo-glavnaya{
+    width: 78%;
+}
+}
+@media (max-width: 999px){
 
+.backgroundContainerHeader a{
+  height: 60px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.backgroundContainerHeader .row{
+  padding-left: 52px;
+  
+}
+.backgroundContainerHeader .container {
+  padding-top: 170px;
+  max-width: 852px;
+  padding-bottom: 20px;
+}
+}
 input::-webkit-input-placeholder { 
   font-weight: 600;
   font-size: 18px;
@@ -99,9 +134,11 @@ input:-ms-input-placeholder {
 
 input::placeholder { 
   font-weight: 600;
-  font-size: 18px;
-  letter-spacing: 4px;
+  font-size: 22px;
+  letter-spacing: 8px;
+  padding-top: 8px;
    color: #c7c6c6;
+    font-variant: small-caps;
 }
 
 body {
@@ -133,9 +170,7 @@ body {
     align-items: center;
 }
 
-.logo-glavnaya{
-    width: 78%;
-}
+
 
 .glavnaya-triangle{
     width: 100%;
@@ -179,7 +214,7 @@ body {
     border-radius: 8px;
     box-sizing: border-box;
     z-index: 10;
-    width: 72%;
+    width: 100%;
     height: 6vh;
 }
 
@@ -190,14 +225,16 @@ body {
     outline: none;
     padding-left: 10px;
     width: 100%;
+    font-size: 22px;
     z-index: 0;
+    color: #646464;
 }
 
 .search-container::before {
     content: '';
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     background: url('img/lupa.png') no-repeat center;
     background-size: contain;
     z-index: 0;
@@ -212,7 +249,7 @@ body {
 .item-header {
   color: #FFFAEE;
   font-weight: 400;
-  font-size: 27px;
+  font-size: 24px;
   text-decoration: none;
   transition: font-weight 0.08s ease;
   z-index: 4;
@@ -230,6 +267,12 @@ body {
 
 .backgroundContainer{
  padding-bottom: 1100px;
+}
+
+.search-container::before {
+    padding-left: 50px;
+    width: 25px;
+    height: 25px;
 }
 
 .text-glavnaya{
@@ -276,9 +319,9 @@ body {
     height: 40px !important;
 }
 
-.backgroundContainer a{
+.backgroundContainerHeader a{
   height: 60px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 33px;
   color: #FFFAEE;
 }
@@ -289,19 +332,48 @@ body {
     letter-spacing: 13px;
 }
 
-.backgroundContainer .row{
+.backgroundContainerHeader .row{
   padding-left: 52px;
 }
 
-.backgroundContainer .container {
+.backgroundContainerHeader .container {
   padding-top: 170px;
   max-width: 852px;
   padding-bottom: 20px;
 }
-
-.search-container{
- height: 3vh;
+.search-container input{
+font-size: 35px;
+    height: 100%;
+    padding-left: 20px;
+    
 }
+.search-container{
+ height: 5vh;
+ border-radius: 17px;
+}
+
+input::placeholder { 
+  font-weight: 500;
+  font-size: 35px;
+  letter-spacing: 9px;
+   color: #c7c6c6;
+}
+
+.search-container::before {
+padding-left: 65px;
+    width: 40px;
+    height: 40px;
+}
+
+.logo-glavnaya{
+    width: 100%;
+    }
+
+}
+
+@media (min-width: 450px) {
+
+
 
 }
 
