@@ -30,6 +30,9 @@ echo('
         </div>
     </div>
     <style>
+    
+    
+    
     .all-brands-title{
         font-family: "TupoVyazWebBold";     
         text-align: center;
@@ -37,6 +40,7 @@ echo('
         letter-spacing: 30px;
         margin-bottom: 30px;
         margin-top: 50px;
+        
     }
     .brand-item{
         margin-bottom: 20px;
@@ -45,6 +49,7 @@ echo('
         color: #000;  // Можете изменить цвет ссылки на свой вкус
         text-decoration: none;  // Удалите подчеркивание ссылки, если оно есть
     }
+    
     
     
     </style>
