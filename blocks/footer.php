@@ -59,8 +59,33 @@ echo "
     </div>
     
 </body>
-";
 
+
+";
+?>
+<script>
+    //Якори
+    $(function(){
+        $('a[href^="#"]').click(function () {
+            elementID = $(this).attr("href");
+            position = $(elementID).offset().top;
+            $('html, body').animate({scrollTop: position}, 500);
+
+            return false;
+        });
+    });
+
+    //Выделение жирным хэдер
+    window.onload = function() {
+        var path = window.location.pathname;
+
+        if(path.startsWith('/catalog/')) {
+            document.querySelector('.item-header-catalog').classList.add('item-header-bold');
+        }
+    }
+
+</script>
+<?php
 echo "
 <style>
 

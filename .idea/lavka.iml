@@ -17,5 +17,6 @@
     <orderEntry type="library" name="jquery-ui" level="application" />
     <orderEntry type="library" name="jqueryui-touch-punch" level="application" />
     <orderEntry type="library" name="bootstrap-grid" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

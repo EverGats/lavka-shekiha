@@ -66,6 +66,7 @@ body {
  background-color: #FFFCF1;
  width: 100%;
  overflow: hidden;
+ padding-bottom: 80px;
 }
 
 
@@ -73,9 +74,10 @@ body {
 .parfum-title{
     font-family: 'TupoVyazWebBold';		
     text-align: center;
-    font-size: 80px;
+    font-size: 110px;
     letter-spacing: 25px;
     margin-bottom: 30px;
+    padding-top: 60px;
 }
 
 .image-wrapper {
@@ -122,19 +124,27 @@ body {
     margin-top: 42px;
     z-index: 10;
 }
-.pafrum-block {
+.parfum-block {
     transition: transform 0.3s ease-in-out;
 }
 
-.pafrum-block:hover {
+.parfum-block:hover {
     transform: scale(1.05);
 }
 
 .image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
     transition: background 0.3s ease-in-out;
+    z-index: 1;
 }
 
-.pafrum-block:hover .image-wrapper::before {
+.parfum-block:hover .image-wrapper::before {
     background: rgba(0, 0, 0, 0.7);
 }
 
@@ -142,9 +152,10 @@ body {
     transition: color 0.3s ease-in-out;
 }
 
-.pafrum-block:hover .pafrum-block-text {
+.parfum-block:hover .pafrum-block-text {
     color: #FFF8DC;
 }
+
 @media(min-width: 1000px){
 .parfum-block-left {
 padding-left: 120px;
@@ -196,8 +207,8 @@ function updateMargins() {
 }
 window.onload = updateMargins;
 window.onresize = updateMargins;
-
-document.querySelectorAll('.parfum-block').forEach((block) => {
+$(document).ready(function() {
+  document.querySelectorAll('.parfum-block').forEach((block) => {
         const link = block.querySelector('.pafrum-block-text').getAttribute('href');
 
         Array.from(block.children).forEach((child) => {
@@ -209,6 +220,8 @@ document.querySelectorAll('.parfum-block').forEach((block) => {
             }
         });
     });
+});
+
 </script>
 ";
 

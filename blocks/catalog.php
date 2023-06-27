@@ -66,11 +66,17 @@
             if (blocksRight.length > 0) {
                 blocksRight[0].style.marginBottom = '80px';
             }
+            if (blocksLeft.length > 0) {
+                blocksLeft[1].style.marginBottom = '80px';
+            }
+            if (blocksRight.length > 0) {
+                blocksRight[1].style.marginBottom = '80px';
+            }
             if (blocksLeft.length > 1) {
-                blocksLeft[1].style.marginBottom = '30px';
+                blocksLeft[2].style.marginBottom = '30px';
             }
             if (blocksRight.length > 1) {
-                blocksRight[1].style.marginBottom = '30px';
+                blocksRight[2].style.marginBottom = '30px';
             }
         } else {
             if (blocksLeft.length > 0) {
@@ -79,11 +85,17 @@
             if (blocksRight.length > 0) {
                 blocksRight[0].style.marginBottom = '60px';
             }
-            if (blocksLeft.length > 1) {
+            if (blocksLeft.length > 0) {
                 blocksLeft[1].style.marginBottom = '60px';
             }
-            if (blocksRight.length > 1) {
+            if (blocksRight.length > 0) {
                 blocksRight[1].style.marginBottom = '60px';
+            }
+            if (blocksLeft.length > 1) {
+                blocksLeft[2].style.marginBottom = '60px';
+            }
+            if (blocksRight.length > 1) {
+                blocksRight[2].style.marginBottom = '60px';
             }
         }
     }
