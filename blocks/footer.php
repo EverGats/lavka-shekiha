@@ -13,7 +13,7 @@ echo "
     
         <div class='logo-container'>
         
-            <img class='logo-footer' src='/img/logo_new.png' alt=''>
+            <img class='logo-footer' src='/img/logo_new.png' draggable='false' alt=''>
         
         </div>
     
@@ -116,12 +116,13 @@ body {
 .bg-container {
   background: url('/img/bg_footer.png') no-repeat center/cover;
   width: 100%;
-  flex-grow: 1;
+  /*flex-grow: 1;*/
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   padding-bottom: 48px;
+  margin-top: inherit;
 }
 
 
