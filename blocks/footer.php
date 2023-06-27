@@ -112,7 +112,8 @@ body {
 
 
 .logo-container {
-  margin: 17px auto;
+
+  margin: 50px auto;
   width: fit-content;
 }
 

@@ -87,9 +87,20 @@ echo "
 
 echo "
 <style>
+.items-container{
+margin-top: 60px;
+}
 .item-header-bold {
 font-weight: 600 !important;
 }
+
+@media (min-height: 500px) and (max-height: 1000px) and (min-width: 800px) and (max-width: 1000px){
+.backgroundContainer {
+padding-bottom: 1100px;
+}
+}
+
+
 @media (min-width: 1000px){
 .backgroundContainerHeader a{
   text-align: center;
@@ -98,6 +109,7 @@ font-weight: 600 !important;
   padding-top: 100px;
   margin-bottom: 80px;
 }
+
 }
 @media (min-width: 800px) and (max-width: 1200px){
 .logo-glavnaya{
@@ -164,7 +176,7 @@ body {
     font-size: 100px;
     letter-spacing: 30px;
     margin-bottom: 30px;
-    margin-top: 50px;
+    margin-top: 83px;
 }
 
 .no-wrap {
