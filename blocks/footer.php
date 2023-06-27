@@ -13,7 +13,7 @@ echo "
     
         <div class='logo-container'>
         
-            <img class='logo-footer' src='/img/logo_new.png' alt=''>
+            <img class='logo-footer' src='/img/logo_new.png' draggable='false' alt=''>
         
         </div>
     
@@ -107,7 +107,7 @@ body {
   align-items: center;
   overflow: hidden;
   padding-bottom: 48px;
-  margin-top: auto;
+  margin-top: inherit;
 }
 
 

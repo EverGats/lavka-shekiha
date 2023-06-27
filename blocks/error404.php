@@ -14,7 +14,7 @@ echo "
 
     <div class='topPage'>
     
-        <img class='topImg' src='/img/404up.png'>
+        <img class='topImg' src='/img/glavnaya-triangle.png'>
         
     </div>
    
@@ -27,7 +27,7 @@ echo "
 
     <div calss='bottomPage'>
         
-        <img class='bottomImg' src='/img/404up.png'>
+        <img class='bottomImg' src='/img/glavnaya-triangle.png'>
         
     </div>
 
@@ -48,40 +48,29 @@ html, body {
 
 .main {
   background-color: #FFFAEE;
+  width: 100vw; /* устанавливаем ширину в 100% от ширины экрана */
   height: 100vh; 
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   overflow: hidden; /* прячем все, что выходит за пределы .main */
 }
 
 .topImg, .bottomImg {
-  width: 100%; 
-  height: 60vh; /* задаем высоту в 30% от общей высоты экрана */
-  
-    
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+} 
+
+.topImg {
+  transform: scaleY(-1); /* отражает изображение по вертикали */
 }
 
-.middlePage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+ 
 
-.middlePage .code {
-  font-size: 20vh; /* размер шрифта в 10% от общей высоты экрана */
-  font-weight: 800; 
-}
 
-.middlePage .nf {
-  font-size: 10vh; /* размер шрифта в 5% от общей высоты экрана */
-  font-weight: 500; 
-}
 
-.bottomImg {
+.topImg {
   transform: scaleY(-1); /* отражает изображение по вертикали */
 }
 
