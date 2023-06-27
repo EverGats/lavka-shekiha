@@ -67,19 +67,34 @@ echo "
     //Якори
     $(function(){
         $('a[href^="#"]').click(function () {
-            elementID = $(this).attr("href");
-            position = $(elementID).offset().top;
+            var elementID = $(this).attr("href");
+            var position = $(elementID).offset().top;
             $('html, body').animate({scrollTop: position}, 500);
 
             return false;
         });
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var anchorParam = urlParams.get('anchor');
+
+        if (anchorParam) {
+            var elementID = "#" + anchorParam;
+            if ($(elementID).length) {
+                setTimeout(function() {
+                    var position = $(elementID).offset().top;
+                    $('html, body').animate({scrollTop: position}, 500);
+                }, 333);
+            }
+        }
     });
+
+
 
     //Выделение жирным хэдер
     window.onload = function() {
         var path = window.location.pathname;
 
-        if(path.startsWith('/catalog/')) {
+        if(path.startsWith('/catalog')) {
             document.querySelector('.item-header-catalog').classList.add('item-header-bold');
         }
     }

@@ -21,7 +21,7 @@ echo "
             <div class='row'>  
                 <a href='/' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
                 <a href='/catalog' class='item-header item-header-catalog col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
-                <a href='/#news-magazine' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
+                <a href='/?anchor=news-magazine' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
                 <a href='#' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
                 <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
                 <a href='#' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Корзина</a>       

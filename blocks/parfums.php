@@ -40,7 +40,7 @@ echo "
                 </div>
                 
                 <div class='parfum-block parfum-block-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-                    <a class='pafrum-block-text'>Все <br>бренды</a>
+                    <a href='/catalog/parfum/brands/' class='pafrum-block-text'>Все <br>бренды</a>
                     <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-all.png'>
                     </div>
