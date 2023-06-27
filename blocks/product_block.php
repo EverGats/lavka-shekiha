@@ -58,7 +58,7 @@ if($myrow_all_stat['status']==0){
 <div id='blok_stat' class='col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3' align='center'>
 
 <div id='blok_stat_img'>
-<a href='../$myrow_all_stat[seo_url]'>
+<a href='/catalog/$myrow_all_stat[seo_url]'>
 <img src='$image_path' alt='$myrow_all_stat[nazvanie]' title='$myrow_all_stat[nazvanie]'>
 </a>
 </div>
@@ -241,7 +241,7 @@ while ($myrow_all_stat=$result_all_stat->fetch_array());
         }
 
         #blok_stat  {
-            height: 650px;
+            height: 610px;
         }
 
         a.blok_stat_zag {
@@ -272,7 +272,7 @@ while ($myrow_all_stat=$result_all_stat->fetch_array());
             margin-bottom: 20px;
         }
         #blok_stat {
-            height: 630px;
+            height: 590px;
         }
         a.blok_stat_zag {
             font-size: 21px;

@@ -174,7 +174,7 @@ height: 420px;
 
 </style>
 <script>
-function updateMargins() {
+function updateMarginsParfum() {
     var blocksLeft = document.getElementsByClassName('parfum-block-left');
     var blocksRight = document.getElementsByClassName('parfum-block-right');
     if(window.innerWidth > 1000) {
@@ -205,8 +205,8 @@ function updateMargins() {
         }
     }
 }
-window.onload = updateMargins;
-window.onresize = updateMargins;
+window.addEventListener('load', updateMarginsParfum);
+window.addEventListener('resize', updateMarginsParfum);
 $(document).ready(function() {
   document.querySelectorAll('.parfum-block').forEach((block) => {
         const link = block.querySelector('.pafrum-block-text').getAttribute('href');
