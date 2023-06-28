@@ -260,10 +260,36 @@ body {
 }
 
 .backgroundContainer {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/bg-glavnaya.png');
-  height: 100vh;
-  background-size: cover;
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    overflow: hidden;
 }
+
+.backgroundContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('/img/bg-glavnaya.svg');
+    background-size: cover;
+    filter: blur(1px);
+    z-index: -1;
+}
+
+.backgroundContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
 
 .item-header {
   color: #FFFAEE;
