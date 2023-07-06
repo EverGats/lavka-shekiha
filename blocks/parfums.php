@@ -18,14 +18,14 @@ echo "
             
             
                 <div class='parfum-block parfum-block-left col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-                    <a href='' class='pafrum-block-text'>Для него</a>
+                    <a href='/catalog/parfum/him/' class='pafrum-block-text'>Для него</a>
                     <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-man.png'>
                     </div>
                 </div>
                 
                 <div class='parfum-block parfum-block-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-                    <a class='pafrum-block-text'>Для неё</a>
+                    <a href='/catalog/parfum/her/' class='pafrum-block-text'>Для неё</a>
                     <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-woman.png'>
                     </div>
@@ -33,14 +33,14 @@ echo "
             
            
                 <div class='parfum-block parfum-block-left col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-                    <a class='pafrum-block-text'>Для всех</a>
+                    <a href='/catalog/parfum/all/' class='pafrum-block-text'>Для всех</a>
                     <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-unisex.png'>
                     </div>
                 </div>
                 
                 <div class='parfum-block parfum-block-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-                    <a class='pafrum-block-text'>Все <br>бренды</a>
+                    <a href='/catalog/parfum/brands/' class='pafrum-block-text'>Все <br>бренды</a>
                     <div class='image-wrapper'>
                     <img class='parfum-img' src='/img/parfum-all.png'>
                     </div>

@@ -6,13 +6,13 @@ if ($id) {
     $myrow_brand = $result_brand->fetch_array();
 }
 
-$img_off = "<img src='../img/checkbox-off.png' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
-$img_on = "<img src='../img/checkbox-on.png' style='float: right' height='20' border='0'/>";
+$img_off = "<img src='/img/checkbox-off.png' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
+$img_on = "<img src='/img/checkbox-on.png' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
 
 if ($_GET['id']) {
     $brand_view = "../$myrow_brand[seo_url]";
 } else {
-    $brand_view = "../katalog";
+    $brand_view = "";
 }
 if ($_GET['ml']) {
     $ml_view = "&ml=$_GET[ml]";
@@ -26,40 +26,27 @@ $result_pol = $db->query("SELECT * FROM filters_pol ORDER BY id ASC");
 $myrow_pol = $result_pol->fetch_array();
 
 do {
-    if ($_GET['pol'] == $myrow_pol['id']) {
+    $current_page = $_SERVER['REQUEST_URI'];
+    if ($myrow_pol['name'] == 'Для нее') {
+        $url = "/catalog/parfum/her/";
+    } else if ($myrow_pol['name'] == 'Для него') {
+        $url = "/catalog/parfum/him/";
+    } else {
+        $url = "/catalog/parfum/all/";
+    }
+
+    if (strpos(" " . $current_page . " ",$url,)) {
         $view_vibor_pol = $img_on;
     } else {
         $view_vibor_pol = $img_off;
     }
 
-    if ($_GET['filters']) {
-        if (!$_GET['pol']) {
-            $filters_view = "&filters=1#tovar_gal";
-        }
-        if ($_GET['pol'] == $myrow_pol['id']) {
-            $filters_view = "/?filters=1#tovar_gal";
-        } else {
-            $filters_view = "&filters=1#tovar_gal";
-        }
-    } else {
-        $filters_view = "";
-    }
-
-    if ($_GET['ml']) {
-        $pol_view = "&ml=$ml";
-    } else {
-        $ml_view = "";
-    }
-
-    echo "<li><a style='position: relative' href='$brand_view";
-    if ($_GET['pol'] == $myrow_pol['id']) {
-        echo "$filters_view";
-    } else {
-        echo "/?pol=$myrow_pol[id]$ml_view$filters_view";
-    }
-    echo "'>$myrow_pol[name] $view_vibor_pol </a></li>";
+    echo "<li><a style='position: relative' href='$url'>$myrow_pol[name] $view_vibor_pol </a></li>";
 
 } while ($myrow_pol = $result_pol->fetch_array());
+
+
+
 
 echo "<div id='liniya_st'></div>";
 

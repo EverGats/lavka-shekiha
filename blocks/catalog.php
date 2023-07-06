@@ -56,7 +56,7 @@
 </div>
 </div>
 <script>
-    function updateMargins() {
+    function updateMarginsCatalog() {
         var blocksLeft = document.getElementsByClassName('catalog-left');
         var blocksRight = document.getElementsByClassName('catalog-right');
         if(window.innerWidth > 1000) {
@@ -99,8 +99,8 @@
             }
         }
     }
-    window.onload = updateMargins;
-    window.onresize = updateMargins;
+    window.addEventListener('load', updateMarginsCatalog);
+    window.addEventListener('resize', updateMarginsCatalog);
     document.querySelectorAll('.catalog-tovarov-block').forEach((block) => {
         const link = block.querySelector('.catalog-tovarov-block-text').getAttribute('href');
 
