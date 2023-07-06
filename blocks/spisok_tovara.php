@@ -116,17 +116,17 @@ $currentParams = $_GET;
 if (isset($currentParams['filters']) && $currentParams['filters'] == 1) {
     $currentParams['filters'] = 2;
     $queryString = http_build_query($currentParams);
-    echo "<div><a href='?{$queryString}'><img src='../img/filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;'/>Скрыть фильтры</a></div>";
+    echo "<div><a href='?{$queryString}'><img src='/img/filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;'/>Скрыть фильтры</a></div>";
 } else {
     $currentParams['filters'] = 1;
     $queryString = http_build_query($currentParams);
-    echo "<div><a href='?{$queryString}'><img src='../img/filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;'/>Показать фильтры</a></div>";
+    echo "<div><a href='?{$queryString}'><img src='/img/filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;'/>Показать фильтры</a></div>";
 }
 
 echo"<div style='float:right; margin-top:-22px;'>";
 
-if ($_GET['poisk']==1){ echo"<a href='../catalog/?poisk=2'><img src='../img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Скрыть поиск</a>";}
-if ($_GET['poisk']==2 || !$_GET['poisk']){ echo"<a href='../catalog/?poisk=1'><img src='../img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Октрыть поиск</a>";}
+if ($_GET['poisk']==1){ echo"<a href='../catalog/?poisk=2'><img src='/img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Скрыть поиск</a>";}
+if ($_GET['poisk']==2 || !$_GET['poisk']){ echo"<a href='../catalog/?poisk=1'><img src='/img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Октрыть поиск</a>";}
 
 echo"
 </div>
@@ -306,7 +306,7 @@ echo"
 <div align='center' style='position:relative; bottom:62px; width:94%;'>
 
 
-<div id='knopka_katalog' style='padding:1px'><a href='javascript: $sluch5();'>редактировать <img style='float:right;' src='../img/edit_mik.png' width='17' height='17' border='0' align='absmiddle'></a></div>
+<div id='knopka_katalog' style='padding:1px'><a href='javascript: $sluch5();'>редактировать <img style='float:right;' src='/img/edit_mik.png' width='17' height='17' border='0' align='absmiddle'></a></div>
 
 <script type='text/javascript'> 
 function $sluch5(){
