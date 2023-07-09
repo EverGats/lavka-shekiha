@@ -44,12 +44,12 @@ echo "
             
             <div class='contacts-table'>
             
-                <a href='@' class='top-item-footer'>Контакты</a>
-                <a href='@' class='item-footer'>Анапа, Краснодарский край 64 бк.1</a>
-                <a href='@' class='item-footer'>+79284386609</a>
-                <a href='@' class='item-footer'>Новороссийск,<br>проспект Дзержинского 190А</a>
-                <a href='@' class='item-footer'>+79284191999</a>
-                <a href='@' class='item-footer'>@LAVKA_SHEIKHA</a>
+                <a class='top-item-footer'>Контакты</a>
+                <a href='https://cutt.ly/ZwiohJ4A' class='item-footer'>Анапа, Краснодарская улица 64 бк.1</a>
+                <a href='tel:+79284386609' class='item-footer'>+79284386609</a>
+                <a href='https://cutt.ly/lwioloqW' class='item-footer'>Новороссийск,<br>проспект Дзержинского 190А</a>
+                <a href='tel:+79284191999' class='item-footer'>+79284191999</a>
+                <a href='https://www.instagram.com/lavka_sheikha/' class='item-footer'>@LAVKA_SHEIKHA</a>
                 
             </div>
         
@@ -114,7 +114,7 @@ body {
 }
 
 .bg-container {
-  background: url('/img/bg_footer.png') no-repeat center/cover;
+   background: linear-gradient(rgba(255, 252, 241, 0.6), rgba(255, 252, 241, 0.6)), url('/img/footer.png') no-repeat right center/cover;
   width: 100%;
   /*flex-grow: 1;*/
   display: flex;
@@ -123,6 +123,7 @@ body {
   overflow: hidden;
   padding-bottom: 48px;
   margin-top: inherit;
+  background-position-x: -50px;
 }
 
 
@@ -136,7 +137,7 @@ body {
   display: flex;
   justify-content: space-between;
   width: calc(100% - 420px);
-  margin: 36px 210px 0 210px;
+  margin: 0px 210px 0 210px;
 }
 
 .catalog-table,
@@ -164,6 +165,7 @@ body {
   margin-bottom: 10px;
   color: #837366;
   text-decoration: none;
+   min-width: 350px;
   transition: font-weight 0.08s ease;
   
 }
