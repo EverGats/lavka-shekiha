@@ -21,7 +21,7 @@ echo "
     <div class='middlePage'>
     
         <a class='code'>404 <br></a>
-        <a class='nf'>FILE NOT FOUND</a>
+        <a class='nf'>СТРАНИЦА НЕ НАЙДЕНА</a>
    
     </div>
 
@@ -36,6 +36,23 @@ echo "
 
 echo"
 <style>
+
+.middlePage{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.nf{
+    font-weight: 500;
+    font-size: 54px;
+    letter-spacing: 6px;
+}
+.code{
+    font-weight: 600;
+    font-size: 78px;
+    letter-spacing: 6px;
+}
 html, body {
   margin: 0;
   padding: 0;
