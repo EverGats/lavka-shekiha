@@ -140,7 +140,6 @@ body {
   overflow: hidden;
   padding-bottom: 48px;
   margin-top: inherit;
-  background-position-x: -50px;
 }
 
 

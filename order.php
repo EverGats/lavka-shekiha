@@ -33,6 +33,7 @@ echo("
             <div class='card-number-container'>
                 <input type='text' class='card-input' id='card-number' name='card-number' pattern='[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}' placeholder='**** **** **** ****'  maxlength='19'required>
                 <label for='card-number'>Номер карты</label>
+                
             </div>
             
             <div class='date-code-container'>
@@ -52,13 +53,41 @@ echo("
         <img class='cards col-xs-12 col-sm-12 col-lg-6 col-xl-6' src='/img/cards.svg'>
     </div>
     </div>
-        <div class='order-btn-container'>
-            <a class='order-confirm' style='user-select: none'>ПОДТВЕРДИТЬ ЗАКАЗ</a>
-            <img class='order-btn' src='/img/order-btn.png'>       
+        <div class='order-btn-container'>    
+            <button class='myButton'>ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>  
 </div>
 </div>
 
 <style>
+
+.myButton {
+        display: inline-block;
+        width: 600px;
+        height: 60px;
+        padding: 10px 20px;
+        letter-spacing: 3px;
+        font-size: 28px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #000;
+        border: none;
+        border-radius: 28px;
+        transition: transform .2s; /* анимация */
+    }
+
+
+    /* при наведении */
+    .myButton:hover {
+        transform: scale(1.1); /* увеличение размера */
+    }
+
+    /* при нажатии */
+    .myButton:active {
+        transform: scale(0.9); /* уменьшение размера */
+    }
 
 @media(max-width: 991px){
 
@@ -147,7 +176,7 @@ margin-top: 25px;
     margin-left: 45px;
 }
 .centered-rectangle {
-    width: 700px;
+    width: 750px;
     height: 200px;
     border-radius: 20px;
     background-color: rgba(131, 115, 102, 0.5);
@@ -258,6 +287,13 @@ margin-top: 25px;
     font-size: 20px;
 }
 
+.card-input:focus,
+.date-input:focus,
+.code-input:focus {
+     outline: none;
+}
+
+
 .date-code-container {
     display: flex;
     justify-content: space-between;
@@ -275,17 +311,7 @@ margin-top: 25px;
 }
 
 
-.order-btn-container{
-    transition: all 0.3s ease-in-out;
-}
 
-.order-btn-container:hover {
-    transform: scale(0.9);
-}
-
-.order-btn-container:active {
-    transform: scale(0.8);
-}
 
 .order-confirm{
     font-size: 35px;
@@ -296,22 +322,10 @@ margin-top: 25px;
   color: red;
 }
 
-.order-btn-container:hover .order-confirm {
-    font-size: 40px;
-    margin-top: 9px !important;
-}
-
-.order-btn-container:active .order-confirm {
-    font-size: 45px;
-    margin-top: 6px !important;
-}
 
 
 
-.order-btn-container:hover .order-btn,
-.order-btn-container:active .order-btn {
-    z-index: -1;
-}
+
 </style>
 
 
@@ -408,7 +422,7 @@ function isValidCardNumber(cardNumber) {
 echo ("
 <script>
 $(document).ready(function() {
-  $('.order-confirm').click(function() {
+  $('.myButton').click(function() {
      var orderID = generateUniqueID();
   
     var store = $('input[name=\"store\"]:checked').val();
@@ -427,10 +441,19 @@ $(document).ready(function() {
       \"browser\": getBrowserInfo()
     };
     
+    if (data.store === 'store1'){
+        data.store = 'Anapa';
+    } else if (data.store === 'store2') {
+        data.store = 'Novorossiysk';    
+    } else {
+        data.store = '';
+        }
+    
     console.log(JSON.stringify(data));
   });
 });
-
+  
+ 
 function getUserIP() {
   // Ваш код получения IP-адреса пользователя
   // Можно использовать сторонние сервисы или серверные скрипты для получения IP
