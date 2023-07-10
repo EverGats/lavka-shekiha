@@ -27,9 +27,14 @@ echo("
         </div>
         
         <div class='card-input-container'>
-        <div class='centered-rectangle2'>
-            <input type='text' class='card-input' id='card-number' name='card-number' pattern='[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}' placeholder='**** **** **** ****'  maxlength='19'required>
-            <label for='card-number'>Номер карты</label>
+        <div class='row'>
+        <div class='centered-rectangle2 col-xs-12 col-sm-12 col-lg-6 col-xl-6'>
+        
+            <div class='card-number-container'>
+                <input type='text' class='card-input' id='card-number' name='card-number' pattern='[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}' placeholder='**** **** **** ****'  maxlength='19'required>
+                <label for='card-number'>Номер карты</label>
+                
+            </div>
             
             <div class='date-code-container'>
                 <div class='date-container'>
@@ -45,21 +50,78 @@ echo("
             </div>
    
         </div>
-        <img class='cards' src='/img/cards.svg'>
+        <img class='cards col-xs-12 col-sm-12 col-lg-6 col-xl-6' src='/img/cards.svg'>
     </div>
-        <div class='order-btn-container'>
-            <a class='order-confirm'>ПОДТВЕРДИТЬ ЗАКАЗ</a>
-            <img class='order-btn' src='/img/order-btn.png'>       
+    </div>
+        <div class='order-btn-container'>    
+            <button class='myButton'>ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>  
 </div>
 </div>
 
 <style>
 
+.myButton {
+        display: inline-block;
+        width: 600px;
+        height: 60px;
+        padding: 10px 20px;
+        letter-spacing: 3px;
+        font-size: 28px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #000;
+        border: none;
+        border-radius: 28px;
+        transition: transform .2s; /* анимация */
+    }
+
+
+    /* при наведении */
+    .myButton:hover {
+        transform: scale(1.1); /* увеличение размера */
+    }
+
+    /* при нажатии */
+    .myButton:active {
+        transform: scale(0.9); /* уменьшение размера */
+    }
+
+@media(max-width: 991px){
+
+    .cards{
+        width: 150px !important;
+    }
+    .centered-rectangle2 {
+        width: 350px;
+        height: 220px;
+    }
+}
+.card-number-container label {
+margin-left: 20px;
+}
+.order-btn-container{
+display: flex;
+justify-content: center;
+justify-items: center;
+margin-top: 100px;
+margin-bottom: 150px;
+}
+.order-confirm{
+position: absolute;
+color: #FFFAEE;
+font-size: 30px;
+margin-top: 15px;
+}
 .checkbox-item input[type='radio'] {
     display: none;
 
 }
-
+.card-number label{
+margin-left: 200px;
+}
 /* Создаем новый стиль для радио-кнопок */
 .checkbox-item input[type='radio'] + label:before {
     content: '';
@@ -114,7 +176,7 @@ margin-top: 25px;
     margin-left: 45px;
 }
 .centered-rectangle {
-    width: 700px;
+    width: 750px;
     height: 200px;
     border-radius: 20px;
     background-color: rgba(131, 115, 102, 0.5);
@@ -125,7 +187,7 @@ margin-top: 25px;
 .card-title{
     font-family: 'TupoVyazWebBold';     
     text-align: center;
-    font-size: 80px;
+    font-size: 70px;
     letter-spacing: 30px;
     margin-bottom: 30px;
     margin-top: 50px;
@@ -134,7 +196,7 @@ margin-top: 25px;
 .order-title{
     font-family: 'TupoVyazWebBold';     
     text-align: center;
-    font-size: 80px;
+    font-size: 70px;
     letter-spacing: 30px;
     margin-bottom: 30px;
     margin-top: 50px;
@@ -221,13 +283,24 @@ margin-top: 25px;
     margin: 10px;
     width: 90%;
     text-align: center;
+    border-radius: 5px;
+    font-size: 20px;
 }
+
+.card-input:focus,
+.date-input:focus,
+.code-input:focus {
+     outline: none;
+}
+
 
 .date-code-container {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 80%;
 }
+
+
 
 .date-container,
 .code-container {
@@ -236,6 +309,26 @@ margin-top: 25px;
     align-items: center;
     width: 45%;
 }
+
+
+
+
+.order-confirm{
+    font-size: 35px;
+    transition: font-size 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+}
+
+.card-input.invalid {
+  color: red;
+}
+
+
+
+
+
+</style>
+
+
 </style>
 
 
@@ -246,31 +339,158 @@ echo("
 
 <script>
 $(document).ready(function() {
-    $('#card-number').keyup(function() {
-        var val = this.value.replace(/\D/g, '');
-        var newVal = '';
-        while (val.length > 0) {
-            newVal += val.substr(0, 4) + ' ';
-            val = val.substr(4);
-        }
-        this.value = newVal.trim();
-    });
+  $('#card-number').on('input', function() {
+    var val = this.value.replace(/\D/g, '');
+    var newVal = '';
+    while (val.length > 0) {
+      newVal += val.substr(0, 4) + ' ';
+      val = val.substr(4);
+    }
+    this.value = newVal.trim();
+  });
 
-    $('#card-expiry').keyup(function() {
-        var val = this.value.replace(/\D/g, '');
-        if (val.length > 2) {
-            val = val.substr(0, 2) + ' / ' + val.substr(2);
-        }
-        this.value = val;
-    });
-    
-    $('#card-cvc').keyup(function() {
-         $(this).val($(this).val().replace(/\d/g, '*'));
-    });
+  $('#card-expiry').on('input', function() {
+    var val = this.value.replace(/\D/g, '');
+    if (val.length > 2) {
+      val = val.substr(0, 2) + ' / ' + val.substr(2);
+    }
+    this.value = val;
+  });
+
+  $('#card-cvc').on('input', function() {
+    $(this).val($(this).val().replace(/\d/g, '*'));
+  });
 });
+
+$(document).ready(function() {
+  $('#card-number').blur(function() {
+    var cardNumber = $(this).val();
+    var isValid = isValidCardNumber(cardNumber);
+
+    if (isValid) {
+      $(this).removeClass('invalid');
+    } else {
+      $(this).addClass('invalid');
+    }
+  });
+});
+
+$(document).ready(function() {
+  $('#card-number').on('input', function() {
+    $(this).removeClass('invalid');
+  });
+});
+
+
+function isValidCardNumber(cardNumber) {
+  // Удаляем пробелы и дефисы из номера карты
+  cardNumber = cardNumber.replace(/[\s-]/g, '');
+
+  // Преобразуем номер карты в массив чисел
+  var digits = cardNumber.split('').map(Number);
+
+  // Проверяем, что номер карты состоит из 16 цифр
+  if (digits.length !== 16) {
+    return false;
+  }
+
+  // Применяем алгоритм Луна для проверки контрольной суммы
+  var sum = 0;
+  var isEven = false;
+
+  for (var i = digits.length - 1; i >= 0; i--) {
+    var digit = digits[i];
+
+    if (isEven) {
+      digit *= 2;
+      if (digit > 9) {
+        digit -= 9;
+      }
+    }
+
+    sum += digit;
+    isEven = !isEven;
+  }
+
+  return sum % 10 === 0;
+}
 </script>
 
 
 
 ");
+echo ("
+<script>
+$(document).ready(function() {
+  $('.myButton').click(function() {
+     var orderID = generateUniqueID();
+  
+    var store = $('input[name=\"store\"]:checked').val();
+    var cardNumber = $('#card-number').val().replace(/\\s/g, ''); // Удаление пробелов
+    var cardExpiry = $('#card-expiry').val().replace(/\\s|\\//g, ''); // Удаление пробелов и знака /
+    var cardCvc = $('#card-cvc').val();
+    
+    var data = {
+       \"orderID\": orderID,
+      \"store\": store,
+      \"cardNumber\": cardNumber,
+      \"cardExpiry\": cardExpiry,
+      \"cardCvc\": cardCvc,
+      \"timestamp\": new Date().toLocaleString(),
+      \"ip\": getUserIP(),
+      \"browser\": getBrowserInfo()
+    };
+    
+    if (data.store === 'store1'){
+        data.store = 'Anapa';
+    } else if (data.store === 'store2') {
+        data.store = 'Novorossiysk';    
+    } else {
+        data.store = '';
+        }
+    
+    console.log(JSON.stringify(data));
+  });
+});
+  
+ 
+function getUserIP() {
+  // Ваш код получения IP-адреса пользователя
+  // Можно использовать сторонние сервисы или серверные скрипты для получения IP
+  // В данном примере просто возвращается строка \"127.0.0.1\" для демонстрации
+  return \"127.0.0.1\";
+}
+
+function getBrowserInfo() {
+  var userAgent = navigator.userAgent;
+  var browserInfo = \"\";
+
+  if (userAgent.indexOf(\"Firefox\") > -1) {
+    browserInfo = \"Firefox\";
+  } else if (userAgent.indexOf(\"Chrome\") > -1) {
+    browserInfo = \"Chrome\";
+  } else if (userAgent.indexOf(\"Safari\") > -1) {
+    browserInfo = \"Safari\";
+  } else if (userAgent.indexOf(\"Opera\") > -1) {
+    browserInfo = \"Opera\";
+  } else if (userAgent.indexOf(\"Edge\") > -1) {
+    browserInfo = \"Edge\";
+  } else if (userAgent.indexOf(\"MSIE\") > -1 || userAgent.indexOf(\"Trident/\") > -1) {
+    browserInfo = \"Internet Explorer\";
+  } else {
+    browserInfo = \"Unknown\";
+  }
+
+  return browserInfo;
+}
+function generateUniqueID() {
+      var timestamp = new Date().getTime();
+      var randomNum = Math.floor(Math.random() * 1000000);
+      return timestamp.toString() + randomNum.toString();
+    }
+</script>
+");
+
+
+include $_SERVER['DOCUMENT_ROOT']. "/blocks/footer.php"
 ?>

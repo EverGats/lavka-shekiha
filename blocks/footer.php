@@ -18,9 +18,9 @@ echo "
         </div>
     
     
-        <div class='blocks-container'>
+        <div class='blocks-container row'>
         
-            <div class='catalog-table'>
+            <div class='catalog-table col-xs-12 col-sm-12 col-lg-4 col-xl-4'>
             
                 <a href='@' class='top-item-footer'>Каталог</a>
                 <a href='@' class='item-footer'>Парфюмерия</a>
@@ -32,9 +32,9 @@ echo "
             
             </div>
             
-            <div class='client-table'>
+            <div class='client-table col-xs-12 col-sm-12 col-lg-4 col-xl-4'>
             
-                <a href='@' class='top-item-footer'>Для клиентов и партнёров</a>
+                <a href='@' class='top-item-footer two'>Для клиентов и партнёров</a>
                 <a href='@' class='item-footer'>Доставка и оплата</a>
                 <a href='@' class='item-footer'>Клиентский день</a>
                 <a href='@' class='item-footer'>Отдел коммерции, для<br>предложений от<br>поставщиков</a>
@@ -42,9 +42,9 @@ echo "
             
             </div>
             
-            <div class='contacts-table'>
+            <div class='contacts-table col-xs-12 col-sm-12 col-lg-4 col-xl-4'>
             
-                <a class='top-item-footer'>Контакты</a>
+                <a class='top-item-footer three'>Контакты</a>
                 <a href='https://cutt.ly/ZwiohJ4A' class='item-footer'>Анапа, Краснодарская улица 64 бк.1</a>
                 <a href='tel:+79284386609' class='item-footer'>+79284386609</a>
                 <a href='https://cutt.ly/lwioloqW' class='item-footer'>Новороссийск,<br>проспект Дзержинского 190А</a>
@@ -104,6 +104,23 @@ echo "
 echo "
 <style>
 
+@media(max-width: 991px){
+
+    .top-item-footer{
+        font-size: 30px !important;
+    }
+    
+    .top-item-footer.two{
+        margin-top: 20px !important;
+    }
+    
+    .top-item-footer.three{
+        margin-top: 20px !important;
+    }
+    
+}
+
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -123,7 +140,6 @@ body {
   overflow: hidden;
   padding-bottom: 48px;
   margin-top: inherit;
-  background-position-x: -50px;
 }
 
 
@@ -138,6 +154,7 @@ body {
   justify-content: space-between;
   width: calc(100% - 420px);
   margin: 0px 210px 0 210px;
+  max-width: 1400px;
 }
 
 .catalog-table,
@@ -165,7 +182,7 @@ body {
   margin-bottom: 10px;
   color: #837366;
   text-decoration: none;
-   min-width: 350px;
+  
   transition: font-weight 0.08s ease;
   
 }
