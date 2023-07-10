@@ -4,14 +4,14 @@
 .orange-button2{
 	display: block;
 	padding: 10px 10px;
-	border: 1px solid #241515;;
+	border: 1px solid #5f1b13;;
 	border-radius: 3px;
 	box-shadow: inset 0px 0px 1px white, 0px 1px 2px #dfcc7e;
 	background: #dfcc7e; /* Old browsers */
 	text-align: center;
 	font-size: 15px;
 	font-weight: bold;
-	color: #241515;
+	color: #5f1b13;
 	cursor: pointer;
 }
 
@@ -38,7 +38,7 @@ border: 1px solid #CCCCCC;
 }
 
 #blok_stat_img a:hover img{	
-border: 1px solid #241515; 
+border: 1px solid #5f1b13; 
 }
 
 
@@ -52,12 +52,12 @@ border: 1px solid #241515;
 if ($edit and $id_user_session==$id_admin_user){
 	
 	
-$result_tovar = mysql_query ("SELECT * FROM tovari WHERE id='$edit'");	
-$myrow_tovar=mysql_fetch_array ($result_tovar);
+$result_tovar = $db->query("SELECT * FROM tovari WHERE id='$edit'");	
+$myrow_tovar= $result_tovar->fetch_array();
 
-if (!$myrow_tovar[id]){
+if (!$myrow_tovar['id']){
 	
-echo"������ ������ �� ����������!";	
+echo"Такого товара не существует!";	
 exit();
 }
 	
@@ -67,28 +67,28 @@ $obem_del="";
 $foto_ok="";
 
 //////////////////////////////////////////////
-//////////�������� Po ml//////////////////////////
+//////////удаление Po ml//////////////////////////
 
 if (isset($_GET['del_po_ml'])){$del_po_ml = $_GET['del_po_ml'];}
 
 
 if ($del_po_ml){
 
-$result_del_po_ml = mysql_query ("SELECT * FROM tovari_po_ml WHERE id='$del_po_ml' and id_tovar='$edit'");	
-$myrow_del_po_ml=mysql_fetch_array ($result_del_po_ml);	
+$result_del_po_ml = $db->query("SELECT * FROM tovari_po_ml WHERE id='$del_po_ml' and id_tovar='$edit'");	
+$myrow_del_po_ml=$result_del_po_ml->fetch_array();
 
 if ($myrow_del_po_ml){
 
 	
-$result_del = mysql_query ("DELETE FROM tovari_po_ml WHERE id='$myrow_del_po_ml[id]'");	
+$result_del = $db->query("DELETE FROM tovari_po_ml WHERE id='$myrow_del_po_ml[id]'");	
 
-$result_min = mysql_query ("SELECT MIN(prise) FROM tovari_po_ml WHERE id_tovar='$edit'");	
-$myrow_min=mysql_fetch_array ($result_min);
+$result_min = $db->query("SELECT MIN(prise) FROM tovari_po_ml WHERE id_tovar='$edit'");	
+$myrow_min=$result_min->fetch_array();
 
 
 ///////////////////////////
-$result_ml = mysql_query("SELECT * FROM tovari_po_ml WHERE id_tovar='$edit' ORDER by name ASC");      
-$myrow_ml=mysql_fetch_array ($result_ml);
+$result_ml = $db->query("SELECT * FROM tovari_po_ml WHERE id_tovar='$edit' ORDER by name ASC");      
+$myrow_ml=$result_ml->fetch_array();
 
 $mass_ml=array();
 do {
@@ -96,12 +96,12 @@ do {
 $mass_ml[] = "-$myrow_ml[name]-";		
 
 }
-while ($myrow_ml=mysql_fetch_array ($result_ml));	
+while ($myrow_ml=$result_ml->fetch_array());	
 
 //print_r( $mass_ml );
-$set_po_ml=implode('',$mass_ml);
+    $set_po_ml=implode('',$mass_ml);
 
-$add_infa = mysql_query ("UPDATE tovari SET prise='$myrow_min[0]', po_ml='$set_po_ml' WHERE id='$edit' ");
+$add_infa = $db->query("UPDATE tovari SET prise='$myrow_min[0]', po_ml='$set_po_ml' WHERE id='$edit' ");
 //////////////////////////
 
 
@@ -112,7 +112,7 @@ $obem_del=1;
 
 
 ////////////////////////////////////////////////////////////
-////���������� ������ ��. ������///////////////////////
+////Добавление объема мл. начало///////////////////////
 /////////////////////////////////////////////////////////
 
 if (isset($_POST['add_pozic_ml'])) {$add_pozic_ml =1; } 
@@ -188,21 +188,21 @@ else{$kolvo_norm=1;}
 /////////////////////////////////////////////////
 if ($prise_norm==1 and $po_ml_norm==1 and $kolvo_norm==1){
 
-$result_post_povtor77 = mysql_query ("SELECT * FROM tovari_po_ml WHERE name='$po_ml' and id_tovar='$edit'");	
-$myrow_post_povtor77=mysql_fetch_array ($result_post_povtor77);
+$result_post_povtor77 = $db->query("SELECT * FROM tovari_po_ml WHERE name='$po_ml' and id_tovar='$edit'");	
+$myrow_post_povtor77=$result_post_povtor77->fetch_array();
 
 
 if (!$myrow_post_povtor77){
 
-$add_infa = mysql_query ("INSERT INTO tovari_po_ml (name,prise,id_tovar,kolvo) VALUES('$po_ml','$prise','$edit','$kolvo')");
+$add_infa = $db->query("INSERT INTO tovari_po_ml (name,prise,id_tovar,kolvo) VALUES('$po_ml','$prise','$edit','$kolvo')");
 	
 
-$result_min = mysql_query ("SELECT MIN(prise) FROM tovari_po_ml WHERE id_tovar='$edit'");	
-$myrow_min=mysql_fetch_array ($result_min);
+$result_min = $db->query("SELECT MIN(prise) FROM tovari_po_ml WHERE id_tovar='$edit'");	
+$myrow_min=$result_min->fetch_array();
 
 ///////////////////////////
-$result_ml = mysql_query("SELECT * FROM tovari_po_ml WHERE id_tovar='$edit' ORDER by name ASC");      
-$myrow_ml=mysql_fetch_array ($result_ml);
+$result_ml = $db->query("SELECT * FROM tovari_po_ml WHERE id_tovar='$edit' ORDER by name ASC");      
+$myrow_ml=$result_ml->fetch_array();
 
 $mass_ml=array();
 do {
@@ -210,12 +210,12 @@ do {
 $mass_ml[] = "-$myrow_ml[name]-";		
 
 }
-while ($myrow_ml=mysql_fetch_array ($result_ml));	
+while ($myrow_ml=$result_ml->fetch_array());
 
 //print_r( $mass_ml );
 $set_po_ml=implode('',$mass_ml);
 
-$add_infa = mysql_query ("UPDATE tovari SET prise='$myrow_min[0]', po_ml='$set_po_ml' WHERE id='$edit' ");
+$add_infa = $db->query("UPDATE tovari SET prise='$myrow_min[0]', po_ml='$set_po_ml' WHERE id='$edit' ");
 //////////////////////////
 
 $prise="";
@@ -229,7 +229,7 @@ $add_pozic_ml="";
 }
 }
 ////////////////////////////////////////////////////////////
-////��������� ����� ���� ������///////////////////////
+////Изменение общей инфы начало///////////////////////
 /////////////////////////////////////////////////////////	
 if (isset($_POST['dobavit'])) {$dobavit =1; } 
             else
@@ -243,11 +243,11 @@ if (!function_exists('mb_ucfirst') && extension_loaded('mbstring'))
  
 {
 /**
-* mb_ucfirst - ����������� ������ ������ � ������� �������
-* @param string $str - ������
-* @param string $encoding - ���������, ��-��������� UTF-8
+* mb_ucfirst - преобразует первый символ в верхний регистр
+* @param string $str - строка
+* @param string $encoding - кодировка, по-умолчанию UTF-8
 * @return string */
-function mb_ucfirst($str, $encoding='utf-8')
+function mb_ucfirst($str, $encoding='windows-1251')
  
 {
 $str = mb_ereg_replace('^[\ ]+', '', $str);
@@ -280,7 +280,7 @@ if (isset($_POST['genskaya'])){$genskaya = $_POST['genskaya'];}
 if (isset($_FILES['fupload'])){$fupload = $_FILES['fupload'];}
 
 
-$opisanie = mysql_real_escape_string($opisanie);
+$opisanie = $db->real_escape_string($opisanie);
 
 
 
@@ -299,8 +299,8 @@ $nazvanie = htmlspecialchars($nazvanie);
 $nazvanie = trim($nazvanie);
 $nazvanie=mb_ucfirst($nazvanie);
 
-$result_post_povtor2 = mysql_query ("SELECT * FROM tovari WHERE nazvanie='$nazvanie' and id!='$edit'");	
-$myrow_post_povtor2=mysql_fetch_array ($result_post_povtor2);
+$result_post_povtor2 = $db->query("SELECT * FROM tovari WHERE nazvanie='$nazvanie' and id!='$edit'");	
+$myrow_post_povtor2=$result_post_povtor2->fetch_array();
 
 
 
@@ -317,31 +317,31 @@ if ($nazvanie_norm==1 and $cat){
 	
 /////////////////////
 
-$add_infa = mysql_query ("UPDATE tovari SET nazvanie='$nazvanie',opisanie='$opisanie',status='$status',cat='$cat',mugskaya='$mugskaya',genskaya='$genskaya' WHERE id='c' "); 	
+$add_infa = $db->query("UPDATE tovari SET nazvanie='$nazvanie',opisanie='$opisanie',status='$status',cat='$cat',mugskaya='$mugskaya',genskaya='$genskaya' WHERE id='$edit' ");
 
 //////////////////////////////////////////////////////////////////////
 if ($_FILES['fupload']['tmp_name']){
 	
-function random($count){
+function random1($count){
 $pass = str_shuffle('1234567890');
                 return substr($pass,3,$count);
 
 }
 
-$sluch3=random(3);	
+$sluch3=random1(3);
 	
-$new_image= $myrow_tovar[seo_url].'_'.$sluch3;	
+$new_image= $myrow_tovar['seo_url'].'_'.$sluch3;
 	
 $privz=$new_image;
 
 
-require '../foto/config.php'; //���������� ���� ������������
-require '../foto/process.php'; //���������� ����-����������
-
+require '../foto/config.php'; //Подключаем файл конфигурации
+   // require '../foto/process.php'; //Подключаем файл-обработчик
+    require '../plupload-old/examples/jquery/foto_process_obrabotka.php';
 
 if(isset($_FILES['fupload'])) {
 	
-	if(preg_match('/[.](jpg)|(JPG)|(JPEG)|(jpeg)|(PNG)|(png)|(GIF)|(gif)$/', //������ ���������� ������� ����������� ��� ��������
+	if(preg_match('/[.](jpg)|(JPG)|(JPEG)|(jpeg)|(PNG)|(png)|(GIF)|(gif)$/', //Ставим допустимые форматы изображений для загрузки
 	 $_FILES['fupload']['name'])) {
 		
 
@@ -356,7 +356,7 @@ if(isset($_FILES['fupload'])) {
 		createThumbnail2($filename);	
 		        unlink ($target);
 				
-$add_infa = mysql_query ("UPDATE tovari SET image='$new_image' WHERE id='$edit' "); 					
+$add_infa = $db->query("UPDATE tovari SET image='$new_image' WHERE id='$edit' "); 					
 	 }
 }	
 	
@@ -364,8 +364,8 @@ $add_infa = mysql_query ("UPDATE tovari SET image='$new_image' WHERE id='$edit' 
 //////////////////////////////////////////////////////////
 
 
-$result_tovar = mysql_query("SELECT * FROM tovari WHERE id ='$edit'"); 
-$myrow_tovar = mysql_fetch_array($result_tovar);	
+$result_tovar = $db->query("SELECT * FROM tovari WHERE id ='$edit'"); 
+$myrow_tovar = $result_tovar->fetch_array();
 
 	
 if ($add_infa) {
@@ -377,8 +377,8 @@ $okei="
 <table border='0' align='center' cellpadding='0' cellspacing='0'>
   <tr>
     <td width='60' align='center'><img src='../img/ok_min.png' width='50'  /></td>
-    <td><p>����� ������� �������<br />
-    ���������� ��� �� ���������� �� �����!</p></td>
+    <td><p>Товар успешно изменен<br />
+    Информация так же изменилась на сайте!</p></td>
   </tr>
 </table>
 <div style='height:1px; background-color:#CCCCCC;'></div>
@@ -395,13 +395,13 @@ $okei="
 
 //////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
-//////////////���������� ���������� � ����/////////////////////////////////////
+//////////////добавление фотографии в базу/////////////////////////////////////
 ////////////////////////////////////////////////////////////////////	
 
 $put_do_faila="?edit=$edit";
 
 		
-if(isset($_FILES['file'])) {
+if(isset($_FILES['fupload'])) {
 	
 
 
@@ -414,11 +414,11 @@ $pass = str_shuffle('abcdefghedfiklmnoprstufhckfpaldmvnrywiwjsnaqpemfkvil_123456
 ////////////////////////////////////////////////////////////
 $final_width_of_image_mini = 400;
 $final_width_of_image_full = 1920;
-$path_to_image_directory = '../foto/original/'; //�����, ���� ����� ����������� ����� �������� ��������� (����� ����������)
-$path_to_full_directory = '../foto/full/'; //�����, ���� ����� ����������� �������������� ����������� 1920
-$path_to_mini_directory = '../foto/mini/';//�����, ���� ���� ��������� 400
-$full_znak_on=0; // �� ��������� ��������� "��������" �������(1-��������)
-$mini_znak_on=0; // �� ��������� ��������� "��������" �������(0-��� ���������)
+$path_to_image_directory = '../foto/original/'; //Папка, куда будут загружаться файлы процесса обработки (потом уждаляется)
+$path_to_full_directory = '../foto/full/'; //Папка, куда будут загружаться полноразмерные изображения 1920
+$path_to_mini_directory = '../foto/mini/';//Папка, куда буду тзгружать 400
+$full_znak_on=0; // по умолчанию наложение "водяного" рисунка(1-наложить)
+$mini_znak_on=0; // по умолчанию наложение "водяного" рисунка(0-без наложения)
 //////////////////////////////////////////////////////////////
 			
 $privz=$edit."_".random(5); 
@@ -426,16 +426,16 @@ $privz=$edit."_".random(5);
 
 
 
-	if(preg_match('/[.](jpg)|(JPG)|(JPEG)|(jpeg)|(png)|(PNG)$/', //������ ���������� ������� ����������� ��� ��������
-$_FILES['file']['name'])) {
+	if(preg_match('/[.](jpg)|(JPG)|(JPEG)|(jpeg)|(png)|(PNG)$/', //Ставим допустимые форматы изображений для загрузки
+$_FILES['fupload']['name'])) {
 
-        $filename = $_FILES['file']['name'];
-		$source = $_FILES['file']['tmp_name'];	
+        $filename = $_FILES['fupload']['name'];
+		$source = $_FILES['fupload']['tmp_name'];
 		$target = $path_to_image_directory.$filename;
 
 	
-require '../plupload/examples/jquery/foto_process_obrabotka.php'; //���������� ����-����������
-
+//require '../plupload-old/examples/jquery/foto_process_obrabotka.php'; //Подключаем файл-обработчик
+      //  require '../foto/process.php';
 copy($source, $target);
 
 $new_filename=$privz.'.jpg';
@@ -455,8 +455,8 @@ unlink ($target);
 
 if(file_exists($path_to_full_directory.$new_filename) AND file_exists($path_to_mini_directory.$new_filename))
 {
-mysql_query("INSERT INTO tovari_foto (id_tovar,img,date_time) VALUES('$edit','$privz','$date $time')");
-// ������� ������ ������ ����� ��������. 
+    $db->query("INSERT INTO tovari_foto (id_tovar,img,date_time) VALUES('$edit','$privz','$date $time')");
+// удалить список файлов после загрузки. 
 
 $foto_ok=1;  
 }
@@ -470,32 +470,32 @@ $foto_ok=1;
 
 //////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
-//////////////���������� ���������� � ���� �����/////////////////////////////////////
+//////////////добавление фотографии в базу конец/////////////////////////////////////
 ////////////////////////////////////////////////////////////////////	
 
 
 /////////////////////////////////////////////////////
-////////////�������� ���������� ������//////////////
+////////////удаление фотографий начало//////////////
 ////////////////////////////////////////////////////
 $foto_del_ok=0;
 
 $del="";
 
 if (isset($_GET['foto_del'])) {$foto_del =$_GET['foto_del']; 
-if (!preg_match("|^[\d]+$|", $foto_del)) {exit("������� ������ �������������!");}} 
+if (!preg_match("|^[\d]+$|", $foto_del)) {exit("Попытка взлома зафиксирована!");}} 
 else{ $foto_del = '' ;}
 
 
 if ($foto_del){
 	
 				
-$result_kuda = mysql_query ("SELECT * FROM tovari_foto WHERE id='$foto_del' and id_tovar='$edit'");	
-$myrow_kuda=mysql_fetch_array ($result_kuda);
+$result_kuda = $db->query("SELECT * FROM tovari_foto WHERE id='$foto_del' and id_tovar='$edit'");	
+$myrow_kuda=$result_kuda->fetch_array();
 
 
 if ($myrow_kuda[id]){
 
-///////////�������� �����1///////////////////
+///////////удаление файла1///////////////////
 
 function deletfile($directory,$filename) {
   if (is_file("$directory/$filename")) {
@@ -511,7 +511,7 @@ deletfile('../foto/full/',$myrow_kuda["img"].".jpg");
 deletfile('../foto/mini/',$myrow_kuda["img"].".jpg"); 
 	
 
-$result_del = mysql_query ("DELETE FROM tovari_foto WHERE id='$myrow_kuda[id]'");
+$result_del = $db->query("DELETE FROM tovari_foto WHERE id='$myrow_kuda[id]'");
 
 $foto_del_ok=1;
 }
@@ -519,7 +519,7 @@ $foto_del_ok=1;
 	
 
 /////////////////////////////////////////////////////
-////////////�������� ���������� �����//////////////
+////////////удаление фотографий конец//////////////
 ////////////////////////////////////////////////////
 
 
@@ -527,7 +527,7 @@ $foto_del_ok=1;
 echo"
 <div style='height:2px;'></div>
 <div id='liniya_st'></div>
-<div align='center'><h2>�������������� ������</h2></div>";
+<div align='center'><h2>Редактирование товара</h2></div>";
 
 if ($obem_del==1) {
 	
@@ -537,8 +537,8 @@ echo"
 <table border='0' align='center' cellpadding='0' cellspacing='0'>
   <tr>
     <td width='60' align='center'><img src='../img/delete_m.png' width='50'  /></td>
-    <td><p>����� ������� ������!<br />
-    ���������� ��� �� ���������� �� �����!</p></td>
+    <td><p>Объем успешно удален!<br />
+    Информация так же изменилась на сайте!</p></td>
   </tr>
 </table>
 <div style='height:1px; background-color:#CCCCCC;'></div>
@@ -554,8 +554,8 @@ echo"
 <table border='0' align='center' cellpadding='0' cellspacing='0'>
   <tr>
     <td width='60' align='center'><img src='../img/delete_m.png' width='50'  /></td>
-    <td><p>���������� ������� �������!<br />
-    ���������� ��� �� ���������� �� �����!</p></td>
+    <td><p>Фотография успешно удалена!<br />
+    Информация так же изменилась на сайте!</p></td>
   </tr>
 </table>
 <div style='height:10px;'></div>
@@ -573,21 +573,21 @@ echo"
 echo"
 <div>
 <label class='field'>
-<span>������������ ������  <em>*</em></span>
+<span>Наименование товара  <em>*</em></span>
 <input name='nazvanie' type='text' id='nazvanie' value='"; if (!$nazvanie){echo"$myrow_tovar[nazvanie]";}else{echo"$nazvanie";}echo"' maxlength='150'/>
-<span class='hint'>��������: ����� ��� ���� Cosmo</span>";
+<span class='hint'>Например: Скраб для лица Cosmo</span>";
 
 if ($dobavit==1) {
 
-if (!$nazvanie) {echo"<div><strong style='color:#EB1F14'>��������� ����!</strong></div>";}else {
+if (!$nazvanie) {echo"<div><strong style='color:#EB1F14'>Заполните поле!</strong></div>";}else {
 	
 $str_nazvanie=strlen($nazvanie);
 
-if ($str_nazvanie <3){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 3 ������!</strong></div>";}else { 
+if ($str_nazvanie <3){echo"<div><strong style='color:#EB1F14'>Поле должно быть не меньше 3 знаков!</strong></div>";}else { 
 
-if ($str_nazvanie >85){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 85 ������!</strong></div>";}
+if ($str_nazvanie >85){echo"<div><strong style='color:#EB1F14'>Поле должно быть не больше 85 знаков!</strong></div>";}
 
-if ($myrow_post_povtor2){echo"<div><strong style='color:#EB1F14'>������! ����� �������� ��� ����������!</strong></div>";}
+if ($myrow_post_povtor2){echo"<div><strong style='color:#EB1F14'>Ошибка! Такое название уже существует!</strong></div>";}
 }
 }
 ///////////		
@@ -604,29 +604,29 @@ echo"
 
 
 <label class='field'>
-<span>����� ������ <em>*</em></span>
+<span>Бренд товара <em>*</em></span>
 <select name='cat' style='width:310px;'>
-<option value='0'>�������� ���������</option>
+<option value='0'>Выберите категорию</option>
 ";
 
-$result_cat_sobitiya = mysql_query("SELECT * FROM post_cat1 ORDER BY name ASC");      
-$myrow_cat_sobitiya=mysql_fetch_array ($result_cat_sobitiya);
+$result_cat_sobitiya = $db->query("SELECT * FROM post_cat1 ORDER BY name ASC");      
+$myrow_cat_sobitiya=$result_cat_sobitiya->fetch_array();
 
 do{
 $select_tag="";
 
-if ($myrow_tovar[cat]==$myrow_cat_sobitiya['id']) {$select_tag=" selected='selected'";}	
+if ($myrow_tovar['cat']==$myrow_cat_sobitiya['id']) {$select_tag=" selected='selected'";}
 
 echo"
 <option value='$myrow_cat_sobitiya[id]'$select_tag>$myrow_cat_sobitiya[name]</option>";
 						
 }
-while ($myrow_cat_sobitiya=mysql_fetch_array($result_cat_sobitiya));
+while ($myrow_cat_sobitiya=$result_cat_sobitiya->fetch_array());
 
 echo"</select>";
 
 if ($dobavit==1) {
-if (!$cat) {echo"<div><strong style='color:#EB1F14'>��������� ����!</strong></div>";}
+if (!$cat) {echo"<div><strong style='color:#EB1F14'>Заполните поле!</strong></div>";}
 }
 
 echo"
@@ -647,24 +647,24 @@ echo"
 <td width='24%'>";
 echo"
 <label class='field'>
-<span>����� � ��. <em>*</em></span>
+<span>Объем в мл. <em>*</em></span>
 <input name='po_ml' type='text' id='po_ml' value='$po_ml' maxlength='5'/>";
 
 if ($add_pozic_ml==1) {
 
-if (!$po_ml)  {echo"<div><strong style='color:#EB1F14'>��������� ����!</strong></div>";}else {
+if (!$po_ml)  {echo"<div><strong style='color:#EB1F14'>Заполните поле!</strong></div>";}else {
 	
 $str_po_ml=strlen($po_ml);
 
-if ($str_po_ml <1){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 1 ������!</strong></div>";}else { 
+if ($str_po_ml <1){echo"<div><strong style='color:#EB1F14'>Поле должно быть не меньше 1 знаков!</strong></div>";}else { 
 
-if ($str_po_ml >7){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 7 ������!</strong></div>";}
+if ($str_po_ml >7){echo"<div><strong style='color:#EB1F14'>Поле должно быть не больше 7 знаков!</strong></div>";}
 
 else{
 	
 if (!preg_match("|^[\d]+$|", $po_ml))  {	
 echo"
-<div><strong style='color:#EB1F14'>� ���� ����� ������������ ������ �����!</strong></div>";
+<div><strong style='color:#EB1F14'>В поле можно использовать только цифры!</strong></div>";
 }	
 
 }
@@ -681,24 +681,24 @@ echo"
 
 echo"
 <label class='field'>
-<span>���� <em>*</em></span>
+<span>Цена <em>*</em></span>
 <input name='prise' type='text' id='prise' value='$prise' maxlength='7'/>";
 
 if ($add_pozic_ml==1) {
 
-if (!$prise) {echo"<div><strong style='color:#EB1F14'>��������� ����!</strong></div>";}else {
+if (!$prise) {echo"<div><strong style='color:#EB1F14'>Заполните поле!</strong></div>";}else {
 	
 $str_prise=strlen($prise);
 
-if ($str_prise <2){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 2 ������!</strong></div>";}else { 
+if ($str_prise <2){echo"<div><strong style='color:#EB1F14'>Поле должно быть не меньше 2 знаков!</strong></div>";}else { 
 
-if ($str_prise >7){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 7 ������!</strong></div>";}
+if ($str_prise >7){echo"<div><strong style='color:#EB1F14'>Поле должно быть не больше 7 знаков!</strong></div>";}
 
 else{
 	
 if (!preg_match("|^[\d]+$|", $prise))  {	
 echo"
-<div><strong style='color:#EB1F14'>� ���� ����� ������������ ������ �����!</strong></div>";
+<div><strong style='color:#EB1F14'>В цене можно использовать только цифры!</strong></div>";
 }	
 
 }
@@ -719,24 +719,24 @@ echo"
 
 echo"
 <label class='field'>
-<span>���-�� � ��. <em>*</em></span>
+<span>Кол-во в шт. <em>*</em></span>
 <input name='kolvo' type='text' id='kolvo' value='$kolvo' maxlength='5'/>";
 
 if ($add_pozic_ml==1) {
 
-if (!$kolvo)  {echo"<div><strong style='color:#EB1F14'>��������� ����!</strong></div>";}else {
+if (!$kolvo)  {echo"<div><strong style='color:#EB1F14'>Заполните поле!</strong></div>";}else {
 	
 $str_kolvo=strlen($kolvo);
 
-if ($str_kolvo <1){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 1 ������!</strong></div>";}else { 
+if ($str_kolvo <1){echo"<div><strong style='color:#EB1F14'>Поле должно быть не меньше 1 знаков!</strong></div>";}else { 
 
-if ($str_kolvo >7){echo"<div><strong style='color:#EB1F14'>���� ������ ���� �� ������ 7 ������!</strong></div>";}
+if ($str_kolvo >7){echo"<div><strong style='color:#EB1F14'>Поле должно быть не больше 7 знаков!</strong></div>";}
 
 else{
 	
 if (!preg_match("|^[\d]+$|", $kolvo))  {	
 echo"
-<div><strong style='color:#EB1F14'>� ���� ����� ������������ ������ �����!</strong></div>";
+<div><strong style='color:#EB1F14'>В поле можно использовать только цифры!</strong></div>";
 }	
 
 }
@@ -754,15 +754,15 @@ echo"
 <td width='10'>&nbsp;</td>
 <td width='24%'>
 <div style='height:8px;'></div>
-<button class='orange-button2' name='add_pozic_ml' type='submit'>�������� +</button>
+<button class='orange-button2' name='add_pozic_ml' type='submit'>добавить +</button>
 </td>
 </tr>
 </tbody>
 </table>";
 
 ////////////////////////////////////////////////////
-$result_po_ml = mysql_query ("SELECT * FROM tovari_po_ml WHERE id_tovar='$edit' ORDER by name ASC");	
-$myrow_po_ml=mysql_fetch_array ($result_po_ml);
+$result_po_ml = $db->query("SELECT * FROM tovari_po_ml WHERE id_tovar='$edit' ORDER by name ASC");	
+$myrow_po_ml=$result_po_ml->fetch_array();
 
 if($myrow_po_ml){
 	
@@ -775,10 +775,10 @@ echo"
 <div align='center' style='background-color:#CCCCCC;;'>
 <table align='center' width='100%' border='0' cellpadding='2' cellspacing='1'>
 <tr bgcolor='#dfcc7e;'>
-<td width='24%'><div align='center' style='padding:1px; color:#241515'>�����</div></td>
-<td width='24%'><div align='center' style='padding:1px; color:#241515'>����</div></td>
-<td width='24%'><div align='center' style='padding:1px; color:#241515'>���-��</div></td>
-<td width='24%'><div align='center' style='padding:1px; color:#241515'></div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'>Объем</div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'>Цена</div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'>Кол-во</div></td>
+<td width='24%'><div align='center' style='padding:1px; color:#5f1b13'></div></td>
 </tr>
 ";	
 	
@@ -786,26 +786,26 @@ do {
 	
 $sluch3=randomz(7);	
 	
-$prise_format = number_format($myrow_po_ml[prise],0,'',' ');
+$prise_format = number_format($myrow_po_ml['prise'],0,'',' ');
 		
 echo"
 <tr bgcolor='#FFFFFF'>
 <td align='center'>
-<div style='padding:4px;'>$myrow_po_ml[name] ��.</div>
+<div style='padding:4px;'>$myrow_po_ml[name] мл.</div>
 </td>
 <td align='center'>
-<div style='padding:4px;'>$prise_format ���.</div>
+<div style='padding:4px;'>$prise_format руб.</div>
 </td>
 <td align='center'>
-<div style='padding:4px;'>$myrow_po_ml[kolvo] ��.</div>
+<div style='padding:4px;'>$myrow_po_ml[kolvo] шт.</div>
 </td>
 <td align='center'>
-<div style='padding:4px;'><a href='javascript: $sluch3();'>�������</a></div>";
+<div style='padding:4px;'><a href='javascript: $sluch3();'>удалить</a></div>";
 
 echo"<script type='text/javascript'> 
 function $sluch3(){
 
-if (confirm('��������������!!!\\r\\n�� �������, ��� ������ ������� �����-  $myrow_po_ml[name] ��.!?')) {
+if (confirm('Предупреждение!!!\\r\\nВы уверены, что хотите удалить объем-  $myrow_po_ml[name] мл.!?')) {
 window.open('?edit=$edit&del_po_ml=$myrow_po_ml[id]',target='_self'); }
 
 else {}
@@ -818,7 +818,7 @@ echo"
 ";
 
 }
-while ($myrow_po_ml=mysql_fetch_array ($result_po_ml));	
+while ($myrow_po_ml=$result_po_ml->fetch_array());	
 
 echo"
 </table>
@@ -839,18 +839,18 @@ echo"
 
 
 <label class='field'>
-<span>����� � �������</span>";
+<span>Товар в наличии</span>";
 
 
-if ($myrow_tovar[status]==0){$selekt0='selected="selected"';}
-if ($myrow_tovar[status]==1){$selekt1='selected="selected"';}
+if ($myrow_tovar['status']==0){$selekt0='selected="selected"';}
+if ($myrow_tovar['status']==1){$selekt1='selected="selected"';}
 
 echo"
 
 
 <select name='status' id='status'>
-<option value='0' $selekt0 >��</option>
-<option value='1' $selekt1 >���</option>
+<option value='0' $selekt0 >Да</option>
+<option value='1' $selekt1 >Нет</option>
 </select>
 </label>";
 
@@ -864,7 +864,7 @@ echo"
 <td>
 
 <label class='field'>
-<span>�������</span>
+<span>Мужская</span>
 </label>
 
 </td>
@@ -872,7 +872,7 @@ echo"
 <td>
 <input type='checkbox' name='mugskaya' value='1'";
 
-if ($myrow_tovar[mugskaya]==1){echo" checked='checked'";}
+if ($myrow_tovar['mugskaya']==1){echo" checked='checked'";}
 
 echo" />
 <div style='height:4px;'></div>
@@ -883,14 +883,14 @@ echo" />
 <td>
 
 <label class='field'>
-<span>�������</span>
+<span>Женская</span>
 </label>
 
 </td>
 <td>
 <input type='checkbox' name='genskaya' value='1'";
 
-if ($myrow_tovar[genskaya]==1){echo" checked='checked'";}
+if ($myrow_tovar['genskaya']==1){echo" checked='checked'";}
 
 echo" />
 <div style='height:4px;'></div>
@@ -904,7 +904,7 @@ echo" />
 
 echo"
 <label class='field'>
-<span>�������� ������</span>
+<span>Описание товара</span>
 </label>
 <div style='height:2px;'></div>
 
@@ -916,7 +916,7 @@ echo"
 </div>
 <div style='height:10px;'></div>
 
-<div style='color:#000000; padding:5px; background-color:#CCCCCC;' align='center'>�������� ���� <input name='fupload' type='file' size='50' /></div>
+<div style='color:#000000; padding:5px; background-color:#CCCCCC;' align='center'>Выберите фото <input name='fupload' type='file' size='50' /></div>
 ";
                   
 echo"
@@ -925,7 +925,7 @@ echo"
 
 echo"
 <div style='height:5px;'></div>
-<div align='center'><input name='dobavit' type='submit' value='�������� �����' class='orange-button' /></div>
+<div align='center'><input name='dobavit' type='submit' value='Изменить товар' class='orange-button' /></div>
 <div style='height:5px;'></div> 
 ";
 
@@ -941,14 +941,14 @@ echo"
 ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////
-///////////����� ���������� ����������////////
+///////////форма добавления фотографии////////
 //////////////////////////////////////////////
 
 echo"
 <div style='height:2px;'></div>
 <div id='liniya_st'></div>
 <div style='height:5px;'></div>
-<div align='center'><h2>���������� ���������� � ������</h2></div>
+<div align='center'><h2>Добавление фотографий к товару</h2></div>
 <div style='height:7px;'></div>
 ";
 
@@ -961,8 +961,8 @@ echo"
 <table border='0' align='center' cellpadding='0' cellspacing='0'>
   <tr>
     <td width='60' align='center'><img src='../img/ok_min.png' width='50'  /></td>
-    <td><p>���� ������� ���������<br />
-    ���������� ��� �� ���������� �� �����!</p></td>
+    <td><p>фото успешно загружено<br />
+    Информация так же изменилась на сайте!</p></td>
   </tr>
 </table>
 <div style='height:1px; background-color:#CCCCCC;'></div>
@@ -987,96 +987,86 @@ echo"
 ";
 ?>
 
-<script type="text/javascript">
-// Initialize the widget when the DOM is ready
-$(function() {
-	$("#uploader").plupload({
-		// General settings
-		runtimes : 'html5,flash,silverlight,html4',
-		url : '<? echo $put_do_faila ?>',
+    <script type="text/javascript">
+        // Initialize the widget when the DOM is ready
+        $(function() {
+            $("#uploader").plupload({
+                // General settings
+                runtimes : 'html5,flash,silverlight,html4',
+                url : '<? echo $put_do_faila ?>',
 
-		// User can upload no more then 20 files in one go (sets multiple_queues to false)
-		max_file_count: 30,
-		
-		chunk_size: '15mb',
+                // User can upload no more then 20 files in one go (sets multiple_queues to false)
+                max_file_count: 30,
 
-		// Resize images on clientside if we can
-/*		resize : {
-			width : 200, 
-			height : 200, 
-			quality : 90,
-			crop: true // crop to exact  dimensions
-		}, */
-		
-		filters : {
-			// Maximum file size
-			max_file_size : '300mb',
-			// Specify what files to browse for
-			mime_types: [
-				{title : "Image files", extensions : "jpg,jpeg,png"}
-			]
-		},
+                // Resize images on clientside if we can
+                /*		resize : {
+                            width : 200,
+                            height : 200,
+                            quality : 90,
+                            crop: true // crop to exact  dimensions
+                        }, */
 
-		// Rename files by clicking on their titles
-		rename: true,
-		
-		// Sort files
-		sortable: true,
+                filters : {
+                    // Maximum file size
+                    max_file_size : '300mb',
+                    // Specify what files to browse for
+                    mime_types: [
+                        {title : "Image files", extensions : "jpg,jpeg,png"}
+                    ]
+                },
 
-		// Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
-		dragdrop: true,
+                // Rename files by clicking on their titles
+                rename: true,
 
-		// Views to activate
-		views: {
-			list: false,
-			thumbs: true, // Show thumbs
-			active: 'thumbs'
-		},
+                // Sort files
+                sortable: true,
 
-		// Flash settings
-		flash_swf_url : '../plupload/js/Moxie.swf',
+                // Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+                dragdrop: true,
 
-		// Silverlight settings
-		//silverlight_xap_url : '../../plupload/js/Moxie.xap'
-	
-///////////////////	
-	
-	 silverlight_xap_url : '../plupload/js/Moxie.xap',
-// ������ ������������ �����
-       init: {
-           UploadComplete: function (up, files)
-           {
-               up.splice();
-               up.refresh();
-              window.location = '<? echo $put_do_faila ?>'
-           }
-       }
-// ����� ������������ �����
-   });
-// ����� �������� ���� ��� ������:
-   uploader.init();
- 
-//////////////////////////	
+                // Views to activate
+                views: {
+                    list: false,
+                    thumbs: true, // Show thumbs
+                    active: 'thumbs'
+                },
+
+                // Flash settings
+                flash_swf_url : '../plupload/js/Moxie.swf',
+
+                silverlight_xap_url : '../plupload/js/Moxie.xap',
+                init: {
+                    UploadComplete: function (up, files)
+                    {
+                        up.splice();
+                        up.refresh();
+                        window.location = '<? echo $put_do_faila ?>'
+                    }
+                }
+            });
+            uploader.init();
 
 
-	// Handle the case when form was submitted before uploading has finished
-	$('#form').submit(function(e) {
-		// Files in queue upload them first
-		if ($('#uploader').plupload('getFiles').length > 0) {
 
-			// When all files are uploaded submit form
-			$('#uploader').on('complete', function() {
-				$('#form')[0].submit();
-			});
+            // Handle the case when form was submitted before uploading has finished
+            $('#form').submit(function(e) {
+                // Files in queue upload them first
+                if ($('#uploader').plupload('getFiles').length > 0) {
 
-			$('#uploader').plupload('start');
-		} else {
-			alert("You must have at least one file in the queue.");
-		}
-		return false; // Keep the form from submitting
-	});
-});
-</script>
+                    // When all files are uploaded submit form
+                    $('#uploader').on('complete', function() {
+                        $('#form')[0].submit();
+                    });
+
+                    $('#uploader').plupload('start');
+                } else {
+                    alert("You must have at least one file in the queue.");
+                }
+                return false; // Keep the form from submitting
+            });
+        });
+    </script>
+
 
 
 <?
@@ -1091,19 +1081,19 @@ echo"
 //////////////////////	
 echo"
 <div style='height:4px;'></div>";
-/////////////���� �����///////////////
+/////////////фото конец///////////////
 
 
 //////////////////////////////////////////////
-///////////����� ���������� ���������� ����� ////////
+///////////форма добавления фотографии конец ////////
 //////////////////////////////////////////////
 
 //////////////////////////////////////////////
-///////////����� ���������� ������ ////////
+///////////Вывод фотографий начало ////////
 //////////////////////////////////////////////
 
-$result_foto = mysql_query ("SELECT * FROM tovari_foto WHERE id_tovar='$edit' ORDER BY ID ASC");	
-$myrow_foto=mysql_fetch_array ($result_foto);
+$result_foto = $db->query("SELECT * FROM tovari_foto WHERE id_tovar='$edit' ORDER BY ID ASC");	
+$myrow_foto=$result_foto->fetch_array();
 
 if ($myrow_foto){
 	
@@ -1116,7 +1106,7 @@ echo"
 <div style='height:7px;'></div>
 <div id='liniya_st'></div>
 <div style='height:5px;'></div>
-<div align='center'><h2>�������������� ���������� � ������</h2></div>
+<div align='center'><h2>Дополнительные фотографии к товару</h2></div>
 <div style='height:7px;'></div>
 ";	
 
@@ -1137,12 +1127,12 @@ echo"
 </div>
 <div style='height:5px;'></div>
 
-<div align='center'><a href='javascript: $sluch();' style='color:#FF0000; font-size:14px'><img src='/img/delete2.png' alt='������� ����' title='������� ����' width='18' height='18' border='0' align='absmiddle'>������� ����������</a></div>
+<div align='center'><a href='javascript: $sluch();' style='color:#FF0000; font-size:14px'><img src='/img/delete2.png' alt='Удалить фото' title='Удалить фото' width='18' height='18' border='0' align='absmiddle'>удалить фотографию</a></div>
 
 <script type='text/javascript'> 
 function $sluch(){
 
-if (confirm('��������������!!!\\r\\n��������! ����������� $myrow_foto[date] $myrow_foto[time] ����� ������� �����������! \\r\\n\\r\\n�� ������������� ������ ��������� ������ ��������?')) {
+if (confirm('Предупреждение!!!\\r\\nВнимание! Изображение $myrow_foto[date] $myrow_foto[time] будет удалено безвозратно! \\r\\n\\r\\nВы действительно хотите совершить данную операцию?')) {
 parent.location='?edit=$edit&foto_del=$myrow_foto[id]';
 }
 else {}
@@ -1153,7 +1143,7 @@ else {}
 ";	
 		
 }
-while ($myrow_foto=mysql_fetch_array ($result_foto));	
+while ($myrow_foto=$result_foto->fetch_array());	
 
 echo"
 </div>
@@ -1163,7 +1153,7 @@ echo"
 }
 
 //////////////////////////////////////////////
-///////////����� ���������� ����� ////////
+///////////Вывод фотографий конец ////////
 //////////////////////////////////////////////
 
 

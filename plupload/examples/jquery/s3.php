@@ -1,4 +1,10 @@
-<?php 
+<?php
+#!! IMPORTANT: 
+#!! this file is just an example, it doesn't incorporate any security checks and 
+#!! is not recommended to be used in production environment as it is. Be sure to 
+#!! revise it and customize to your needs.
+die("Make sure that you enable some form of authentication before removing this line.");
+
 /* 
 In order to upload files to S3 using Flash runtime, one should start by placing crossdomain.xml into the bucket.
 crossdomain.xml can be as simple as this:
@@ -17,6 +23,7 @@ to the same crossdomain.xml as last resort.
 
 // important variables that will be used throughout this example
 $bucket = 'BUCKET';
+$region = "REGION"; //S3 region e.g. eu-west-1
 
 // these can be found on your Account page, under Security Credentials > Access Keys
 $accessKeyId = 'ACCESS_KEY_ID';
@@ -63,7 +70,7 @@ $signature = base64_encode(hash_hmac('sha1', $policy, $secret, true));
 <script type="text/javascript" src="../../js/plupload.full.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 
-<!-- debug 
+<!-- debug
 <script type="text/javascript" src="../../js/moxie.js"></script>
 <script type="text/javascript" src="../../js/plupload.dev.js"></script>
 <script type="text/javascript" src="../../js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
@@ -83,7 +90,11 @@ $signature = base64_encode(hash_hmac('sha1', $policy, $secret, true));
 $(function() {
 	$("#uploader").plupload({
 		runtimes : 'html5,flash,silverlight',
-		url : 'http://<?php echo $bucket; ?>.s3.amazonaws.com/',
+		/*
+		 * Sometime S3 will redirect the bucker url 'http://<?php echo $bucket; ?>.s3.amazonaws.com/' to
+		 * https://<?= $bucket ?>.{region}.amazonaws.com the header sent is a 307 and it will break pupload
+		 */
+		url : 'https://<?= $bucket ?>.<?= $region ?>.amazonaws.com/',
 		
 		multipart: true,
 		multipart_params: {

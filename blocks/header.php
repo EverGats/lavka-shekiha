@@ -1,5 +1,5 @@
 <?php
-include "blocks/bd.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/blocks/bd.php";
 ?>
     <link rel="stylesheet"
           href="/style/bootstrap-grid.min.css"/>

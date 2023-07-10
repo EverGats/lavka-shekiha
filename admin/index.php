@@ -1,7 +1,7 @@
 <?
 session_start();
-include ("../blocks/bd.php") ;
-require "../blocks/password.php";
+include ($_SERVER['DOCUMENT_ROOT'] . "/blocks/bd.php") ;
+require $_SERVER['DOCUMENT_ROOT'] . "/blocks/password.php";
 
 $id_admin_user=1;
 $id_user_session=$_SESSION['id_admin'];
@@ -55,7 +55,7 @@ $myr_html[doctupe]
 <head>
 $myr_html[kodirovka]";
 ?>
-<title>Панель управления сайтом Шейх Парфюм</title>
+<title>РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ СЃР°Р№С‚РѕРј РЁРµР№С… РџР°СЂС„СЋРј</title>
 <meta name="Robots" content="NOINDEX" />
 
 <?
@@ -67,8 +67,8 @@ echo"
 <div style='background-color:#222120; position: absolute; width:100%;'>
 <table border='0' align='center' cellpadding='0' cellspacing='0'>
 <tr>
-<td><div style='font-size:17px; background-color:#FFF; padding:5px;'>Обнаружена активная сессия Вашего профиля!<br>
-Сейчас Вы будете перенаправлены в личный кабинет!</div>
+<td><div style='font-size:17px; background-color:#FFF; padding:5px;'>РћР±РЅР°СЂСѓР¶РµРЅР° Р°РєС‚РёРІРЅР°СЏ СЃРµСЃСЃРёСЏ Р’Р°С€РµРіРѕ РїСЂРѕС„РёР»СЏ!<br>
+РЎРµР№С‡Р°СЃ Р’С‹ Р±СѓРґРµС‚Рµ РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅС‹ РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚!</div>
 </td>
 <td width='10'>&nbsp;
 
@@ -86,14 +86,14 @@ echo"
 echo"
 $myr_html[styl_skript_icon]
 
-<script type='text/javascript' src='/redactor/redactor.min.js'></script>
-<link rel='stylesheet' href='/redactor/redactor.css' type='text/css'>
-<script src='/redactor/lang/ru.js'></script>
-<script src='/redactor/plugins/table/table.js'></script>
-<script src='/redactor/plugins/fontcolor/fontcolor.js'></script>
-<script src='/redactor/plugins/fullscreen/fullscreen.js'></script>
-<script src='/redactor/plugins/video/video.js'></script>
-<script src='/redactor/plugins/textdirection/textdirection.js'></script>
+<script type='text/javascript' src='../redactor/redactor.min.js'></script>
+<link rel='stylesheet' href='../redactor/redactor.css' type='text/css'>
+<script src='../redactor/lang/ru.js'></script>
+<script src='../redactor/plugins/table/table.js'></script>
+<script src='../redactor/plugins/fontcolor/fontcolor.js'></script>
+<script src='../redactor/plugins/fullscreen/fullscreen.js'></script>
+<script src='../redactor/plugins/video/video.js'></script>
+<script src='../redactor/plugins/textdirection/textdirection.js'></script>
 
 
 <script type='text/javascript'>
@@ -130,8 +130,8 @@ buttons:['html','table','formatting','bold','underline','italic','deleted',
 </head>
 <body  id='top'>";
 
-include ("../blocks/header.php");
-include ("blocks/navigation.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/blocks/header.php");
+//include ("blocks/navigation.php");
 
 
 echo"
@@ -143,16 +143,14 @@ if ($id_user_session==$id_admin_user){
 	
 
 
-echo"
-<div style='height:6px;'></div>
-<a href='/' id='ssilka_mob'>Главная</a>&nbsp;<em>&rarr;</em>&nbsp;<a href='/admin' id='ssilka_mob'>Администратирование</a>&nbsp;<em>&rarr;</em>";
+
 
 
 if (!$meny and !$edit and !$del){
 echo"
 <div style='height:6px;'></div>
 <div id='liniya_st'></div>
-<div align='center'><h1>Панель управления сайтом Шейх Парфюм</h1></div>
+<div align='center'><h1>РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ СЃР°Р№С‚РѕРј РЁРµР№С… РџР°СЂС„СЋРј</h1></div>
 ";
 }
 
@@ -173,7 +171,7 @@ if ($del){include ("admin_tovar_del.php");}
 echo"
 <div style='height:10px;'></div>
 <div align='center'>
-<div><a href='/admin/?meny=2'>Управление брендами сайта</a> | <a href='/admin/?meny=1'>Добавление товара</a> | <a href='/admin/?meny=3'>Выход</a></div>
+<div><a href='/admin/?meny=2'>РЈРїСЂР°РІР»РµРЅРёРµ Р±СЂРµРЅРґР°РјРё СЃР°Р№С‚Р°</a> | <a href='/admin/?meny=1'>Р”РѕР±Р°РІР»РµРЅРёРµ С‚РѕРІР°СЂР°</a> | <a href='/admin/?meny=3'>Р’С‹С…РѕРґ</a></div>
 <div style='height:15px;'></div>
 </div>
 <div style='height:30px;'></div>
@@ -193,9 +191,9 @@ echo"
 <tr>
 <td width='60' align='center'><img src='../img/vniman.jpg' width='50' height='50' /></td>
 <td>
-<div>У Вас нет прав доступа к этому разделу!
+<div>РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РґРѕСЃС‚СѓРїР° Рє СЌС‚РѕРјСѓ СЂР°Р·РґРµР»Сѓ!
 <div style='height:3px;'></div>	 
-Авторизуйтесь если у вас есть права администратора!</div>
+РђРІС‚РѕСЂРёР·СѓР№С‚РµСЃСЊ РµСЃР»Рё Сѓ РІР°СЃ РµСЃС‚СЊ РїСЂР°РІР° Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°!</div>
 </td>
 </tr>
 </table>
@@ -219,12 +217,12 @@ $error
 
 <form action='' method='post' name='forma' class='decorated-form'>              
 <label class='field'>
-<span>Логин</span>
+<span>Р›РѕРіРёРЅ</span>
 <input name='user' type='text' id='user' value='$_POST[user]' maxlength='20' style='width:140px;' />
 </label> 
 
 <label class='field'>
-<span>Пароль</span>
+<span>РџР°СЂРѕР»СЊ</span>
 <input name='password' type='password' id='password' value='$_POST[password]' maxlength='20' style='width:140px;' />
 </label>
 
@@ -235,11 +233,11 @@ $error
 <table border='0' align='center'>
 <tr>
 <td>
-<input type='submit' name='dostup' id='dostup' value='Войти' style='border:1px solid  #222120; background-color:#222120; height:30px; font-size:17px; color: #FFFFFF; cursor: pointer;' />  
+<input type='submit' name='dostup' id='dostup' value='Р’РѕР№С‚Рё' style='border:1px solid  #222120; background-color:#222120; height:30px; font-size:17px; color: #FFFFFF; cursor: pointer;' />  
 </td>
 <td width='3'>&nbsp;</td>
 <td>
-<a href='#'>Забыли пароль?</a> 
+<a href='#'>Р—Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ?</a> 
 </td>
 </tr>
 </table>          
@@ -282,7 +280,7 @@ echo"
 ";
 	 
 
-include ("blocks/footer.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/blocks/footer.php");
 
 
 echo"

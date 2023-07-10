@@ -3,7 +3,6 @@ AddDefaultCharset utf-8
 #DirectoryIndex myroute.php
 RewriteEngine On
 RewriteBase /
-php_value upload_max_filesize 20MB
 RewriteCond %{HTTPS} off
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 

@@ -169,6 +169,7 @@ if ($myrow_all_stat['id']){
 
 do {
     $volumes = explode('--', trim($myrow_all_stat['po_ml'], '-'));
+    var_dump($volumes);
     $isInVolumeRange = array_reduce($volumes, function($carry, $volume) use ($minVolume, $maxVolume) {
         return $carry ||
             (!$minVolume || $volume >= $minVolume) &&
@@ -252,7 +253,7 @@ $myrow_po_ml= $result_po_ml->num_rows;
 
 if ($myrow_po_ml){
 
-do {
+while ($myrow_po_ml = $result_po_ml->fetch_array()){
 
 $prise_format = number_format($myrow_po_ml['prise'],0,'',' ');
 
@@ -262,7 +263,6 @@ echo"<div style='text-align: left;'><span style='font-weight: 600; font-size: 18
 
 
 }
-while ($myrow_po_ml = $result_po_ml->fetch_array());
 
 echo"
 </div>
@@ -275,7 +275,7 @@ echo"
 
 /*echo" ОТЗЫВЫ И КОММЕНТАРИИ
 <div align='center'>
-<div id='views'><img src='../img/views.png' width='12' height='8' align='baseline' /> $prosmotrov $prsm&nbsp; 
+<div id='views'><img src='../img/views.png' width='12' height='8' align='baseline' /> $prosmotrov $prsm&nbsp;
 <div style='height:1px;'></div>
 <img src='../img/comment.png' width='12' height='11' align='baseline' /> $myrow_kom $komm </div>
 <div style='height:10px;'></div>

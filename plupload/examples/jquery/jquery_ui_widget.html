@@ -15,9 +15,7 @@
 <script type="text/javascript" src="../../js/plupload.full.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 
-<!-- activate Russian translation -->
-<script type="text/javascript" src="../../js/i18n/ru.js"></script>
-<!-- debug 
+<!-- debug
 <script type="text/javascript" src="../../js/moxie.js"></script>
 <script type="text/javascript" src="../../js/plupload.dev.js"></script>
 <script type="text/javascript" src="../../js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
@@ -48,17 +46,17 @@ $(function() {
 
 		// User can upload no more then 20 files in one go (sets multiple_queues to false)
 		max_file_count: 20,
-		
+
 		chunk_size: '1mb',
 
 		// Resize images on clientside if we can
 		resize : {
-			width : 200, 
-			height : 200, 
+			width : 200,
+			height : 200,
 			quality : 90,
 			crop: true // crop to exact dimensions
 		},
-		
+
 		filters : {
 			// Maximum file size
 			max_file_size : '1000mb',
@@ -71,7 +69,7 @@ $(function() {
 
 		// Rename files by clicking on their titles
 		rename: true,
-		
+
 		// Sort files
 		sortable: true,
 

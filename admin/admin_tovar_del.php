@@ -3,16 +3,16 @@
 if ($del and $id_user_session==$id_admin_user){
 	
 	
-$result_tovar = mysql_query ("SELECT * FROM tovari WHERE id='$del'");	
-$myrow_tovar=mysql_fetch_array ($result_tovar);
+$result_tovar = $db->query("SELECT * FROM tovari WHERE id='$del'");
+$myrow_tovar=$result_tovar->fetch_array();
 
 if (!$myrow_tovar[id]){
 	
-echo"Такого товара не существует!";	
+echo"РўР°РєРѕРіРѕ С‚РѕРІР°СЂР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!";	
 exit();
 
 }else{
-///////////удаление файла1///////////////////
+///////////СѓРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°1///////////////////
 
 function deletfile($directory,$filename) {
   if (is_file("$directory/$filename")) {
@@ -27,9 +27,9 @@ function deletfile($directory,$filename) {
 deletfile('../foto/full/',$myrow_tovar["image"].".jpg"); 
 deletfile('../foto/mini/',$myrow_tovar["image"].".jpg"); 
 
-$result4 = mysql_query ("DELETE FROM tovari_po_ml WHERE id_tovar='$myrow_tovar[id]'");		 
-$result4 = mysql_query ("DELETE FROM tovari WHERE id='$myrow_tovar[id]'");
-$result4 = mysql_query ("DELETE FROM site_pages WHERE id_post='$myrow_tovar[id]' and id_post!='0'");	
+$result4 = $db->query("DELETE FROM tovari_po_ml WHERE id_tovar='$myrow_tovar[id]'");
+$result4 = $db->query("DELETE FROM tovari WHERE id='$myrow_tovar[id]'");
+$result4 = $db->query("DELETE FROM site_pages WHERE id_post='$myrow_tovar[id]' and id_post!='0'");
 	
 	
 }
@@ -53,8 +53,8 @@ $okei="
 <table border='0' align='center' cellpadding='0' cellspacing='0'>
   <tr>
     <td width='60' align='center'><img src='../img/delete_m.png' width='50'  /></td>
-    <td><p>Товар успешно удален!<br />
-    Информация так же изменилась на сайте!</p></td>
+    <td><p>РўРѕРІР°СЂ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ!<br />
+    РРЅС„РѕСЂРјР°С†РёСЏ С‚Р°Рє Р¶Рµ РёР·РјРµРЅРёР»Р°СЃСЊ РЅР° СЃР°Р№С‚Рµ!</p></td>
   </tr>
 </table>
 <div style='height:1px; background-color:#CCCCCC;'></div>

@@ -2,6 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/.htaccess" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/admin_cat_spisok.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/admin_tovar_add.php" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/admin/admin_tovar_del.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/admin_tovar_edit.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/autorization_action.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/index.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/error404.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/filters_tovar.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/filters_tovar_arc.php" charset="UTF-8" />
@@ -15,6 +21,7 @@
     <file url="file://$PROJECT_DIR$/blocks/spisok_tovara_arc.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/tovar_cat.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blocks/tovar_cat_arc.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/foto/process.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/index3.php" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/index_arc.php" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/index_old.php" charset="UTF-8" />

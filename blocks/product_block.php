@@ -1,6 +1,7 @@
 <?php
 do {
 $volumes = explode('--', trim($myrow_all_stat['po_ml'], '-'));
+
 $isInVolumeRange = array_reduce($volumes, function($carry, $volume) use ($minVolume, $maxVolume) {
     return $carry ||
         (!$minVolume || $volume >= $minVolume) &&
@@ -80,19 +81,19 @@ if($myrow_all_stat['status']==0){
 
 
 
-    if ($myrow_po_ml){
+    if ($myrow_po_ml) {
 
-        do {
+        while ($myrow_po_ml = $result_po_ml->fetch_array()) {
 
-            $prise_format = number_format($myrow_po_ml['prise'],0,'',' ');
 
-            echo"<div class='blok_stat_ml_text' style='text-align: left;'><span style='font-weight: 600;'>$myrow_po_ml[name] мл.</span> <span style='font-weight: 400;'>- $prise_format р.</span></div>
+        $prise_format = number_format($myrow_po_ml['prise'], 0, '', ' ');
+
+        echo "<div class='blok_stat_ml_text' style='text-align: left;'><span style='font-weight: 600;'>$myrow_po_ml[name] мл.</span> <span style='font-weight: 400;'>- $prise_format р.</span></div>
 <div style='height:4px;'></div>
 ";
 
 
-        }
-        while ($myrow_po_ml = $result_po_ml->fetch_array());
+    }
 
         echo"
 </div>

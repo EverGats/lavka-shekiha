@@ -14,8 +14,8 @@ if (empty($_SESSION['login_admin']) and  empty($_SESSION['id_admin']) and $dostu
 	if (!empty($_COOKIE['_login_admin']) and  !empty($_COOKIE['_id_admin']) and  !empty($_COOKIE['_password_admin'])){
 
 
-$result_nov = mysql_query("SELECT * FROM  users_sheikh WHERE username='$_COOKIE[_login_admin]' and id='$_COOKIE[_id_admin]'"); 
-$myrow_nov = mysql_fetch_array($result_nov);				
+$result_nov = $db->query("SELECT * FROM  users_sheikh WHERE username='$_COOKIE[_login_admin]' and id='$_COOKIE[_id_admin]'");
+$myrow_nov = $result_nov->fetch_array();
 	
 				
 if (($myrow_nov['password']==$_COOKIE['_password_admin'])){
@@ -52,8 +52,8 @@ if ($dostup==1){
 if ($user and $password) {
 
 
-$result_poisk = mysql_query("SELECT * FROM users_sheikh WHERE username='$user' ORDER BY id DESC");
-$myrow_poisk = mysql_fetch_array($result_poisk);
+$result_poisk = $db->query("SELECT * FROM users_sheikh WHERE username='$user' ORDER BY id DESC");
+$myrow_poisk = $result_poisk->fetch_array();
 
 
 
@@ -68,9 +68,9 @@ if ($myrow_poisk) {
 				$_SESSION['login_admin']=$myrow_poisk['username'];				
 
 
-setcookie("_login_admin", $_SESSION['login_admin'], time()+59999999); //694.4444 дней
-setcookie("_password_admin", $myrow_poisk['password'], time()+59999999);//694.4444 дней
-setcookie("_id_admin", $_SESSION['id_admin'], time()+59999999); //694.4444 дне
+setcookie("_login_admin", $_SESSION['login_admin'], time()+59999999); //694.4444 РґРЅРµР№
+setcookie("_password_admin", $myrow_poisk['password'], time()+59999999);//694.4444 РґРЅРµР№
+setcookie("_id_admin", $_SESSION['id_admin'], time()+59999999); //694.4444 РґРЅРµ
 
 
 
@@ -89,9 +89,9 @@ $error="
 <tr>
 <td width='60' align='center'><img src='../img/ok_min.png' width='50'  /></td>
 <td>
-<div>Авторизация пройдена успешно!
+<div>РђРІС‚РѕСЂРёР·Р°С†РёСЏ РїСЂРѕР№РґРµРЅР° СѓСЃРїРµС€РЅРѕ!
 <div style='height:3px;'></div>	 
-Сейчас вы будете перенаправлены!
+РЎРµР№С‡Р°СЃ РІС‹ Р±СѓРґРµС‚Рµ РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅС‹!
 </div>
 </td>
 </tr>
@@ -120,9 +120,9 @@ $error="
 <tr>
 <td width='60' align='center'><img src='../img/vniman.jpg' width='50' height='50' /></td>
 <td>
-<div>Ошибка авторизации!
+<div>РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё!
 <div style='height:3px;'></div>	 
-Вы ввели неправильный логин или пароль!
+Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ!
 </div>
 </td>
 </tr>
@@ -148,9 +148,9 @@ $error="
 <tr>
 <td width='60' align='center'><img src='../img/vniman.jpg' width='50' height='50' /></td>
 <td>
-<div>Ошибка авторизации!
+<div>РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё!
 <div style='height:3px;'></div>	 
-Вы ввели неправильный логин или пароль!
+Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ!
 </div>
 </td>
 </tr>
@@ -174,9 +174,9 @@ $error="
 <tr>
 <td width='60' align='center'><img src='../img/vniman.jpg' width='50' height='50' /></td>
 <td>
-<div>Ошибка авторизации!
+<div>РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё!
 <div style='height:3px;'></div>	 
-Вы забыли указать логин или пароль!
+Р’С‹ Р·Р°Р±С‹Р»Рё СѓРєР°Р·Р°С‚СЊ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ!
 </div>
 </td>
 </tr>
