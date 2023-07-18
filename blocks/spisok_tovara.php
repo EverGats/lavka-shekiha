@@ -169,7 +169,6 @@ if ($myrow_all_stat['id']){
 
 do {
     $volumes = explode('--', trim($myrow_all_stat['po_ml'], '-'));
-    var_dump($volumes);
     $isInVolumeRange = array_reduce($volumes, function($carry, $volume) use ($minVolume, $maxVolume) {
         return $carry ||
             (!$minVolume || $volume >= $minVolume) &&
@@ -216,8 +215,8 @@ if ($last_komment>1 and $last_komment<5){$komm="отзыва";}
 if ($last_komment>4 and $last_komment<10){$komm="отзывов";}
 
 
-
-$image_path = "../foto/mini/$myrow_all_stat[image].jpg";
+echo $myrow_all_stat['image'];
+$image_path = $_SERVER['DOCUMENT_ROOT'] . "/foto/mini/$myrow_all_stat[image].jpg";
 $default_image_path = "/img/default.jpeg";
 
 if (!file_exists($image_path)) {

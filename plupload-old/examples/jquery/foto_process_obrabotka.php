@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 
 class SimpleImage {
 
@@ -67,98 +68,51 @@ class SimpleImage {
    }
 }
 
-function createThumbnail($filename) {
-
-    require '../foto/config.php'; //Подключаем файл конфигурации
-
+function saveImageWithMaxResolution($filename) {
+    require '../foto/config.php'; // Подключаем файл конфигурации
     global $privz;
 
+    $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); // Получаем расширение файла
 
-    if(preg_match('/[.](jpg)$/', $filename))	{
-        $im = imagecreatefromjpeg($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](JPG)$/', $filename))	{
-        $im = imagecreatefromjpeg($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](JPEG)$/', $filename))	{
-        $im = imagecreatefromjpeg($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](jpeg)$/', $filename))	{
-        $im = imagecreatefromjpeg($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](gif)$/', $filename))	{
-        $im = imagecreatefromgif($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](GIF)$/', $filename))	{
-        $im = imagecreatefromgif($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](png)$/', $filename))	{
-        $im = imagecreatefrompng($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](PNG)$/', $filename))	{
-        $im = imagecreatefrompng($path_to_image_directory . $filename);
-    }	else if (preg_match('/[.](jfif)$/', $filename))	{
-        $im = imagecreatefrompng($path_to_image_directory . $filename);
+    // Поддерживаемые форматы изображений
+    $supportedExtensions = array('jpg', 'jpeg', 'png', 'gif');
 
-    }//Определяем формат изображения
+    // Проверяем, что расширение файла является поддерживаемым форматом изображения
+    if (!in_array($ext, $supportedExtensions)) {
+        echo 'Неподдерживаемый формат изображения.';
+        return;
+    }
 
-    $ox = imagesx($im);
-    $oy = imagesy($im);
+    $imagePath = $path_to_image_directory . $filename; // Полный путь к изображению
 
 
 
+    // Получаем размеры изображения
+    list($width, $height) = getimagesize($imagePath);
 
-    if      ($ox <=200  ) {$final_width_of_image = 200;}
-    else if (($ox > 200) AND  ($ox <= 2560 )) {$final_width_of_image = $ox;}
-    else if ($ox > 2560) {$final_width_of_image = 2560;}
+    // Проверяем размеры изображения
+    if ($width === false || $height === false) {
+        echo 'Не удалось получить размеры изображения.';
+        return;
+    }
 
+    // Получаем максимальное разрешение по ширине и высоте
+    $maxResolution = max($width, $height);
 
-    $_SESSION['width_image']=$final_width_of_image;
-    $_SESSION['height_image']=$oy;
-
-
-
-
-    $nx = $final_width_of_image;
-    $ny = floor($oy * ($final_width_of_image / $ox));
-
-    $nm = imagecreatetruecolor($nx, $ny);
-
-    imagecopyresampled($nm, $im, 0,0,0,0,$nx,$ny,$ox,$oy);
-
-
-
-    if(!file_exists($path_to_thumbs_directory)) {
-        if(!mkdir($path_to_thumbs_directory)) {
-            die("Возникли проблемы! попробуйте снова1!");
+    // Проверяем наличие папки для сохранения изображений
+    if (!file_exists($path_to_thumbs_directory)) {
+        if (!mkdir($path_to_thumbs_directory)) {
+            echo 'Ошибка при создании папки для сохранения изображений.';
+            return;
         }
     }
 
-    $ext = substr($_FILES['fupload']['name'], 1 + strrpos($_FILES['fupload']['name'], "."));
-
-
-// выбираем максимальное значение id с image и увеличиваем его на единицу
-// это число и будет служить именем файла
-
-    $filename=$privz.".jpg";
-
-
-    imagejpeg($nm, $path_to_thumbs_directory . $filename);
-
-
-
-    if (file_exists($path_to_thumbs_directory.$filename)) {
-// проверка на существование загруженного файла
-
-
-////////////////////////////////////////////////////////////////////////////
-        $img_file777 = "$path_to_thumbs_directory$filename"; // адрес изображения
-        $img_size777 = getimagesize ( $img_file777 );
-
-        $_SESSION['height_image'] = $img_size777[1];
-        $_SESSION['width_image'] = $img_size777[0];
-        $_SESSION['razmer_image'] = filesize("$path_to_thumbs_directory$filename");
-//добавление в базу
-    }
-    else {
-        echo "файл не был загружен!";
-    }
+    // Генерируем новое имя файла, основанное на уникальном идентификаторе
+    $newFilename = $privz . '.' . $ext;
 
 
 }
+
 
 function createThumbnail2($filename) {
 
@@ -242,10 +196,6 @@ function createThumbnail2($filename) {
 
 //добавление в базу
     }
-    else {
-        echo "файл не был загружен!";
-    }
-
 
 }
 
@@ -273,5 +223,6 @@ imagecopy($im2, $stamp, round((imagesx($im2) - $sx)/2),round((imagesy($im2) - $s
 // Сохранение и освобождение памяти
 imagejpeg($im2, $path_to_flname);
 imagedestroy($im2);
+
 }
 ?>

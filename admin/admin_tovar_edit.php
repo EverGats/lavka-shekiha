@@ -336,7 +336,7 @@ $privz=$new_image;
 
 
 require '../foto/config.php'; //Подключаем файл конфигурации
-   // require '../foto/process.php'; //Подключаем файл-обработчик
+   //require '../foto/process.php'; //Подключаем файл-обработчик
     require '../plupload-old/examples/jquery/foto_process_obrabotka.php';
 
 if(isset($_FILES['fupload'])) {
@@ -350,9 +350,9 @@ if(isset($_FILES['fupload'])) {
 		$target = $path_to_image_directory . $filename;
 		
 		move_uploaded_file($source, $target);
-		
-		
-		createThumbnail($filename);
+
+
+        saveImageWithMaxResolution($filename);
 		createThumbnail2($filename);	
 		        unlink ($target);
 				
@@ -414,7 +414,7 @@ $pass = str_shuffle('abcdefghedfiklmnoprstufhckfpaldmvnrywiwjsnaqpemfkvil_123456
 ////////////////////////////////////////////////////////////
 $final_width_of_image_mini = 400;
 $final_width_of_image_full = 1920;
-$path_to_image_directory = '../foto/original/'; //Папка, куда будут загружаться файлы процесса обработки (потом уждаляется)
+$path_to_image_directory = $_SERVER['DOCUMENT_ROOT'] . '/foto/original/'; //Папка, куда будут загружаться файлы процесса обработки (потом уждаляется)
 $path_to_full_directory = '../foto/full/'; //Папка, куда будут загружаться полноразмерные изображения 1920
 $path_to_mini_directory = '../foto/mini/';//Папка, куда буду тзгружать 400
 $full_znak_on=0; // по умолчанию наложение "водяного" рисунка(1-наложить)
@@ -436,12 +436,12 @@ $_FILES['fupload']['name'])) {
 	
 //require '../plupload-old/examples/jquery/foto_process_obrabotka.php'; //Подключаем файл-обработчик
       //  require '../foto/process.php';
-copy($source, $target);
+//copy($source, $target);
 
 $new_filename=$privz.'.jpg';
-//		move_uploaded_file($source, $target);
-createThumbnail($filename,$new_filename,$final_width_of_image_mini,$path_to_image_directory,$path_to_mini_directory);	
-createThumbnail($filename,$new_filename,$final_width_of_image_full,$path_to_image_directory,$path_to_full_directory);	
+move_uploaded_file($source, $target);
+saveImageWithMaxResolution($filename,$new_filename,$final_width_of_image_mini,$path_to_image_directory,$path_to_mini_directory);
+createThumbnail2($filename,$new_filename,$final_width_of_image_full,$path_to_image_directory,$path_to_full_directory);
 if($full_znak_on==1)
 	{
 		imposingImage($path_to_full_directory.$new_filename);
@@ -449,9 +449,7 @@ if($full_znak_on==1)
 if($mini_znak_on==1)
 	{
 		imposingImage($path_to_mini_directory.$new_filename);
-	}	
-unlink ($target);
-
+	}
 
 if(file_exists($path_to_full_directory.$new_filename) AND file_exists($path_to_mini_directory.$new_filename))
 {
