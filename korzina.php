@@ -1,129 +1,84 @@
-<?
+<?php
 session_start();
-include ("blocks/bd.php") ;
-require "blocks/password.php";
 
+require_once "blocks/bd.php";
+require_once "blocks/password.php";
 
-           if (isset($_POST['zakaz_pereschet'])) {$zakaz_pereschet =1; } 
-            else
-            { $zakaz_pereschet = '' ;}	
-			
-			if (isset($_POST['zakaz_na_oplaty'])) {$zakaz_na_oplaty =1; } 
-            else
-            { $zakaz_na_oplaty = '' ;}	
-			
+$zakaz_pereschet = isset($_POST['zakaz_pereschet']) ? 1 : '';
+$zakaz_na_oplaty = isset($_POST['zakaz_na_oplaty']) ? 1 : '';
 
-$dostavka_po=350;
-	
-////////////////////////////////////////////////////
-/////////////////////////перерасчет заказа начало////////
-////////////////////////////////////////////////////
+$dostavka_po = 350;
 
-if ($zakaz_pereschet==1 || $zakaz_na_oplaty==1){
-	
+if ($zakaz_pereschet === 1 || $zakaz_na_oplaty === 1) {
+    $aDoor = $_POST['formDoorz'];
+    if(empty($aDoor)){
+        echo "Вы ничего не выбрали!";
+    } else {
+        $N = count($aDoor);
+        for($i=0; $i < $N; $i++){
+            $form_st = "kolvo{$aDoor[$i]}";
+            $kolvo = $_POST[$form_st];
 
-	
-$aDoor = $_POST['formDoorz'];
+            $form_st2 = "skidka_discont{$aDoor[$i]}";
+            $skidka_discont = $_POST[$form_st2];
 
-if(empty($aDoor)){echo("Вы ничего не выбрали!");}
+            if ($kolvo){
+                $sql = "SELECT * FROM vibranie_tovari WHERE id=? and tag='0'";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$aDoor[$i]]);
+                $myrow_povtor_wabl_cat = $stmt->fetch(PDO::FETCH_ASSOC);
 
-else{
+                if ($myrow_povtor_wabl_cat){
+                    $kolvo = trim($kolvo);
+                    $skidka_discont = trim($skidka_discont);
 
-$N = count($aDoor);
+                    $sql = "UPDATE vibranie_tovari SET colichestvo=?, dostavka=? WHERE id=?";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([$kolvo, $dostavka, $aDoor[$i]]);
+                }
 
-for($i=0; $i < $N; $i++){
+                $wabl_ok = 1;
 
-$result_povtor_wabl_cat = mysql_query ("SELECT * FROM vibranie_tovari WHERE id='$aDoor[$i]' and tag='0'");
-$myrow_povtor_wabl_cat=mysql_fetch_array ($result_povtor_wabl_cat);		
+                $summa_tovara = $myrow_povtor_wabl_cat['cena_za_ed'] * $myrow_povtor_wabl_cat['colichestvo'];
+                $summa_tovarov_z += $summa_tovara;
+            }
 
-$form_st="kolvo$aDoor[$i]";
-$kolvo=$_POST[$form_st];
-
-$form_st2="skidka_discont$aDoor[$i]";
-$skidka_discont=$_POST[$form_st2];
-
-
-if ($kolvo){	
-
-if ($myrow_povtor_wabl_cat){
-
-$kolvo = trim($kolvo);	
-$skidka_discont = trim($skidka_discont);
-
-$obnov = mysql_query ("UPDATE vibranie_tovari SET colichestvo='$kolvo',dostavka='$dostavka' WHERE id='$aDoor[$i]'");}
-
-$wabl_ok=1;
-
-$summa_tovara=($myrow_povtor_wabl_cat[cena_za_ed]*$myrow_povtor_wabl_cat[colichestvo]);
-$summa_tovarov_z= $summa_tovarov_z + $summa_tovara;
+            if ($kolvo == 0){
+                $sql = "DELETE FROM vibranie_tovari WHERE id=?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$aDoor[$i]]);
+            }
+        }
+    }
 }
 
-if ($kolvo==0){
-	
-$result4 = mysql_query ("DELETE FROM vibranie_tovari WHERE id='$aDoor[$i]'");
-
-
+if ($zakaz_na_oplaty == 1 && $summa_tovarov_z){
+    $_SESSION['korzina_wag'] = 1;
+    $_SESSION['summa_oplati'] = $summa_tovarov_z + $dostavka_po;
 }
 
+$zakaz_na_oplaty1 = isset($_POST['zakaz_na_oplaty1']) ? 1 : '';
+
+if ($zakaz_na_oplaty1 === 1){
+    $_SESSION['korzina_wag'] = "";
+    $_SESSION['summa_oplati'] = "";
 }
+
+$zakaz_na_oplaty2 = isset($_POST['zakaz_na_oplaty2']) ? 1 : '';
+
+$fio = isset($_POST['fio']) ? $_POST['fio'] : '';
+$adres = isset($_POST['adres']) ? $_POST['adres'] : '';
+$mail = isset($_POST['mail']) ? $_POST['mail'] : '';
+$koment = isset($_POST['koment']) ? $_POST['koment'] : '';
+$telefon = isset($_POST['telefon']) ? $_POST['telefon'] : '';
+
+if ($telefon) {
+    $v_phone0 = $telefon;
+    $v_phone = substr($v_phone0, 3, 3).substr($v_phone0, 8, 3).substr($v_phone0, 10, 5);
 }
-}
 
 
-
-/*
-if ($zakaz_na_oplaty==1){
-	
-
-$result_po = mysql_query ("SELECT * FROM vibranie_tovari WHERE id_zakaz='$zakaz_id_dop' and tag='0'");
-$myrow_po=mysql_fetch_array ($result_po);		
-	
-if ($myrow_po){
-
-$obnov = mysql_query ("UPDATE vibranie_tovari SET tag='1' WHERE id_klient='$myrow_po[id_klient]' and id_zakaz='$zakaz_id_dop' and tag='0'");	
-
-}
-}
-*/
-////////////////////////////////////////////////////////////////////////
-if ($zakaz_na_oplaty==1 and $summa_tovarov_z){
-$_SESSION[korzina_wag]=1; 
-$_SESSION[summa_oplati]=$summa_tovarov_z+$dostavka_po;
-}
-/////////////////////////////////////////////////////////////////
-           
-		   if (isset($_POST['zakaz_na_oplaty1'])) {$zakaz_na_oplaty1 =1; } 
-            else
-            { $zakaz_na_oplaty1 = '' ;}	
-
-if ($zakaz_na_oplaty1==1){$_SESSION[korzina_wag]=""; $_SESSION[summa_oplati]="";}
-
-////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-if (isset($_POST['zakaz_na_oplaty2'])) {$zakaz_na_oplaty2 =1; } 
-            else
-            { $zakaz_na_oplaty2 = '' ;}	
-			
-
-if (isset($_POST['fio'])) {$fio =$_POST['fio']; } 
-
-if (isset($_POST['adres'])) {$adres =$_POST['adres']; } 
-
-if (isset($_POST['mail'])) {$mail =$_POST['mail']; } 
-
-if (isset($_POST['koment'])) {$koment =$_POST['koment']; } 
-
-if (isset($_POST['telefon'])) {$telefon =$_POST['telefon']; } 		
-
-if ($telefon) 
-	{
-		$v_phone0=$telefon;
-		$v_phone=substr($v_phone0,3,3).substr($v_phone0,8,3).substr($v_phone0,10,5);
-		//echo $v_phone;
-	}	
-
-
-echo"
+    echo"
 $myr_html[doctupe]
 <head>
 $myr_html[kodirovka]";
@@ -265,83 +220,88 @@ echo"
 
 
 <?
-if (!$_SESSION[korzina_wag]){
+if (!isset($_SESSION['korzina_wag'])){
 
-echo"
+    echo"
 <div style='height:3px;'></div>";
 
-$result_korzina = mysql_query ("SELECT * FROM vibranie_tovari WHERE talon='$_SESSION[talon]' order by id desc");
-$myrow_korzina =  mysql_fetch_array($result_korzina);	
+    $stmt = $db->prepare("SELECT * FROM vibranie_tovari WHERE talon=? order by id desc");
+    $stmt->bind_param("s", $_SESSION['talon']);
+    $stmt->execute();
+    $result_korzina = $stmt->get_result();
+    $myrow_korzina =  $result_korzina->fetch_array();
 
+    if ($myrow_korzina){
 
-if ($myrow_korzina){
-	
-echo"<form enctype='multipart/form-data' method='POST' action='' class='decorated-form'>";	
+        echo"<form enctype='multipart/form-data' method='POST' action='' class='decorated-form'>";
 
-$skidka_on=0;
-	
-do {
-	
-$result_tovar = mysql_query ("SELECT * FROM tovari WHERE id='$myrow_korzina[id_tovara]'");
-$myrow_tovar =  mysql_fetch_array($result_tovar);		
-	
-echo"
+        $skidka_on=0;
+
+        do {
+
+            $stmt = $mysqli->prepare("SELECT * FROM tovari WHERE id=?");
+            $stmt->bind_param("i", $myrow_korzina['id_tovara']);
+            $stmt->execute();
+            $result_tovar = $stmt->get_result();
+            $myrow_tovar =  $result_tovar->fetch_array();
+
+            echo"
 <div style='height:20px;'></div>
 <div id='blok_stat_korzina'>
 <div id='blok_stat_img_korzina'>
-<a href='../$myrow_tovar[seo_url]'>
-<img src='../foto/mini/$myrow_tovar[image].jpg' alt='$myrow_tovar[nazvanie]' title='$myrow_tovar[nazvanie]'>
+<a href='../".$myrow_tovar['seo_url']."'>
+<img src='../foto/mini/".$myrow_tovar['image'].".jpg' alt='".$myrow_tovar['nazvanie']."' title='".$myrow_tovar['nazvanie']."'>
 </a>
 </div>
 
 <div style='margin-left:15px;'>
 <div id='mob_otstup_korzina'><div style='clear: both;'></div><div style='height:10px;'></div></div>
-<div><a class='blok_stat_zag' href='../$myrow_tovar[seo_url]'>$myrow_tovar[nazvanie]</a></div>
+<div><a class='blok_stat_zag' href='../".$myrow_tovar['seo_url']."'>".$myrow_tovar['nazvanie']."</a></div>
 <div style='height:1px;'></div>
-<div style='color:#787878;'>Артикул на сайте: $myrow_tovar[id]</div>
+<div style='color:#787878;'>Артикул на сайте: ".$myrow_tovar['id']."</div>
 <div style='height:10px;'></div>";
 
-if ($myrow_korzina[cena_za_ed]){
+            if ($myrow_korzina['cena_za_ed']){
 
-if ($myrow_korzina[old_price]!=0){
+                if ($myrow_korzina['old_price']!=0){
 
-$skidka_on=1;
-	
-$old1_=$myrow_korzina[old_price]/$myrow_korzina[cena_za_ed];	
-$old1=$myrow_korzina[old_price]*$myrow_korzina[colichestvo];
-$old2=floor(100-(100/$old1_));
-$old2 = abs($old2);
-	
-$old1_format = number_format($old1,0,'',' ');
+                    $skidka_on=1;
+
+                    $old1_=$myrow_korzina['old_price']/$myrow_korzina['cena_za_ed'];
+                    $old1=$myrow_korzina['old_price']*$myrow_korzina['colichestvo'];
+                    $old2=floor(100-(100/$old1_));
+                    $old2 = abs($old2);
+
+                    $old1_format = number_format($old1,0,'',' ');
 
 
-$raznica_skidka=($myrow_korzina[old_price]*$myrow_korzina[colichestvo])-($myrow_korzina[cena_za_ed]*$myrow_korzina[colichestvo]);
+                    $raznica_skidka=($myrow_korzina['old_price']*$myrow_korzina['colichestvo'])-($myrow_korzina['cena_za_ed']*$myrow_korzina['colichestvo']);
 
-$old_price="
+                    $old_price="
 <span style='font-size:15px; padding-left:4px; color:#E10001;'>&ndash; $old2%</span>
 ";
 
-$old_price2="
+                    $old_price2="
 <div style='font-size:13px; color:#787878;'>Старая цена: <span style='text-decoration: line-through;'>$old1_format  руб.</span></div>
 ";
-}
+                }
 
-else{$old_price=""; $old_price2="";}
+                else{$old_price=""; $old_price2="";}
 
 
 
-$cena_rozn = number_format($myrow_korzina[cena_za_ed],0,'',' ');
-$cena_old_prise = number_format($myrow_korzina[old_price],0,'',' ');
+                $cena_rozn = number_format($myrow_korzina['cena_za_ed'],0,'',' ');
+                $cena_old_prise = number_format($myrow_korzina['old_price'],0,'',' ');
 
-$summa_tovara=($myrow_korzina[cena_za_ed]*$myrow_korzina[colichestvo]);	
-$summa_tovara_format=number_format($summa_tovara,0,'.',' ');
+                $summa_tovara=($myrow_korzina['cena_za_ed']*$myrow_korzina['colichestvo']);
+                $summa_tovara_format=number_format($summa_tovara,0,'.',' ');
 
-if ($skidka_on==1){
-$cena_sum1=$summa_tovara;
-$raznica=$raznica+$raznica_skidka;
+                if ($skidka_on==1){
+                    $cena_sum1=$summa_tovara;
+                    $raznica=$raznica+$raznica_skidka;
 
-$raznica_skidka=0;
-}
+                    $raznica_skidka=0;
+                }
 
 echo"
 <div>
@@ -461,9 +421,9 @@ echo"
 ?>
 
 <?
-if ($_SESSION[korzina_wag]=='1'){
+if (!isset($_SESSION['korzina_wag'])){
 	
-$summa_tovarov_format=number_format($_SESSION[summa_oplati],0,'.',' ');
+$summa_tovarov_format=number_format($_SESSION['summa_oplati'],0,'.',' ');
 	
 	
 echo"

@@ -30,14 +30,14 @@ echo "
                 <a href='#news-magazine' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
                 <a href='#' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
                 <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
-                <a href='#' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Корзина</a>       
+                <a href='/cart' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Корзина</a>       
             </div>
         </div>
     </div>
         <div class='container'>
         <div class='search-main-container col-lg-12 col-xl-12 col-md-12 col-sm-12 col-xs-12'>
             <div class='search-container'>
-                <input type='text' placeholder='Поиск'' />
+                <input type='text' placeholder='Поиск' />
             </div>
         </div>
         <div class='logo-glavnaya-container' style='user-select: none'>
@@ -254,7 +254,7 @@ body {
     display: block;
     width: 25px;
     height: 25px;
-    background: url('img/lupa.png') no-repeat center;
+    background: url('img/lupa.svg') no-repeat center;
     background-size: contain;
     z-index: 0;
 }
