@@ -48,7 +48,6 @@ border: 1px solid #5f1b13;
 
 
 <?
-
 if ($edit and $id_user_session==$id_admin_user){
 	
 	
@@ -280,7 +279,7 @@ if (isset($_POST['genskaya'])){$genskaya = $_POST['genskaya'];}
 if (isset($_FILES['fupload'])){$fupload = $_FILES['fupload'];}
 
 
-$opisanie = $db->real_escape_string($opisanie);
+//$opisanie = $db->real_escape_string($opisanie);
 
 
 
@@ -299,9 +298,10 @@ $nazvanie = htmlspecialchars($nazvanie);
 $nazvanie = trim($nazvanie);
 $nazvanie=mb_ucfirst($nazvanie);
 
-$result_post_povtor2 = $db->query("SELECT * FROM tovari WHERE nazvanie='$nazvanie' and id!='$edit'");	
-$myrow_post_povtor2=$result_post_povtor2->fetch_array();
 
+$result_post_povtor2 = $db->query("SELECT * FROM tovari WHERE nazvanie='$nazvanie' and id !='$edit'");
+
+$myrow_post_povtor2=$result_post_povtor2->fetch_array();
 
 
 if (!$myrow_post_povtor2){$nazvanie_norm=1;}
@@ -337,7 +337,7 @@ $privz=$new_image;
 
 require '../foto/config.php'; //Подключаем файл конфигурации
    //require '../foto/process.php'; //Подключаем файл-обработчик
-    require '../plupload-old/examples/jquery/foto_process_obrabotka.php';
+    require $_SERVER['DOCUMENT_ROOT'] .'/plupload-old/examples/jquery/foto_process_obrabotka.php';
 
 if(isset($_FILES['fupload'])) {
 	
@@ -434,12 +434,13 @@ $_FILES['fupload']['name'])) {
 		$target = $path_to_image_directory.$filename;
 
 	
-//require '../plupload-old/examples/jquery/foto_process_obrabotka.php'; //Подключаем файл-обработчик
+require '../plupload-old/examples/jquery/foto_process_obrabotka.php'; //Подключаем файл-обработчик
       //  require '../foto/process.php';
 //copy($source, $target);
 
 $new_filename=$privz.'.jpg';
 move_uploaded_file($source, $target);
+
 saveImageWithMaxResolution($filename,$new_filename,$final_width_of_image_mini,$path_to_image_directory,$path_to_mini_directory);
 createThumbnail2($filename,$new_filename,$final_width_of_image_full,$path_to_image_directory,$path_to_full_directory);
 if($full_znak_on==1)
