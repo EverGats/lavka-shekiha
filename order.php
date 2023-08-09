@@ -43,7 +43,7 @@ echo("
                 </div>
                 
                 <div class='code-container'>
-                    <input type='text' class='code-input' id='card-cvc' name='card-cvc' pattern='[0-9]{3}' placeholder='***' maxlength='3' required>
+                    <input type='password' class='code-input' id='card-cvc' name='card-cvc' pattern='[0-9]{3}' placeholder='***' maxlength='3' required>
                     <label for='card-cvc'>Код</label>
                 </div>
                          
@@ -322,7 +322,9 @@ margin-top: 25px;
   color: red;
 }
 
-
+.date-input.invalid {
+ color: red;
+}
 
 
 
@@ -333,7 +335,7 @@ margin-top: 25px;
 
 
 ");
-
+$date = date('Y-m-d H:i:s');
 echo("
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
@@ -357,9 +359,9 @@ $(document).ready(function() {
     this.value = val;
   });
 
-  $('#card-cvc').on('input', function() {
-    $(this).val($(this).val().replace(/\d/g, '*'));
-  });
+//  $('#card-cvc').on('input', function() {
+//    $(this).val($(this).val().replace(/\d/g, '*'));
+//  });
 });
 
 $(document).ready(function() {
@@ -375,11 +377,55 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function (){
+    $('#card-expiry').blur(function (){
+        var expiry = $(this).val();
+        var isValid = isInvalidCardExpiry(expiry);
+        console.log(isValid);
+        
+    if (isValid) {
+      $(this).removeClass('invalid');
+    } else {
+      $(this).addClass('invalid');
+    }
+    
+    });
+});
+
 $(document).ready(function() {
   $('#card-number').on('input', function() {
     $(this).removeClass('invalid');
   });
 });
+
+
+function isInvalidCardExpiry(expiry){
+    
+    const isValid = false;
+    
+    const date = new Date();
+    
+    const [month, year] = [
+      date.getMonth() + 1,
+      date.getFullYear(),
+    ];
+    
+    const expiryMonth = expiry[0] + expiry[1];
+    const expiryYear = 20 + expiry.at(-1) + expiry.at(-2);
+    
+    console.log(month, year, expiry, expiryMonth, expiryYear);
+   
+    if (expiryMonth <= 12) {
+        if (expiryYear >= year) {
+            if (expiryMonth >= month) {
+                console.log('yes');
+            }
+        }
+    }
+    
+    return isValid;
+   
+}
 
 
 function isValidCardNumber(cardNumber) {

@@ -82,8 +82,8 @@ if($myrow_all_stat['status']==0){
 
 
     if ($myrow_po_ml) {
-
-        while ($myrow_po_ml = $result_po_ml->fetch_array()) {
+        $i =0;
+        while ($myrow_po_ml = $result_po_ml->fetch_array() and $i != 3) {
 
 
         $prise_format = number_format($myrow_po_ml['prise'], 0, '', ' ');
@@ -92,7 +92,7 @@ if($myrow_all_stat['status']==0){
 <div style='height:4px;'></div>
 ";
 
-
+    $i++;
     }
 
         echo"
@@ -117,9 +117,9 @@ if($myrow_all_stat['status']==0){
 
 
 
-    echo"
-<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>В корзину</a>";
-
+//    echo"
+//<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>В корзину</a>";
+    include "add_to_cart_popup.php";
 
     echo"  
 <div style='height:7px;'></div>

@@ -1,356 +1,254 @@
-<?
+<?php
 session_start();
 include ("blocks/bd.php") ;
 require "blocks/password.php";
 
-if (isset($_GET['id'])) {$id =$_GET['id']; } 
-            else
-            { exit("�� ����� ��    �������� ��� ���������!");}
-            if (!preg_match("|^[\d]+$|", $id))    {
-       			exit("������� ������");
-            }	
-
-$result_tovar = $db->query("SELECT * FROM tovari WHERE id='$id' ");
-$myrow_tovar =  $result_tovar->fetch_array();
-
-if (!$myrow_tovar){
-header("HTTP/1.0 404 Not Found");
-include ("blocks/error404.php");
-exit;}
-
-$new_view = $myrow_tovar['view'] + 1;
-$update = $db->query("UPDATE tovari SET view = '$new_view' WHERE id='$id'");
-
-echo"
-$myr_html[doctupe]
-<head>
-$myr_html[kodirovka]";
-
+if (isset($_GET['id'])) {
+    $product_id =$_GET['id'];
+    $query = $db->query('SELECT * FROM tovari WHERE id = " '.$product_id.'" ');
+    $product = $query->fetch_array();
+    $product_cat = $product['cat'];
+    $myrow_all_stat['id'] = $product_id;
+} else {
+    exit("Вы зашли на страницу без параметра!");
+}
+include ("blocks/header.php");
 ?>
 
-<script type="text/javascript">
-function to_cart(id, id_klient, talon) {
-$.post('../blocks/in_cart.php',{id:id, id_klient:id_klient,talon:talon},function(data){ //�������� ������ � ������ � ������������ � ����������
-$('#basket_quantity').html(data); //��� �������� ���-�� ������� � ������� �� ������� ��������
-alert("����� �������� � �������!"); //������� ��������� � ���, ��� ����� �������� � �������
-});
-}
-</script>
+<div class="content">
+
+    <div class="product-title"><? echo $product['nazvanie']; ?></div>
+
+    <div class="product-card">
+
+        <img class="product-img" src="foto/mini/<? echo $product['image']?>.jpg">
+
+        <div class="product-info">
+
+
+
+            <div class="product-ml">
+                <a class="product-brand"> Бренд -  <?
+
+                    // <- Бренд товара ->
+                    $query = $db->query('SELECT name FROM post_cat1 WHERE id = "'.$product_cat.'"');
+                    $product_category = $query->fetch_array();
+                    $name = $product_category['name'];
+                    ?> <span class="brand-name"> <? echo $name ?></span></a> <?
+
+                    echo '<div class="ml row">';
+                    // <- Миллилитры и цена ->
+                    $query = $db->query('SELECT * from tovari_po_ml WHERE id_tovar = " '.$product_id.'" ');
+                    $result = $query->num_rows;
+                    $prices = [];
+                    if ($result > 0) {
+                        while ($product_ml = $query->fetch_array()) {
+                            echo '<a class="ml-element col-xs-6 col-sm-6 col-lg-6 col-xl-6">'; echo $product_ml['name'] .'мл. - '; echo' <span class="ml-element-price">'; echo $product_ml['prise'] . 'р.'; echo '</span></a>';
+                            array_push($prices, $product_ml['prise']);
+                        }
+                    }
+                    echo '</div>';
+                    ?>
+            </div>
+
+            <div class="product-block-info">
+
+                <div class="description-title">Описание</div>
+
+                <div class="product-desc">
+                    <div class="border"></div>
+                    <? echo $product['opisanie']; ?>
+                </div>
+
+            </div>
+
+            <div class="btn-container">
+                <? include "blocks/add_to_cart_popup.php"?>
+                <a class="price-text">От - <? echo min($prices); ?>р. </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 <style>
-  
+    .btn-container{
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        width: 140px;
+    }
+    .price-text {
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+    .product-desc {
+        margin-top: 20px;
+        font-weight: 400;
+        color: #555;
+        font-size: 14px;
+        max-width: 800px;
+    }
+    .border {
+
+        margin-left: 120px;
+        border-top: 1px solid rgba(0, 0, 0, 0.5);
+        width: 70%;
+        padding-top: 5px
+    }
+    .description-title {
+        text-align: center;
+        margin-bottom: -15px;
+    }
+    .blok_stat_knopka {
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .blok_stat_knopka:hover {
+        background-color: #444;
+    }
+    .content {
+        min-height: 800px;
+        margin-right: 100px;
+        margin-left: 100px;
+        font-size: 20px;
+    }
+    .product-img{
+        width: 25%;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+        transition: scale 0.3s ease;
+        margin-right: 30px;
+        border-radius: 12px;
+
+    }
+    .product-title{
+        text-align: center;
+        margin-bottom: 50px;
+        font-weight: 500;
+        font-size: 50px;
+        letter-spacing: 2px;
+        margin-top: 20px;
+    }
+    .product-card{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .product-brand {
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+    .brand-name {
+        font-weight: 400;
+    }
+    .product-ml {
+        display: flex;
+        flex-direction: column;
+    }
+    .ml-element {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+    .ml-element-price{
+        font-weight: 400;
+    }
+
+    .product-block-info {
+        background-color: rgb(213, 152, 151, 0.4);
+        border-radius: 15px;
+        padding: 15px;
+        margin-top: 40px;
+        min-width: 800px;
+        min-height: 150px;
+        max-width: 830px;
+    }
+    .ml-element {
+        max-width: 300px;
+    }
 
 
-#content_tovar {
-	 padding-top:2px;
-	 padding-bottom:15px;
-     background: #FFFFFF;
-	 float: right;
-     width: 70%;
-	 text-align: left;
-	 box-sizing: border-box;
-	 padding-left:7px;
-	 padding-right:13px;
-	 border: solid #d3ba6a;
-     border-width: 0px 1px 0px;
-}
+    @media (max-width: 999px) {
+        .product-img{
+            width: 80%;
+            margin-left: 80px;
+            max-height: 620px;
+            max-width: 620px;
+        }
 
-#left_tovar {
-	 background: #FFFFFF;
-     float: left;
-     width: 29%;
-     height: 100%;
-}
+        .product-title{
+            margin-top: 40px;
+            font-size: 32px;
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 100px;
+        }
+        .product-block-info {
+            min-width: 780px;
+            min-height: 227px;
+            font-size: 25px!important;
+            background-color: rgb(213, 152, 151, 0.4);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 40px;
+        }
+        .product-ml {
+            min-height: 100px;
+        }
+        .border {
+            width: 500px;
+        }
+        .product-info {
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
 
-#left_tovar img {
-width: 96%;
-padding:2px;
-background:#fff;
--webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
--moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-border:0;	
-}
+        .description-title {
+            font-size: 25px;
+            margin-top: 0px;
+        }
+        .product-desc {
+            font-size: 15px;
+        }
 
+        .blok_stat_knopka {
+            width: 230px;
+            height: 70px;
+            font-size: 27px;
+            display: flex;
+            border-radius: 20px;
+            align-items: center;
+            justify-content: center;
+            margin-left: -35px;
+        }
 
-
-a.blok_stat_knopka_tovar {
-  font-size: 90%;
-  font-weight: 800;
-  color: #241515;
-  text-decoration: none;
-  padding: .5em 1.5em;
-  border-radius: 3px;
-  border: 1px solid #241515;
-  background: #dfcc7e;
-  box-shadow: inset 0px 0px 1px white, 0px 1px 2px #0c558a;
-  transition: .2s ease-in-out;
-  width: 100%;
-}
-
-a.blok_stat_knopka_tovar:hover:not(:active) {
-  background: #caac52;
-}
-
-#image_gallery_mob {display:none;}
-
-
-/* ��� ������ 800 �������� � ������ */
-@media screen and (max-width: 800px) {
-#left_tovar{display:none; width: 1%;}
-#content_tovar {width: 100%;}
-#image_gallery_mob {
-width: 98%; 
-display: block;
-padding:2px;
-background:#fff;
--webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
--moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-border:0;
-}	
-}
-
-
+        .btn-container {
+            font-size: 20px;
+        }
+        .price-text {
+            font-size: 20px;
+        }
+    }
 
 </style>
 
-
-<?
-
-echo"
-<title>$myrow_tovar[nazvanie]</title>
-<meta name='keywords' content='$myrow_tovar[keywords]'/>
-<meta name='description' content='$myrow_tovar[description]/'/>
-";
-
-
-echo"
-$myr_html[styl_skript_icon]	
-</head>
-<body  id='top'>";
-
-include ("blocks/header.php");
-include ("blocks/navigation.php");
-
-echo"
-<div id='container_site'>	
-<div id='sidebar'>";
-include ("blocks/left_meny.php");
-echo"
-</div> 
-<div id='content'>";
-
-$result_tovar_cat = $db->query("SELECT * FROM post_cat1 WHERE id='$myrow_tovar[cat]' ");
-$myrow_tovar_cat =  $result_tovar_cat->fetch_array();
-
-
-
-echo"
-<div align='center'><h1>$myrow_tovar[nazvanie]</h1></div>
-
-<div id='liniya_st'></div>
-<div style='height:3px;'></div>
-";
-?>
-
-<?
-echo"
-<div style='height:3px;'></div>";
-/////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-
-
-
-/////////////////////////////////////////////////////
-echo"<div id='content_tovar'>";
-
-echo"
-<div style='height:3px'></div>
-<div><strong>������� �� �����:</strong> $myrow_tovar[id]</div>
-
-<div style='height:4px'></div>
-
-<div><strong>�����:</strong> <a href='../$myrow_tovar_cat[seo_url]'>$myrow_tovar_cat[name]</a> </div>";
-
-
-echo"
-<div style='height:10px'></div>";
-///////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
-if ($myrow_tovar['prise']){
-
-
-$cena_rozn = number_format($myrow_tovar['prise'],0,'',' ');
-
-
-echo"
-<div style='border: solid #d3ba6a; border-width: 1px; padding:8px;'>
-<div><strong style='font-size:16px; color:#228b22'><div id='mydiv'>����: $cena_rozn ���.</div></strong>";
-
-
-echo"
-</div>
-<div style='height:14px;'></div>
-";
-
-if ($myrow_tovar[status]==0){
-
-if ($_SESSION['id_klient']){$id_klient=$_SESSION['id_klient'];}else{$id_klient="0";}
-
-	
-echo"
-<div style='position:relative; width:100%;'>
-<span id='parametr_on'><a href='javascript:void(0);' onclick='to_cart($myrow_tovar[id],$id_klient,$_SESSION[talon])' class='blok_stat_knopka_tovar'>�������� � ������� +</a></span>"; 
-
-////////////////////////////////////////
-$result_po_ml = $db->query("SELECT * FROM tovari_po_ml WHERE id_tovar='$myrow_tovar[id]' ORDER by name ASC");
-$myrow_po_ml=$result_po_ml->fetch_array();
-
-echo"
-<select name='cena_po_ml' id='myselect'>";
-
-if ($myrow_po_ml){
-	
-do {		
-
-echo"
-<option value='$myrow_po_ml[prise]'>$myrow_po_ml[name] ��.</option>
-";
-}
-while ($myrow_po_ml=mysql_fetch_array ($result_po_ml));		
-}
-	 
-echo"
-</select>
-
-</div>";
-
-?>
-<script type="text/javascript">
-document.getElementById("myselect").addEventListener("change", function(){
-/*document.getElementById('mydiv').innerHTML = "����: "+this.value+" ���."; */
-
-var goro=this.value;
-str = '' + goro;
-result = str.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1 ");
-
-document.getElementById('mydiv').innerHTML = "����: "+result+" ���.";
-	  
-/*
-alert(result);
-*/
-
-document.getElementById('parametr_on').innerHTML = "<a href='javascript:void(0);' onclick='to_cart("+this.value+",<? echo"$id_klient,$_SESSION[talon]";?>)' class='blok_stat_knopka_tovar'>�������� � ������� +</a>";   
-});
-</script>
-
-<?
-
-}
-else{echo"<span style='font-size:14px; color:#ff0000'>������ ��� � �������!</span> ";}
-
-//////////////////////////////////////////////////////////
-$result_po_ml = mysql_query ("SELECT * FROM tovari_po_ml WHERE id_tovar='$myrow_tovar[id]' ORDER by name DESC");	
-$myrow_po_ml=mysql_fetch_array ($result_po_ml);	
-
-
-if ($myrow_po_ml){
-
-echo"
-<div style='height:12px;'></div>
-";	
-	
-do {
-	
-$prise_format = number_format($myrow_po_ml[prise],0,'',' ');
-
-echo"<div style='padding:1px;'><strong>$myrow_po_ml[name] ��.</strong> - $prise_format �.</div>
-";
-	
-		
-}
-while ($myrow_po_ml=mysql_fetch_array ($result_po_ml));	
-
-echo"
-<div style='height:2px;'></div>
-";	
-}
-/////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////
-
-echo"
-<div style='height:8px;'></div>
-</div>
-<div style='height:7px;'></div>
-";
-}
-
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-echo"
-<div id='image_gallery_mob' align='center'>
-<a class='gallery' rel='group' href='../foto/full/$myrow_tovar[image].jpg'>
-<img src='../foto/mini/$myrow_tovar[image].jpg' border='0' style='width:100%'  /></a>
-</div>";
-
-
-
-
-echo"
-<div id='liniya_st'></div>
-$myrow_tovar[opisanie]
-</div>";
-///////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-
-echo"
-<div id='left_tovar'>
-<div align='center'>
-<a class='gallery' rel='group' href='../foto/full/$myrow_tovar[image].jpg'>
-<img src='../foto/mini/$myrow_tovar[image].jpg' border='0' /></a>
-</div>
-</div>";
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-?>
-
-
-
-
-
-
-
-
-<?
-
-
-echo"
-</div>
-</div>
-<div style='height:15px;'></div>
-
-<div style='clear: both;'></div>
-";
-
-
-  
+<?php
 
 include ("blocks/footer.php");
 
-
-echo"
-</body>
-</html>";
 ?>

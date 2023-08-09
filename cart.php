@@ -1,9 +1,11 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/blocks/header.php';
 require "blocks/bd.php";
-session_start();
 ?>
-
+<head>
+    <title>Корзина</title>
+    <meta name="format-detection" content="telephone=no">
+</head>
 <div class="cart-main-container">
     <div class='cart-title' style='user-select: none'>
         КОРЗИНА
@@ -11,26 +13,28 @@ session_start();
 
     <div class='cart-items-container'>
         <?php
-        if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-            foreach($_SESSION['cart'] as $product_id => $product) {
-                $query = $db->query("SELECT nazvanie FROM tovari WHERE id = '". $product_id ."'");
+
+        $cart = json_decode($_COOKIE['cart'], true);
+        if (!empty($cart)) {
+            foreach ($cart as $product_id => $sizes) {
+                $query = $db->query("SELECT nazvanie FROM tovari WHERE id = '" . $product_id . "'");
                 $result = $query->fetch_array();
                 $name = $result['nazvanie'];
 
-                foreach($product as $size => $details) {
+                foreach ($sizes as $size => $full) {
+
                     echo "<div class='cart-item' data-product-id='" . $product_id . "' data-size='" . $size . "'>";
                     echo "<div class='product-image'>";
                     echo "<img src='foto/mini/red-futy-richard-maison-de-parfum-100-ml-edp.jpg' alt='Product Image'>";
                     echo "</div>";
                     echo "<div class='product-details'>";
-                    echo "<h3>" .  $name . "</h3>";
-                    echo "<h4>Объем: " . $size . 'мл.' ."</h4>";
-//                    echo "<p>Количество:</p>";
-                    echo"<div class='quantity-container'>";
-                    echo"<button class='btn-minus' onclick=\"updateQuantity('$product_id', '$size', 'subtract_quantity')\">-</button>";
-                    echo"<p class='quantity-value' id='quantity-$product_id-$size'>" . $details['quantity'] . "</p>";
-                    echo"<button class='btn-plus' onclick=\"updateQuantity('$product_id', '$size', 'add_quantity')\">+</button>";
-                    echo"</div>";
+                    echo "<h3 class='product-name'>" .  $name . "</h3>";
+                    echo "<h4>Объем: " . $size . "мл. - <span style=\"font-weight: 400; letter-spacing: 1px\">" . $full['price'] . "р</span></h4>";
+                    echo "<div class='quantity-container'>";
+                    echo "<button class='btn-minus' onclick=\"updateQuantity('$product_id', '$size', 'subtract_quantity')\">-</button>";
+                    echo "<p class='quantity-value' id='quantity-$product_id-$size'>" . $full['quantity'] . "</p>";
+                    echo "<button class='btn-plus' onclick=\"updateQuantity('$product_id', '$size', 'add_quantity')\">+</button>";
+                    echo "</div>";
                     echo "</div>";
                     echo "<img onclick=\"removeFromCart('$product_id', '$size')\" class='btn-remove' src='img/trash.svg' alt='Remove'>";
                     echo "</div>";
@@ -44,11 +48,16 @@ session_start();
 
 
     <div class="cart-btn-container">
-        <button class="myButton">ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
+        <button id = "btn-order" class="myButton">ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
     </div>
 </div>
 
 <style>
+    .product-name {
+        text-decoration: none;
+        color: black;
+        user-select: none;
+    }
     .cart-btn-container{
         margin-top: 80px;
     }
@@ -60,6 +69,15 @@ session_start();
         align-items: center;
     }
 
+    .btn-minus {
+        text-decoration: none;
+        color: black;
+    }
+
+    .btn-plus {
+        text-decoration: none;
+        color: black;
+    }
     .cart-title {
         font-family: 'TupoVyazWebBold';
         text-align: center;
@@ -74,6 +92,7 @@ session_start();
         flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
+        max-width: 1500px;
     }
 
     .cart-item {
@@ -202,32 +221,37 @@ session_start();
             }
         };
         xhr.send();
+
+
     }
+
+    $('#btn-order').click(function (){
+        window.location.href = '/order'
+    });
 
 
     function updateQuantity(productID, size, action) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/cart_api.php?product_id=' + productID + '&size=' + size + '&parameter=' + action, true);
         xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-        var quantityElement = document.getElementById('quantity-' + productID + '-' + size);
-        var quantity = parseInt(quantityElement.textContent);
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var quantityElement = document.getElementById('quantity-' + productID + '-' + size);
+                var quantity = parseInt(quantityElement.textContent);
 
-        if (action === 'add_quantity') {
-        quantity += 1;
-    } else if (action === 'subtract_quantity') {
-        quantity -= 1;
-        if (quantity < 1) {
-        quantity = 1;
-    }
-    }
+                if (action === 'add_quantity') {
+                    quantity += 1;
+                } else if (action === 'subtract_quantity') {
+                    quantity -= 1;
+                    if (quantity < 1) {
+                        quantity = 1;
+                    }
+                }
 
-        quantityElement.textContent = quantity;
-    }
-    };
+                quantityElement.textContent = quantity;
+            }
+        };
         xhr.send();
     }
-
 </script>
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/blocks/footer.php';

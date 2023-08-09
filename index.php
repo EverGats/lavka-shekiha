@@ -28,8 +28,8 @@ echo "
                 <a href='/' class='item-header item-header-bold col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
                 <a href='/catalog' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
                 <a href='#news-magazine' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
-                <a href='#' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
-                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
+                <a href='/blocks/coming_soon.php' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
+                <a href='/blocks/coming_soon.php' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
                 <a href='/cart' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Корзина</a>       
             </div>
         </div>
@@ -49,7 +49,7 @@ echo "
         </div>
         
         <div class='network-content row'>
-            <img class='network' href='@' src='/img/inst.png'>
+            <img class='network' href='https://www.instagram.com/lavka_sheikha/' src='/img/inst.png'><a href='https://www.instagram.com/lavka_sheikha/' style='position: absolute; width: 100%'></a></img>
             <img class='network mail' href='@'  src='/img/mail.png'>
             <img class='network' href='@' src='/img/tg.png'>
         </div>
@@ -117,7 +117,12 @@ padding-bottom: 1100px;
 }
 }
 @media (max-width: 999px){
-
+.search-results-item {
+color: black !important;
+text-decoration: none;
+font-size: 8px;
+height: 100px !important;
+}
 .backgroundContainerHeader a{
   height: 60px;
   font-weight: 500;
@@ -234,7 +239,8 @@ body {
     box-sizing: border-box;
     z-index: 10;
     width: 100%;
-    height: 6vh;
+    height: 40px;
+    min-height: 40px;
 }
 
 .search-container input {
@@ -416,6 +422,42 @@ padding-left: 65px;
 
 }
 
+.search-results-dropdown {
+    max-height: 580px;
+    overflow-y: auto; 
+    position: absolute;
+    top: 100%;
+    left: 15px;
+    background: white;
+    width: 97.3%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    display: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-results-dropdown::-webkit-scrollbar {
+    display: none;
+} 
+
+
+
+.search-results-item {
+    padding: 10px;
+    text-decoration: none;
+    color: black !important;
+    letter-spacing: 0.6px;
+}
+
+
+
+.search-results-item:hover {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
 @media (min-width: 450px) {
 
 
@@ -423,6 +465,76 @@ padding-left: 65px;
 }
 
 </style>
+
+
+<script>
+$(document).ready(function() {
+  $('.search-container input').on('input', function() {
+    var searchText = $(this).val();
+    $.ajax({
+      url: '/blocks/search.php',
+      method: 'POST',
+      data: {query: searchText},
+      success: function(response) {
+        let products = JSON.parse(response);
+        let dropdown = $('<div class=\"search-results-dropdown\"></div>');
+        if (products.length > 0){
+            products.forEach(function(product) {
+                let item = $('<a class=\"search-results-item\"></a>').attr('href', '/tovar.php?id=' + product.id).text(product.nazvanie);                
+                dropdown.append(item);
+            });
+        }
+
+        // Remove any existing dropdown
+        $('.search-results-dropdown').remove();
+        // Add the new dropdown to the page
+        $('.search-container').append(dropdown);
+        // Show the dropdown
+        $('.search-results-dropdown').show();
+      },
+      error: function(err) {
+        // обработка ошибки
+      }
+    });
+  });
+
+//  // Hide the dropdown when the input loses focus
+//  $('.search-container input').on('blur', function() {
+//    $('.search-results-dropdown').hide();
+//  });
+
+  $(document).click(function(event) { 
+  target = $(event.target);
+  if(!target.closest('.search-results-dropdown').length && !target.closest('.search-container').length && 
+  $('.search-results-dropdown').is(\":visible\")) {
+    $('.search-results-dropdown').hide();
+  }        
+});
+
+  
+  // Show the dropdown when the input gets focus
+  $('.search-container input').on('focus', function() {
+    $('.search-results-dropdown').show();
+  });
+});
+  var CACHE_NAME = 'my-site-cache-v1';
+var urlsToCache = [
+  '/img/bg-glavnaya.svg' // здесь URL вашего фонового изображения
+];
+
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log('Opened cache');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+</script>
+
+
 
 
 ";

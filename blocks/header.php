@@ -22,9 +22,11 @@ echo "
                 <a href='/' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
                 <a href='/catalog' class='item-header item-header-catalog col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
                 <a href='/?anchor=news-magazine' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
-                <a href='#' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
-                <a href='#' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
-                <a href='/cart' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Корзина</a>       
+                <a href='/blocks/coming_soon.php' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
+                <a href='/blocks/coming_soon.php' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
+                <a href='/cart' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>
+                Корзина
+                <span id='cart-items-badge' class='cart-badge'>{$_SESSION['cart_quantity']}</span></a>                    
             </div>
         </div>
     </div>
@@ -76,8 +78,17 @@ height: auto;
   margin-bottom: 80px;
 }
 }
-
-@media (max-width: 999px){
+@media (max-width: 1199px) {
+.cart-badge {
+        right: -10;
+    top: 5px;
+}
+}
+@media (max-width: 1000px){
+.cart-badge {
+right: 60;
+    top: 10px;
+}
 .backgroundContainerHeader a{
   height: 60px;
   font-weight: 500;
@@ -94,7 +105,34 @@ height: auto;
 }
 }
 
-
 </style>
+
+<script>
+
+//var cart_items = document.getElementById('cart-items-badge');
+//
+//function updateCartQuantity(){
+//    var xhr = new XMLHttpRequest();
+//    xhr.open('GET', '/cart_api.php?parameter=get_cart_quantity', true);    
+//    xhr.onreadystatechange = function() {
+//      if (xhr.readyState === 4) {
+//        if (xhr.status === 200) {
+//          cart_items.innerText = {$_SESSION['cart_quantity']};
+//          console.log(cart_items.innerText + 'в элементе ');
+//         
+//        } else {
+//          console.log('Ошибка запроса: ' + xhr.status); 
+//        }
+//      }
+//    };
+//    
+//    xhr.send();
+//}             
+
+
+ 
+
+</script>
+
 ";
 ?>

@@ -1,7 +1,7 @@
 <?php
 
-echo "<a href='#' onclick='openPopup(" . $myrow_all_stat['id'] . "); return false;' class='blok_stat_knopka'>В корзину</a>";
-session_start();
+echo "<a onclick='openPopup(" . $myrow_all_stat['id'] . "); return false;' class='blok_stat_knopka'>В корзину</a>";
+
 echo "
 
 
@@ -151,6 +151,12 @@ echo "
         justify-content: center;
         align-items: center;
     }
+    
+    @media (max-width: 1000px) {
+        .popup-container {
+            transform: translate(-50%, -50%) scale(2);
+        }
+    }
 </style>
 ";
 
@@ -203,11 +209,9 @@ echo "
         xhr.onreadystatechange = function() {
           if ( xhr.readyState === 4 && xhr.status === 200) {
             var newOptions = JSON.parse(xhr.responseText);
-            console.log(newOptions);
  
             for (var i = 0; i < newOptions.length; i++) {
               var option = document.createElement('option');
-              console.log(option);
               option.value = newOptions[i].value;
               option.textContent = newOptions[i].text + ' мл.';
               sizeSelect.appendChild(option);
@@ -268,6 +272,11 @@ echo "
                     input.style.display = 'none';
                     sizeSelect.style.display = 'none';
 
+                   
+                    
+                    console.log({$_SESSION['cart_quantity']});
+                    console.log('asdasdsa');
+                    
                     setTimeout(function() {
                         closePopup();
                         popupText.style.display = 'block';

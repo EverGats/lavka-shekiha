@@ -155,7 +155,8 @@ echo"
 }
 
 if ($meny || $edit || $del){	
-if ($meny==1){include ("admin_tovar_add.php");}	
+if ($meny==1){
+    include("admin_tovar_add.php");}
 
 if ($meny==2){include ("admin_cat_spisok.php");}
 

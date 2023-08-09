@@ -18,9 +18,9 @@ if ($meny==1 and $id_user_session==$id_admin_user){
 
         {
             /**
-             * mb_ucfirst - сделать первую букву строки прописной
-             * @param string $str - строка
-             * @param string $encoding - кодировка, по-умолчанию UTF-8
+             * mb_ucfirst - СЃРґРµР»Р°С‚СЊ РїРµСЂРІСѓСЋ Р±СѓРєРІСѓ СЃС‚СЂРѕРєРё РїСЂРѕРїРёСЃРЅРѕР№
+             * @param string $str - СЃС‚СЂРѕРєР°
+             * @param string $encoding - РєРѕРґРёСЂРѕРІРєР°, РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ UTF-8
              * @return string */
             function mb_ucfirst($str, $encoding='utf-8')
 
@@ -99,9 +99,9 @@ if ($meny==1 and $id_user_session==$id_admin_user){
                 $s = trim($s);
                 $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s);
                 $s = strtr($s, array(
-                    'а'=>'a','б'=>'b','в'=>'v','г'=>'g','д'=>'d','е'=>'e','ё'=>'e','ж'=>'zh','з'=>'z','и'=>'i','й'=>'j','к'=>'k',
-                    'л'=>'l','м'=>'m','н'=>'n','о'=>'o','п'=>'p','р'=>'r','с'=>'s','т'=>'t','у'=>'u','ф'=>'f','х'=>'h','ц'=>'c',
-                    'ч'=>'ch','ш'=>'sh','щ'=>'shh','ы'=>'y','э'=>'e','ю'=>'yu','я'=>'ya','ъ'=>'','ь'=>''));
+                    'Р°'=>'a','Р±'=>'b','РІ'=>'v','Рі'=>'g','Рґ'=>'d','Рµ'=>'e','С‘'=>'e','Р¶'=>'zh','Р·'=>'z','Рё'=>'i','Р№'=>'j','Рє'=>'k',
+                    'Р»'=>'l','Рј'=>'m','РЅ'=>'n','Рѕ'=>'o','Рї'=>'p','СЂ'=>'r','СЃ'=>'s','С‚'=>'t','Сѓ'=>'u','С„'=>'f','С…'=>'h','С†'=>'c',
+                    'С‡'=>'ch','С€'=>'sh','С‰'=>'shh','С‹'=>'y','СЌ'=>'e','СЋ'=>'yu','СЏ'=>'ya','СЉ'=>'','СЊ'=>''));
                 $s = preg_replace("/\s+/", ' ', $s);
                 $s = preg_replace("/[^0-9a-z-_ ]/i", "", $s);
 
@@ -112,8 +112,8 @@ if ($meny==1 and $id_user_session==$id_admin_user){
 /////////////////////////////////////////
 
             function strtolower_ru($text) {
-                $alfavitlover = array('а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ы','э','ю','я','ъ','ь');
-                $alfavitupper = array('А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ы','Э','Ю','Я','Ъ','Ь');
+                $alfavitlover = array('Р°','Р±','РІ','Рі','Рґ','Рµ','С‘','Р¶','Р·','Рё','Р№','Рє','Р»','Рј','РЅ','Рѕ','Рї','СЂ','СЃ','С‚','Сѓ','С„','С…','С†','С‡','С€','С‰','С‹','СЌ','СЋ','СЏ','СЉ','СЊ');
+                $alfavitupper = array('Рђ','Р‘','Р’','Р“','Р”','Р•','РЃ','Р–','Р—','Р','Р™','Рљ','Р›','Рњ','Рќ','Рћ','Рџ','Р ','РЎ','Рў','РЈ','Р¤','РҐ','Р¦','Р§','РЁ','Р©','Р«','Р­','Р®','РЇ','РЄ','Р¬');
                 return str_replace($alfavitupper,$alfavitlover,strtolower($text));
             }
 
@@ -190,8 +190,8 @@ if ($meny==1 and $id_user_session==$id_admin_user){
 <table border='0' align='center' cellpadding='0' cellspacing='0'>
   <tr>
     <td width='60' align='center'><img src='../img/ok_min.png' width='50'  /></td>
-    <td><p>Товар успешно добавлен<br />
-    На странице редактирования <a href='?edit=$myrow_us[id]'>продолжайте</a>!</p></td>
+    <td><p>РўРѕРІР°СЂ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ<br />
+    РќР° СЃС‚СЂР°РЅРёС†Рµ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ <a href='?edit=$myrow_us[id]'>РїСЂРѕРґРѕР»Р¶Р°Р№С‚Рµ</a>!</p></td>
   </tr>
 </table>
 <div style='height:1px; background-color:#CCCCCC;'></div>
@@ -211,7 +211,7 @@ if ($meny==1 and $id_user_session==$id_admin_user){
     echo"
 <div style='height:2px;'></div>
 <div id='liniya_st'></div>
-<div align='center'><h2>Добавление товара</h2></div>";
+<div align='center'><h2>Р”РѕР±Р°РІР»РµРЅРёРµ С‚РѕРІР°СЂР°</h2></div>";
 
     echo"
 <div id='forma_standart'>
@@ -223,24 +223,24 @@ if ($meny==1 and $id_user_session==$id_admin_user){
     echo"
 <div>
 <label class='field'>
-<span>Укажите название <em>*</em></span>
+<span>РЈРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ <em>*</em></span>
 <input name='nazvanie' type='text' id='nazvanie' value='$nazvanie' maxlength='150'/>
-<span class='hint'>Например: часы Rolex Cosmo</span>";
+<span class='hint'>РќР°РїСЂРёРјРµСЂ: С‡Р°СЃС‹ Rolex Cosmo</span>";
 
 
     if ($dobavit==1) {
 
-        if (!$nazvanie) {echo"<div><strong style='color:#EB1F14'>Укажите название!</strong></div>";}else {
+        if (!$nazvanie) {echo"<div><strong style='color:#EB1F14'>РЈРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ!</strong></div>";}else {
 
             $str_nazvanie=strlen($nazvanie);
 
-            if ($str_nazvanie <3){echo"<div><strong style='color:#EB1F14'>Ваше название товара не должно быть менее 3 символов!</strong></div>";}else {
+            if ($str_nazvanie <3){echo"<div><strong style='color:#EB1F14'>Р’Р°С€Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РјРµРЅРµРµ 3 СЃРёРјРІРѕР»РѕРІ!</strong></div>";}else {
 
-                if ($str_nazvanie >85){echo"<div><strong style='color:#EB1F14'>Ваше название товара не должно превышать 85 символов!</strong></div>";}
+                if ($str_nazvanie >85){echo"<div><strong style='color:#EB1F14'>Р’Р°С€Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° РЅРµ РґРѕР»Р¶РЅРѕ РїСЂРµРІС‹С€Р°С‚СЊ 85 СЃРёРјРІРѕР»РѕРІ!</strong></div>";}
 
-                if ($myrow_post_povtor2){echo"<div><strong style='color:#EB1F14'>Ошибка! Товар с таким названием уже существует!</strong></div>";}
+                if ($myrow_post_povtor2){echo"<div><strong style='color:#EB1F14'>РћС€РёР±РєР°! РўРѕРІР°СЂ СЃ С‚Р°РєРёРј РЅР°Р·РІР°РЅРёРµРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!</strong></div>";}
 
-                if ($myrow_post_povtor3){echo"<div><strong style='color:#EB1F14'>Ошибка! Товар с таким названием уже существует в вашем url адресе!</strong></div>";
+                if ($myrow_post_povtor3){echo"<div><strong style='color:#EB1F14'>РћС€РёР±РєР°! РўРѕРІР°СЂ СЃ С‚Р°РєРёРј РЅР°Р·РІР°РЅРёРµРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РІ РІР°С€РµРј url Р°РґСЂРµСЃРµ!</strong></div>";
                 }
             }
         }
@@ -257,9 +257,9 @@ if ($meny==1 and $id_user_session==$id_admin_user){
     echo"
 
 <label class='field'>
-<span>Категория товара <em>*</em></span>
+<span>РљР°С‚РµРіРѕСЂРёСЏ С‚РѕРІР°СЂР° <em>*</em></span>
 <select name='cat' style='width:310px;'>
-<option value='0'>Выберите категорию</option>
+<option value='0'>Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ</option>
 ";
 
     $result_cat_sobitiya = $db->query("SELECT * FROM post_cat1 ORDER BY name ASC");
@@ -279,7 +279,7 @@ if ($meny==1 and $id_user_session==$id_admin_user){
     echo"</select>";
 
     if ($dobavit==1) {
-        if (!$cat) {echo"<div><strong style='color:#EB1F14'>Выберите категорию!</strong></div>";}
+        if (!$cat) {echo"<div><strong style='color:#EB1F14'>Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ!</strong></div>";}
     }
 
     echo"
@@ -294,7 +294,7 @@ if ($meny==1 and $id_user_session==$id_admin_user){
     echo"
 
 <label class='field'>
-<span>Статус в наличии</span>";
+<span>РЎС‚Р°С‚СѓСЃ РІ РЅР°Р»РёС‡РёРё</span>";
 
     if ($status==0){$selekt0='selected="selected"';}
     if ($status==1){$selekt1='selected="selected"';}
@@ -302,8 +302,8 @@ if ($meny==1 and $id_user_session==$id_admin_user){
     echo"
 
 <select name='status' id='status'>
-<option value='0' $selekt0 >Нет</option>
-<option value='1' $selekt1 >Да</option>
+<option value='0' $selekt0 >РќРµС‚</option>
+<option value='1' $selekt1 >Р”Р°</option>
 </select>
 </label>";
 
@@ -314,7 +314,7 @@ if ($meny==1 and $id_user_session==$id_admin_user){
 <td>
 
 <label class='field'>
-<span>Мужская</span>
+<span>РњСѓР¶СЃРєР°СЏ</span>
 </label>
 
 </td>
@@ -333,7 +333,7 @@ if ($meny==1 and $id_user_session==$id_admin_user){
 <td>
 
 <label class='field'>
-<span>Женская</span>
+<span>Р–РµРЅСЃРєР°СЏ</span>
 </label>
 
 </td>
@@ -354,7 +354,7 @@ if ($meny==1 and $id_user_session==$id_admin_user){
 
     echo"
 <label class='field'>
-<span>Описание товара</span>
+<span>РћРїРёСЃР°РЅРёРµ С‚РѕРІР°СЂР°</span>
 </label>
 <div style='height:2px;'></div>
 
@@ -366,16 +366,16 @@ if ($meny==1 and $id_user_session==$id_admin_user){
 </div>
 <div style='height:10px;'></div>
 
-<div style='color:#000000; padding:5px; background-color:#CCCCCC;' align='center'>Загрузить файл <input name='fupload' type='file' size='50' /></div>
+<div style='color:#000000; padding:5px; background-color:#CCCCCC;' align='center'>Р—Р°РіСЂСѓР·РёС‚СЊ С„Р°Р№Р» <input name='fupload' type='file' size='50' /></div>
 ";
     if ($dobavit==1) {
-        if ($_FILES['fupload']['tmp_name']){}else{echo"<div align='center'><strong style='color:#EB1F14'>Загрузите файл!</strong></div>";}
+        if ($_FILES['fupload']['tmp_name']){}else{echo"<div align='center'><strong style='color:#EB1F14'>Р—Р°РіСЂСѓР·РёС‚Рµ С„Р°Р№Р»!</strong></div>";}
     }
 
 
     echo"
 <div style='height:15px;'></div>
-<div align='center'><input name='dobavit' type='submit' value='Добавить товар' class='orange-button' /></div>
+<div align='center'><input name='dobavit' type='submit' value='Р”РѕР±Р°РІРёС‚СЊ С‚РѕРІР°СЂ' class='orange-button' /></div>
 <div style='height:5px;'></div> 
 ";
 

@@ -74,10 +74,7 @@ if (!$id and !$pol and !$ml){$title="Каталог нишевой европе�
 
 
 
-echo"
-$myr_html[doctupe]
-<head>
-$myr_html[kodirovka]";
+
 
 
 echo"
@@ -88,7 +85,6 @@ echo"
 
 
 echo"
-$myr_html[styl_skript_icon]	
 </head>
 <body  id='top'>";
 
@@ -164,35 +160,6 @@ $myrow_all_stat=$result_all_stat->fetch_array();
 
 include ("blocks/spisok_tovara.php");
 
-///////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-?>
-
-
-
-
-
-
-
-
-<?
-
-
-echo"
-</div>
-</div>
-<div style='height:15px;'></div>
-
-<div style='clear: both;'></div>
-";
-
-
-
-
 include ("blocks/footer.php");
 
-
-echo"
-</body>
-</html>";
 ?>

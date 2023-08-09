@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/style/catalog-block.css">
-
+<head>
+    <title>Каталог</title>
+</head>
 <div class='catalog-tovarov-bg'>
 <div class="container">
     <div class='catalog-tovarov-title' style="user-select: none;">
@@ -115,3 +117,10 @@
     });
 
 </script>
+
+<style>
+    .catalog-tovarov-block-text{
+        user-select: none;
+        cursor: pointer;
+    }
+</style>

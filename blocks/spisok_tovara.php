@@ -50,10 +50,13 @@ background: #caac52;
         text-decoration: none;
         font-weight:700;
         text-transform: uppercase;
+        min-height: 67px;
+        margin-top: 5px;
     }
     #blok_stat_img img {
-        height:300px;
-        max-width:94%;
+        /*height:300px;*/
+        /*max-width:94%;*/
+        width: 95%;
         padding:2px;
         background:#fff;
     }
@@ -214,30 +217,31 @@ if ($last_komment==1){$komm="отзыв";}
 if ($last_komment>1 and $last_komment<5){$komm="отзыва";}
 if ($last_komment>4 and $last_komment<10){$komm="отзывов";}
 
+$image_path = "/foto/mini/$myrow_all_stat[image].jpg";
 
-echo $myrow_all_stat['image'];
-$image_path = $_SERVER['DOCUMENT_ROOT'] . "/foto/mini/$myrow_all_stat[image].jpg";
+ $server_path = $_SERVER['DOCUMENT_ROOT'] . $image_path;
+
 $default_image_path = "/img/default.jpeg";
 
-if (!file_exists($image_path)) {
+if (!file_exists($server_path)) {
     $image_path = $default_image_path;
 }
 
 
 echo"
-<div id='blok_stat' class='col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3' align='center'>
+<div id='blok_stat' class='col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4' align='center'>
 
 <div id='blok_stat_img'>
-<a href='../$myrow_all_stat[seo_url]'>
+<a href='/tovar.php?id=" . $myrow_all_stat['id']. "'>
 <img src='$image_path' alt='$myrow_all_stat[nazvanie]' title='$myrow_all_stat[nazvanie]'>
 </a>
 </div>
 <div style='height:5px;'></div>
 
-<div><a class='blok_stat_zag' href='../$myrow_all_stat[seo_url]'>$myrow_all_stat[nazvanie]</a></div>
+<div><a class='blok_stat_zag' href='/tovar.php?id=" . $myrow_all_stat['id']. "'>$myrow_all_stat[nazvanie]</a></div>
 
-<div style='height:17px;'></div>
-<div class='blok_stat_ml'>
+<div style='height:7px;'></div>
+<div class='blok_stat_ml' style='    height: 80px;'>
 ";
 
 
@@ -252,14 +256,16 @@ $myrow_po_ml= $result_po_ml->num_rows;
 
 if ($myrow_po_ml){
 
-while ($myrow_po_ml = $result_po_ml->fetch_array()){
+    $i = 0;
+
+while ($myrow_po_ml = $result_po_ml->fetch_array() and $i <= 2){
 
 $prise_format = number_format($myrow_po_ml['prise'],0,'',' ');
 
-echo"<div style='text-align: left;'><span style='font-weight: 600; font-size: 18px'>$myrow_po_ml[name] мл.</span> <span style='font-size: 18px' >- $prise_format р.</span></div>
+echo"<div style='text-align: left;'><span style='letter-spacing: 1px; font-weight: 600; font-size: 18px'>$myrow_po_ml[name] мл.</span> <span style='letter-spacing: 1px; font-size: 18px' >- $prise_format р.</span></div>
 <div style='height:4px;'></div>
 ";
-
+$i++;
 
 }
 
@@ -286,8 +292,9 @@ if ($_SESSION['id_klient']){$id_klient=$_SESSION['id_klient'];}else{$id_klient="
 
 
 
-echo"
-<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>В корзину</a>";
+/*echo"
+<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>В корзину</a>";*/
+        include "blocks/add_to_cart_popup.php";
 
 
 echo"  
@@ -312,7 +319,7 @@ function $sluch5(){
 
 if (confirm('Предупреждение!!!\\r\\nВы уверены, что хотите отредактировать этот товар -  $myrow_all_stat[nazvanie]!?')) {
 	
-window.open('../admin/?edit=$myrow_all_stat[id]','_blank'); }
+window.open('/admin/?edit=$myrow_all_stat[id]','_blank'); }
 	
 else {}
 }
