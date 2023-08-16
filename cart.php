@@ -1,6 +1,17 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/blocks/header.php';
 require "blocks/bd.php";
+
+$price = 0;
+$cart = json_decode($_COOKIE['cart'], true);
+foreach ($cart as $product) {
+    foreach ($product as $size) {
+        $pricePerOne = $size['price'];
+        $quantity = $size['quantity'];
+        $price += (int)$pricePerOne*(int)$quantity;
+    }
+}
+
 ?>
 <head>
     <title>Корзина</title>
@@ -49,6 +60,7 @@ require "blocks/bd.php";
 
     <div class="cart-btn-container">
         <button id = "btn-order" class="myButton">ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
+        <a class="cart-amount">Товары на сумму: <?= $price ?>р. </a>
     </div>
 </div>
 
@@ -60,6 +72,10 @@ require "blocks/bd.php";
     }
     .cart-btn-container{
         margin-top: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
     .cart-main-container {
         min-height: 800px;
@@ -191,7 +207,12 @@ require "blocks/bd.php";
         border: none;
         border-radius: 28px;
         transition: transform .2s;
+    }
+
+    .cart-amount {
+        margin-top: 8px;
         margin-bottom: 120px;
+        letter-spacing: 1px;
     }
 
     .myButton:hover {

@@ -51,7 +51,7 @@ echo"
     font-size: 170px;
     letter-spacing: 25px;
     text-align: center;
-    font-family: 'TupoVyazWebRegular';\
+    font-family: 'TupoVyazWebRegular';
 }
 
 html, body {

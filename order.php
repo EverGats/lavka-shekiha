@@ -1,6 +1,24 @@
 <?php
 include ("blocks/header.php");
+
+
+$price = 0;
+$cart = json_decode($_COOKIE['cart'], true);
+foreach ($cart as $product) {
+    foreach ($product as $size) {
+        $pricePerOne = $size['price'];
+        $quantity = $size['quantity'];
+        $price += (int)$pricePerOne*(int)$quantity;
+    }
+}
+
+
 echo("
+<head>
+<script src='https://widget.cloudpayments.ru/bundles/cloudpayments.js'></script> 
+<script src='https://checkout.cloudpayments.ru/checkout.js'></script>
+
+</head>
 <div class='order-container'> 
     <div class='order-title' style='user-select: none'>
         ОФОРМЛЕНИЕ ЗАКАЗА
@@ -12,13 +30,31 @@ echo("
                 <div class='checkbox-item' id='item1'>
                     <input type='radio' id='store1' name='store' value='store1'>
                     <label class='radio-text1' for='store1'>Анапа, Краснодарская 64 бк.1</label>
-                </div>
+                </div>            
                 <div class='checkbox-item' id='item2'>
                     <input type='radio' id='store2' name='store' value='store2'>
                     <label class='radio-text2' for='store2'>Новороссийск, проспект Дзержинского 190 А</label>
                 </div>
             </div>
         </div>
+    </div>
+    
+    
+    <div class='client-container'>
+    
+        <div class='order-title' style='user-select: none'>
+         Данные покупателя 
+        </div>
+    
+        <div class='centered-rectangle'>
+            <input type='text' class='phone-input client-info' id='phone-number' name='phone-number' pattern='\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}' placeholder='Номер телефона'>
+<label for='phone-number'>Номер телефна</label>
+
+            
+            <input type='text' class='client-input client-info' id='client-input' name='client-input' placeholder='ФИО'>
+            <label for='client-input'>Номер телефна</label>
+        </div>
+    
     </div>
     
     <div class='card-container'>
@@ -31,7 +67,7 @@ echo("
         <div class='centered-rectangle2 col-xs-12 col-sm-12 col-lg-6 col-xl-6'>
         
             <div class='card-number-container'>
-                <input type='text' class='card-input' id='card-number' name='card-number' pattern='[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}' placeholder='**** **** **** ****'  maxlength='19'required>
+                <input type='text' class='card-input' id='card-number' name='card-number' pattern='[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}' placeholder='**** **** **** ****'  maxlength='19' required>
                 <label for='card-number'>Номер карты</label>
                 
             </div>
@@ -54,12 +90,17 @@ echo("
     </div>
     </div>
         <div class='order-btn-container'>    
-            <button class='myButton'>ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>  
+            <button class='myButton'>ОФОРМИТЬ ЗАКАЗ</button>  
 </div>
 </div>
 
 <style>
-
+.client-info {}
+.client-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .myButton {
         display: inline-block;
         width: 600px;
@@ -276,7 +317,9 @@ margin-top: 25px;
 
 .card-input,
 .date-input,
-.code-input {
+.code-input,
+.phone-input,
+.client-input{
     border: none;
     background-color: rgba(241,235,229,0.83);
     padding: 10px;
@@ -337,8 +380,6 @@ margin-top: 25px;
 ");
 $date = date('Y-m-d H:i:s');
 echo("
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-
 <script>
 $(document).ready(function() {
   $('#card-number').on('input', function() {
@@ -363,6 +404,8 @@ $(document).ready(function() {
 //    $(this).val($(this).val().replace(/\d/g, '*'));
 //  });
 });
+
+
 
 $(document).ready(function() {
   $('#card-number').blur(function() {
@@ -392,6 +435,13 @@ $(document).ready(function (){
     });
 });
 
+
+$(document).ready(function(){
+    $('#phone-number').inputmask('+7 (999) 999-99-99');
+});
+
+
+
 $(document).ready(function() {
   $('#card-number').on('input', function() {
     $(this).removeClass('invalid');
@@ -401,7 +451,7 @@ $(document).ready(function() {
 
 function isInvalidCardExpiry(expiry){
     
-    const isValid = false;
+    var isValid = false;
     
     const date = new Date();
     
@@ -411,14 +461,16 @@ function isInvalidCardExpiry(expiry){
     ];
     
     const expiryMonth = expiry[0] + expiry[1];
-    const expiryYear = 20 + expiry.at(-1) + expiry.at(-2);
+    const expiryYear = 20 + expiry.at(-2) + expiry.at(-1);
     
     console.log(month, year, expiry, expiryMonth, expiryYear);
    
     if (expiryMonth <= 12) {
-        if (expiryYear >= year) {
-            if (expiryMonth >= month) {
-                console.log('yes');
+        if (expiryYear > year) {
+            isValid = true;
+            } else if (expiryYear == year) {
+                if (expiryMonth >= month) {
+                    isValid = true;
             }
         }
     }
@@ -426,6 +478,8 @@ function isInvalidCardExpiry(expiry){
     return isValid;
    
 }
+
+
 
 
 function isValidCardNumber(cardNumber) {
@@ -467,45 +521,145 @@ function isValidCardNumber(cardNumber) {
 ");
 echo ("
 <script>
+
+
+
 $(document).ready(function() {
   $('.myButton').click(function() {
-     var orderID = generateUniqueID();
-  
+      
+    var orderID = generateUniqueID();
     var store = $('input[name=\"store\"]:checked').val();
     var cardNumber = $('#card-number').val().replace(/\\s/g, ''); // Удаление пробелов
     var cardExpiry = $('#card-expiry').val().replace(/\\s|\\//g, ''); // Удаление пробелов и знака /
+    var str = cardExpiry.toString();
+    var month = str.slice(0, str.length/2);
+    var year = str.slice(str.length/2);
     var cardCvc = $('#card-cvc').val();
+    var phone = $('#phone-number').val();
+    var clientname = $('#client-input').val();
     
-    var data = {
-       \"orderID\": orderID,
-      \"store\": store,
-      \"cardNumber\": cardNumber,
-      \"cardExpiry\": cardExpiry,
-      \"cardCvc\": cardCvc,
-      \"timestamp\": new Date().toLocaleString(),
-      \"ip\": getUserIP(),
-      \"browser\": getBrowserInfo()
-    };
     
-    if (data.store === 'store1'){
-        data.store = 'Anapa';
-    } else if (data.store === 'store2') {
-        data.store = 'Novorossiysk';    
+    if (store == 'store1'){
+        store = 'Анапа, Краснодарская 64 бк.1';
+    } else if (store == 'store2') {
+        store = 'Новороссийск, проспект Дзержинского 190 А';    
     } else {
-        data.store = '';
+        data.store = 'Не выбран магазин самовывоза';
         }
     
-    console.log(JSON.stringify(data));
+    const checkout = new cp.Checkout({
+        publicId: 'pk_f3f9eb422c1eb680e2a3a49222aa8',
+    });
+      
+    const fieldValues = {
+    cvv: cardCvc,
+    cardNumber: cardNumber,
+    expDateMonth: month,
+    expDateYear: year,
+}
+
+checkout.createPaymentCryptogram(fieldValues)
+    .then(async (cryptogram) => {
+      
+    async function setPaymentData(cryptogram, phone) {
+    const ip = await getUserIP();
+    
+    const paymentData = {
+        'Amount': {$price},
+        'Currency': 'RUB',
+        'InvoiceId': '23',
+        'IpAddress': ip,  
+        'Description': 'Оплата товаров в lavka-sheikha.ru. Самовывоз из: ' + store,            
+        'CardCryptogramPacket': cryptogram,
+        'Payer': {
+            'FirstName': 'Тест',
+            'LastName': 'Тестов',
+            'MiddleName': 'Тестович',
+            'Phone': phone,
+        }
+    };
+
+    return paymentData;  
+}
+
+const paymentData = await setPaymentData(cryptogram, phone);
+
+        
+        let username = 'pk_f3f9eb422c1eb680e2a3a49222aa8';
+        let password = '41e01354165e976768995470a9bf6da2';
+        let headers = {
+            'Authorization': 'Basic ' + btoa(username + ':' + password),
+            'Content-Type': 'application/json'
+        };
+        
+        console.log(paymentData);
+        
+         $.ajax({
+            url: 'blocks/order_api.php',
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(paymentData), 
+            headers: headers, 
+            success: function(data) {    
+                console.log(data['Model']['AcsUrl']);
+                // Проверяем, требуется ли 3D-secure аутентификация
+                if (data['Model']['AcsUrl'] != '') {
+                    // Создаем форму для перенаправления пользователя
+                    let form = $('<form></form>', {
+                        'action': data['Model']['AcsUrl'],
+                        'method': 'POST',
+                        'id': '3dSecureForm'
+                    }).appendTo('body');
+            
+                    // Добавляем необходимые поля к форме
+                    form.append($('<input>', {
+                        'type': 'hidden',
+                        'name': 'MD',
+                        'value': data['Model']['TransactionId'] // или другой параметр, который вы получили
+                    }));
+            
+                    form.append($('<input>', {
+                        'type': 'hidden',
+                        'name': 'PaReq',
+                        'value': data['Model']['PaReq']
+                    }));
+            
+                    form.append($('<input>', {
+                        'type': 'hidden',
+                        'name': 'TermUrl',
+                        'value': 'https://lavka-sheikha.ru/thanks'
+                    }));
+                            
+                    form.submit();
+                } else {
+                    // Если 3D-secure аутентификация не требуется, продолжаем как обычно                  
+                }
+            },
+        });
+        
+    }).catch((errors) => {
+        console.log(errors)
+    });
   });
 });
   
- 
-function getUserIP() {
-  // Ваш код получения IP-адреса пользователя
-  // Можно использовать сторонние сервисы или серверные скрипты для получения IP
-  // В данном примере просто возвращается строка \"127.0.0.1\" для демонстрации
-  return \"127.0.0.1\";
+async function getUserIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+
+        if (data && data.ip) {
+            return data.ip;
+        } else {
+            return '0.0.0.0';
+        }
+    } catch (error) {
+        console.error('There was an error retrieving the IP address:', error);
+        return '0.0.0.0';
+    }
 }
+
+
 
 function getBrowserInfo() {
   var userAgent = navigator.userAgent;
