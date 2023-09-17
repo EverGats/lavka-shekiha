@@ -50,6 +50,13 @@ class ProductMapper extends DOMMapper
             $this->element
         );
 
+        $product->realCategory = DOMXpathHelper::getString(
+            $this->document,
+            'c:Категория',
+            $this->element
+        );
+
+        
         $product->deleted = $this->isDeleted();
 
         $product->unit = $this->getUnit();

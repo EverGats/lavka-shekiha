@@ -30,6 +30,11 @@ class Product extends Domain
     public $category;
 
     /**
+     * @var string
+     */
+    public $realCategory;
+
+    /**
      * @var boolean
      */
     public $deleted;

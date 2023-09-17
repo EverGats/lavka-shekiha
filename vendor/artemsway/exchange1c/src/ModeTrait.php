@@ -160,7 +160,7 @@ trait ModeTrait
 
     public function import($importData)
     {
-        $imof = (count($importData['offers']) > 0) ? "offers" : "import";
+        $imof = isset($importData['offers']) ? "offers" : "import";
 
         $log = new Logger($_SERVER['DOCUMENT_ROOT'] . "/integration/log_tests.txt");
 

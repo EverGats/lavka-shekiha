@@ -35,7 +35,7 @@ class DOMXpathHelper
         $string = static::evaluate($document, $expression, $contextnode);
 
         if ($strict && (empty($string) && $string !== '0')) {
-            $string = "BAD";
+            $string="BAD";
         }
 
         return $string;
