@@ -21,7 +21,7 @@ include ("blocks/header.php");
 
     <div class="product-card">
 
-        <img class="product-img" src="foto/mini/<? echo $product['image']?>.jpg">
+        <img class="product-img" src="<? if (!empty($product['image'])){echo('foto/mini/' . $product['image'] .'.jpg');} else { echo('img/default.jpeg');}  ?>">
 
         <div class="product-info">
 

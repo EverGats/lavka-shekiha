@@ -4,7 +4,7 @@ namespace ivan;
 
 require('transTrait.php');
 
-class stringG
+class string
 {
     private $string;
 
@@ -28,14 +28,10 @@ class reqClass
     public $logOffer;
     public $logGood;
     public $logWarn;
-    const PARFUM_UID = '409f0e4e-3b7b-11ee-84a1-f0761c70905c';
-    const DECOR_UID = '409f0e7b-3b7b-11ee-84a1-f0761c70905c';
-    const FACE_UID = '409f0e57-3b7b-11ee-84a1-f0761c70905c';
-    const BODY_UID = '409f0e69-3b7b-11ee-84a1-f0761c70905c';
 
     public function __construct()
     {
-        $this->link = mysqli_connect("localhost", "root", "", "udb6211_2");
+        $this->link = mysqli_connect("localhost", "Uwww6211S", "DfC0anR7", "udb6211_2");
 
 
         mysqli_set_charset($this->link, "utf-8");
@@ -88,7 +84,7 @@ class reqClass
             case 'insert':
                 $sql = 'INSERT INTO `post_cat1`(`kolvo_zametok`,`map_block`,`text1`,`text2`,`view`,`id_cat1`,
                 `id_group`,`description`,`sort`,`name`, `title`, `zagolovok_h1`, `seo_url`, `keywords`, `uid`) VALUES 
-                (0,0,"","",0,0,0,"",0,"' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $this->transliteseo(new stringG($cat->name)) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $cat->id . '")';
+                (0,0,"","",0,0,0,"",0,"' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $this->transliteseo(new string($cat->name)) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $cat->id . '")';
 
                 $res = mysqli_query($this->link, $sql);
 
@@ -99,7 +95,7 @@ class reqClass
                 } else {
                     $result_us = mysqli_query($this->link, "SELECT id FROM post_cat1 ORDER by id DESC LIMIT 1");
                     $myrow_us = mysqli_fetch_array($result_us);
-                    $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,url,lastmod) VALUES('catalog/brands/" . $this->transliteseo(new stringG($nazvanie)) . "/','tovar_cat.php?id=" . $myrow_us['id'] . "',NOW())");
+                    $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,name_url,url,id_post,lastmod) VALUES('" . $this->transliteseo(new string($nazvanie)) . "/','" . $this->transliteseo(new string($nazvanie)) . "','tovar_cat.php?id=" . $myrow_us['id'] . "','" . $myrow_us['id'] . "',NOW())");
                     if (!$add_infa) {
                         $message = 'bad request: ' . mysqli_error($this->link) . "\n";
                         $message .= 'Self request: ' . $sql;
@@ -120,31 +116,13 @@ class reqClass
 
     public function good($good, $method)
     {
-        $realcat = '';
-        if($good->realCategory == self::PARFUM_UID && preg_match("/[0-9]+(\s|МЛ|мл|ml|ML)*(МЛ|мл|ml|ML)/", $good->name)) {
-            $realcat = 'parfum';
-        } else {
-            switch($good->realCategory) {
-                case self::DECOR_UID:
-                    $realcat = 'decor';
-                    break;
-                case self::FACE_UID:
-                    $realcat = 'face';
-                    break;
-                case self::BODY_UID:
-                    $realcat = 'body';
-                    break;
-            }
-        }
+
 
         if (preg_match("/[0-9]+(\s|МЛ|мл|ml|ML)*(МЛ|мл|ml|ML)/", $good->name, $matches) != false) {
             $nazvanie = trim(preg_replace("/[0-9]+(\s|МЛ|мл|ml|ML)*(МЛ|мл|ml|ML)/", "", $good->name));
             $nazvanie = str_replace('"', '', $nazvanie);
             $ml = trim(preg_replace("/(МЛ|мл|ml|ML)/", "", $matches[0]));
-        } elseif($good->realCategory && $good->realCategory != self::PARFUM_UID) {
-            $nazvanie = $good->name;
-            $ml = null;
-        }else{
+        } else {
             return array('');
         }
 
@@ -175,33 +153,26 @@ class reqClass
                     $res = mysqli_query($this->link, $sql);
 
                 }
-                $sql = 'UPDATE tovari SET `realcat` = "' . $realcat . '", `nazvanie` = "' . iconv('UTF-8', 'utf-8', $nazvanie) . '", `status` = 0 WHERE `id` = ' . $row['id'];
-                $res = mysqli_query($this->link, $sql);
 
-                if (!$res) {
-                    $message = 'bad request: ' . mysqli_error($this->link) . "\n";
-                    $message .= 'Self request: ' . $sql;
-                    return $message;
-                }
             }
 
         } else {
 
             switch ($method) {
                 case 'insert':
-                    $sql = 'INSERT INTO `tovari`(`opisanie`, `seo_url`,`nazvanie`, `date_time_add`, `uid`,`po_ml`, `status`, `realcat`) VALUES 
-            ("' . $good->description . '","' . $this->transliteseo(new stringG($nazvanie)) . '","' . iconv('UTF-8', 'utf-8', $nazvanie) . '","' . date('Y-m-d H:i:s') . '","|' . $good->id . '|","-' . $ml . '-", "0", "' . $realcat . '")';
+                    $sql = 'INSERT INTO `tovari`(`opisanie`, `seo_url`,`nazvanie`, `date_add`, `date_time_add`, `uid`,`po_ml`, `status`) VALUES 
+                ("' . $good->description . '","' . $this->transliteseo(new string($nazvanie)) . '","' . iconv('UTF-8', 'utf-8', $nazvanie) . '","' . date('Y-m-d') . '","' . date('Y-m-d H:i:s') . '","|' . $good->id . '|","-' . $ml . '-", "0")';
 
                     $res = mysqli_query($this->link, $sql);
 
                     if (!$res) {
                         $message = 'bad request: ' . mysqli_error($this->link) . "\n";
+
+
+
                         return $message;
                     } else {
-                        $sql = 'INSERT INTO `site_pages`(`translit_url`,`url`, `lastmod`) VALUES 
-                        ("catalog/' . $this->transliteseo(new stringG($nazvanie)) . '/","tovar.php?id=' . mysqli_insert_id($this->link) . '","' . date('Y-m-d H:i:s') . '")';
 
-                        $res = mysqli_query($this->link, $sql);
 
                         $result_us = mysqli_query($this->link, "SELECT `id` FROM `post_cat1` WHERE `uid` ='" . $good->category . "'");
                         $myrow_us = mysqli_fetch_array($result_us);
@@ -223,7 +194,7 @@ class reqClass
 
                         $result_us = mysqli_query($this->link, "SELECT id FROM tovari ORDER by id DESC LIMIT 1");
                         $myrow_us = mysqli_fetch_array($result_us);
-                        $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,name_url,url,id_post,lastmod) VALUES('" . $this->transliteseo(new stringG($nazvanie)) . "/','" . $this->transliteseo(new stringG($nazvanie)) . "','tovar.php?id=" . $myrow_us['id'] . "','" . $myrow_us['id'] . "',NOW())");
+                        $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,name_url,url,id_post,lastmod) VALUES('" . $this->transliteseo(new string($nazvanie)) . "/','" . $this->transliteseo(new string($nazvanie)) . "','tovar.php?id=" . $myrow_us['id'] . "','" . $myrow_us['id'] . "',NOW())");
 
                         return $res;
                     }

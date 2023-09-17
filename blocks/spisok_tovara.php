@@ -3,7 +3,9 @@
 
 <style>
 
-a.blok_stat_knopka {
+
+
+ a.blok_stat_knopka {
   font-size: 120%;
   font-weight: 700;
   color: #ffffff;
@@ -232,13 +234,13 @@ echo"
 <div id='blok_stat' class='col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4' align='center'>
 
 <div id='blok_stat_img'>
-<a href='/catalog/" . $myrow_all_stat['seo_url']. "'>
+<a href='/tovar.php?id=" . $myrow_all_stat['id']. "'>
 <img src='$image_path' alt='$myrow_all_stat[nazvanie]' title='$myrow_all_stat[nazvanie]'>
 </a>
 </div>
 <div style='height:5px;'></div>
 
-<div><a class='blok_stat_zag' href='/catalog/" . $myrow_all_stat['seo_url'] . "'>$myrow_all_stat[nazvanie]</a></div>
+<div><a class='blok_stat_zag' href='/tovar.php?id=" . $myrow_all_stat['id']. "'>$myrow_all_stat[nazvanie]</a></div>
 
 <div style='height:7px;'></div>
 <div class='blok_stat_ml' style='    height: 80px;'>

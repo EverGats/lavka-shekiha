@@ -4,11 +4,13 @@ require "blocks/bd.php";
 
 $price = 0;
 $cart = json_decode($_COOKIE['cart'], true);
-foreach ($cart as $product) {
-    foreach ($product as $size) {
-        $pricePerOne = $size['price'];
-        $quantity = $size['quantity'];
-        $price += (int)$pricePerOne*(int)$quantity;
+if (!empty($cart)) {
+    foreach ($cart as $product) {
+        foreach ($product as $size) {
+            $pricePerOne = $size['price'];
+            $quantity = $size['quantity'];
+            $price += (int)$pricePerOne * (int)$quantity;
+        }
     }
 }
 
@@ -24,8 +26,6 @@ foreach ($cart as $product) {
 
     <div class='cart-items-container'>
         <?php
-
-        $cart = json_decode($_COOKIE['cart'], true);
         if (!empty($cart)) {
             foreach ($cart as $product_id => $sizes) {
                 $query = $db->query("SELECT nazvanie FROM tovari WHERE id = '" . $product_id . "'");
