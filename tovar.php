@@ -64,7 +64,9 @@ include ("blocks/header.php");
 
             <div class="btn-container">
                 <? include "blocks/add_to_cart_popup.php"?>
+                <? if (count($prices) > 0): ?>
                 <a class="price-text">От - <? echo min($prices); ?>р. </a>
+                <? endif; ?>
             </div>
 
         </div>
