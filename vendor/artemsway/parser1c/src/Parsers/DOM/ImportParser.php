@@ -4,7 +4,6 @@ namespace ArtemsWay\Parser1C\Parsers\DOM;
 
 use ArtemsWay\Parser1C\ORM\Mappers\DOM\ProductMapper;
 use ArtemsWay\Parser1C\ORM\Mappers\DOM\CategoryMapper;
-use ArtemsWay\Parser1C\ORM\Mappers\DOM\CategoriesDOMMapper;
 use ArtemsWay\Parser1C\ORM\Mappers\DOM\PropertyMapper;
 
 class ImportParser extends DOMParser
@@ -28,11 +27,6 @@ class ImportParser extends DOMParser
      * @var array
      */
     public $categories = [];
-
-    /**
-     * @var array
-     */
-    public $realCategories = [];
 
     /**
      * @var array
@@ -115,22 +109,6 @@ class ImportParser extends DOMParser
     }
 
     /**
-     * Парсим real категории.
-     *
-     * @return $this
-     */
-    public function parseRealCategories()
-    {
-    $categoryNodesList = DOMXpathHelper::evaluate(
-        $this->document,
-        '//c:Классификатор/c:Категории/c:Категория'
-    );
-    
-    $this->extractCategories($categoryNodesList);
-    return $this;
-}
-
-    /**
      * Парсим свойства.
      *
      * @return $this
@@ -194,17 +172,6 @@ class ImportParser extends DOMParser
             }
         }
     }
-    protected function extractCategories(\DOMNodeList $categoriesNodes, $parent = null) 
-{
-    foreach ($categoriesNodes as $categoryNode) {
-        $category = (new CategoriesDOMMapper($this->document, $categoryNode))->mapToCategory();
-
-        $category->parent = $parent;
-
-        $this->realCategories[$category->id] = $category;
-    }
-}
-
 
     /**
      * Мапим свойства.

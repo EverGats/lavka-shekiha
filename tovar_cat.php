@@ -93,7 +93,7 @@ echo"
 echo"
 <div align='center'><h1>";
 
-//echo "<div class='title'>$title</div>";
+echo "<div class='title'>$title</div>";
 
 echo"</h1></div>
 

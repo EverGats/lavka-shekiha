@@ -1,6 +1,6 @@
 
 
-<title>Страница не найдена!</title>
+<title>Страница в разработке.</title>
 <meta name="Robots" content="NOINDEX" />
 <?
 
@@ -11,6 +11,8 @@ echo "
 <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap' rel='stylesheet''>
 
 <div class='main'>
+
+    
 
     <div class='topPage'>
     
@@ -24,7 +26,7 @@ echo "
    
     </div>
 
-    <div calss='bottomPage'>
+    <div class='bottomPage'>
         
         <img class='bottomImg' src='/img/glavnaya-triangle.png'>
         
@@ -84,10 +86,6 @@ html, body {
 .topImg {
   transform: scaleY(-1); /* отражает изображение по вертикали */
 }
-
- 
-
-
 
 .topImg {
   transform: scaleY(-1); /* отражает изображение по вертикали */

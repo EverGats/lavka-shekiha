@@ -1,5 +1,10 @@
 <?php
 include ("blocks/header.php");
+include ("blocks/bd.php");
+
+$query = $db->query('SELECT id FROM orders ORDER BY id DESC LIMIT 1 ');
+$lastOrder = $query->fetch_array();
+$thisOrder = (int)$lastOrder[0] + 1;
 
 
 $price = 0;
@@ -48,11 +53,19 @@ echo("
     
         <div class='centered-rectangle'>
             <input type='text' class='phone-input client-info' id='phone-number' name='phone-number' pattern='\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}' placeholder='Номер телефона'>
-<label for='phone-number'>Номер телефна</label>
+            <label for='phone-number'>Номер телефна</label>
 
+            <div class='client-data-fio'> 
+                <div class='second-name-container'>
+                    <input type='text' class='client-input-second-name client-info' id='client-input-second-name' name='client-input-second-name' placeholder='Фамилия'>
+                    <label for='client-input-second-name'>Фамилия</label>
+                </div>
             
-            <input type='text' class='client-input client-info' id='client-input' name='client-input' placeholder='ФИО'>
-            <label for='client-input'>Номер телефна</label>
+                <div class='first-name-container'>
+                    <input type='text' class='client-input-first-name client-info' id='client-input-first-name' name='client-input-first-name' placeholder='Имя'>
+                    <label for='client-input-first-name'>Имя</label>
+                </div>
+            </div>
         </div>
     
     </div>
@@ -319,7 +332,8 @@ margin-top: 25px;
 .date-input,
 .code-input,
 .phone-input,
-.client-input{
+.client-input-second-name,
+.client-input-first-name{
     border: none;
     background-color: rgba(241,235,229,0.83);
     padding: 10px;
@@ -339,6 +353,26 @@ margin-top: 25px;
 
 .date-code-container {
     display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.client-data-fio {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.first-name-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.second-name-container {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 80%;
 }
@@ -535,8 +569,11 @@ $(document).ready(function() {
     var month = str.slice(0, str.length/2);
     var year = str.slice(str.length/2);
     var cardCvc = $('#card-cvc').val();
-    var phone = $('#phone-number').val();
-    var clientname = $('#client-input').val();
+    var notConvertedPhone = $('#phone-number').val();
+    var phone = notConvertedPhone.replace(/\D+/g, '');
+    var clientname = $('#client-input-first-name').val();
+    var clientsecondname = $('#client-input-second-name').val();
+    var domain = window.location.hostname;
     
     
     if (store == 'store1'){
@@ -567,14 +604,13 @@ checkout.createPaymentCryptogram(fieldValues)
     const paymentData = {
         'Amount': {$price},
         'Currency': 'RUB',
-        'InvoiceId': '23',
+        'InvoiceId': {$thisOrder},
         'IpAddress': ip,  
         'Description': 'Оплата товаров в lavka-sheikha.ru. Самовывоз из: ' + store,            
         'CardCryptogramPacket': cryptogram,
         'Payer': {
-            'FirstName': 'Тест',
-            'LastName': 'Тестов',
-            'MiddleName': 'Тестович',
+            'FirstName': clientname,
+            'LastName': clientsecondname,
             'Phone': phone,
         }
     };
@@ -627,7 +663,7 @@ const paymentData = await setPaymentData(cryptogram, phone);
                     form.append($('<input>', {
                         'type': 'hidden',
                         'name': 'TermUrl',
-                        'value': 'https://lavka-sheikha.ru/thanks'
+                        'value': 'https://' + domain +'/thanks'
                     }));
                             
                     form.submit();

@@ -8,7 +8,7 @@ RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteCond %{REQUEST_URI} !^/foto/.*\.(ico|gif|jpg|jpeg|png|js|css)
 RewriteRule ^([^?]*) myroute.php [L,QSA]
 
 #php_flag display_startup_errors on
