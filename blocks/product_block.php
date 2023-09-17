@@ -97,7 +97,6 @@ if($myrow_all_stat['status']==0){
 
         echo"
 </div>
-
 ";
     }
 
@@ -175,7 +174,6 @@ else {}
 
     echo"
 </div>
-
 ";
 
 

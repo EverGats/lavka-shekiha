@@ -171,8 +171,192 @@ if ($myrow_all_stat['id']){
 <!--noindex-->  
 <div style='height:5px;'></div>
 <div class='grid row' >";
-    include 'product_block.php';
 
+do {
+    $volumes = explode('--', trim($myrow_all_stat['po_ml'], '-'));
+    $isInVolumeRange = array_reduce($volumes, function($carry, $volume) use ($minVolume, $maxVolume) {
+        return $carry ||
+            (!$minVolume || $volume >= $minVolume) &&
+            (!$maxVolume || $volume <= $maxVolume);
+    }, false);
+
+    if (!$isInVolumeRange) {
+        continue;
+    }
+
+
+
+    if($myrow_all_stat['status']==0){
+        $iterator++;
+if ($_SESSION['id_admin'] and $_SESSION['login_admin']){
+$sluch3=random(30);
+$sluch4=random(30);
+$sluch5=random(30);
+}
+
+$prsm="";
+
+$last=$myrow_all_stat['view']%10;
+
+if ($last==0){$prsm="просмотров";}
+if ($last==1){$prsm="просмотр";}
+if ($last>1 and $last<5){$prsm="просмотра";}
+if ($last>4 and $last<10){$prsm="просмотров";}
+
+$prosmotrov = number_format($myrow_all_stat['view'],0,'',' ');
+
+///////////////////////////////////////////
+
+        $result_kom = $db->query("SELECT id FROM post_komment WHERE post='$myrow_all_stat[id]' and moder='1'");
+        $myrow_kom = $result_kom->num_rows;
+
+
+$komment="";
+$last_komment=$myrow_kom%10;
+
+if ($last_komment==0){$komm="отзывов";}
+if ($last_komment==1){$komm="отзыв";}
+if ($last_komment>1 and $last_komment<5){$komm="отзыва";}
+if ($last_komment>4 and $last_komment<10){$komm="отзывов";}
+
+$image_path = "/foto/mini/$myrow_all_stat[image].jpg";
+
+ $server_path = $_SERVER['DOCUMENT_ROOT'] . $image_path;
+
+$default_image_path = "/img/default.jpeg";
+
+if (!file_exists($server_path)) {
+    $image_path = $default_image_path;
+}
+
+
+echo"
+<div id='blok_stat' class='col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4' align='center'>
+
+<div id='blok_stat_img'>
+<a href='/tovar.php?id=" . $myrow_all_stat['id']. "'>
+<img src='$image_path' alt='$myrow_all_stat[nazvanie]' title='$myrow_all_stat[nazvanie]'>
+</a>
+</div>
+<div style='height:5px;'></div>
+
+<div><a class='blok_stat_zag' href='/tovar.php?id=" . $myrow_all_stat['id']. "'>$myrow_all_stat[nazvanie]</a></div>
+
+<div style='height:7px;'></div>
+<div class='blok_stat_ml' style='    height: 80px;'>
+";
+
+
+
+//////////////////////////////////////////////////////////
+
+$result_po_ml = $db->query("SELECT * FROM tovari_po_ml WHERE id_tovar='$myrow_all_stat[id]' ORDER by name DESC");
+$myrow_po_ml= $result_po_ml->num_rows;
+
+
+
+
+if ($myrow_po_ml){
+
+    $i = 0;
+
+while ($myrow_po_ml = $result_po_ml->fetch_array() and $i <= 2){
+
+$prise_format = number_format($myrow_po_ml['prise'],0,'',' ');
+
+echo"<div style='text-align: left;'><span style='letter-spacing: 1px; font-weight: 600; font-size: 18px'>$myrow_po_ml[name] мл.</span> <span style='letter-spacing: 1px; font-size: 18px' >- $prise_format р.</span></div>
+<div style='height:4px;'></div>
+";
+$i++;
+
+}
+
+echo"
+</div>
+<div style='height:17px;'></div>
+";
+}
+
+/////////////////////////////////////////////////////////
+
+
+/*echo" ОТЗЫВЫ И КОММЕНТАРИИ
+<div align='center'>
+<div id='views'><img src='../img/views.png' width='12' height='8' align='baseline' /> $prosmotrov $prsm&nbsp;
+<div style='height:1px;'></div>
+<img src='../img/comment.png' width='12' height='11' align='baseline' /> $myrow_kom $komm </div>
+<div style='height:10px;'></div>
+</div>
+";*/
+
+
+if ($_SESSION['id_klient']){$id_klient=$_SESSION['id_klient'];}else{$id_klient="0";}
+
+
+
+/*echo"
+<a href='../$myrow_all_stat[seo_url]' class='blok_stat_knopka'>В корзину</a>";*/
+        include "blocks/add_to_cart_popup.php";
+
+
+echo"  
+<div style='height:7px;'></div>
+";
+
+//echo"<div style='position:absolute; bottom:0px; background-color:#0099FF; width:100%;'>txt</div>";
+
+
+//////////////////////////////////////////////////////////////////////////////////
+/////////////////////
+if ($_SESSION['id_admin']==1 and $_SESSION['login_admin']){
+echo"
+<div style='height:17px;'></div>
+<div align='center' style='position:relative; bottom:62px; width:94%;'>
+
+
+<div id='knopka_katalog' style='padding:1px'><a href='javascript: $sluch5();'>редактировать <img style='float:right;' src='/img/edit_mik.png' width='17' height='17' border='0' align='absmiddle'></a></div>
+
+<script type='text/javascript'> 
+function $sluch5(){
+
+if (confirm('Предупреждение!!!\\r\\nВы уверены, что хотите отредактировать этот товар -  $myrow_all_stat[nazvanie]!?')) {
+	
+window.open('/admin/?edit=$myrow_all_stat[id]','_blank'); }
+	
+else {}
+}
+</script>";
+
+
+
+
+echo"<div style='height:1px;'></div>";
+echo"<div id='knopka_katalog' style='padding:1px'><a href='javascript: $sluch3();'>удалить <img style='float:right;' src='/img/1no.png' width='20' height='15' border='0' align='absmiddle'></a></div>
+
+<script type='text/javascript'> 
+function $sluch3(){
+
+if (confirm('Предупреждение!!!\\r\\nВы уверены, что хотите удалить товар -  $myrow_all_stat[nazvanie]!?\\r\\n\\r\\nИмейте ввиду, что так же будет удалена вся связанная с товаром информация!')) {
+window.open('../admin/?del=$myrow_all_stat[id]','_blank'); }
+
+else {}
+}
+</script>
+</div>
+";
+}
+/////////////////////////////////////////////////////
+//////////////////////////////////////////////////
+
+
+
+echo"
+</div>
+";
+
+
+    }}
+while ($myrow_all_stat=$result_all_stat->fetch_array());
 
 echo"</div>
 <!--/noindex--> 

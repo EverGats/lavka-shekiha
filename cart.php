@@ -2,8 +2,12 @@
 include $_SERVER['DOCUMENT_ROOT'] . '/blocks/header.php';
 require "blocks/bd.php";
 
+
+
 $price = 0;
 $cart = json_decode($_COOKIE['cart'], true);
+
+var_dump($cart);
 if (!empty($cart)) {
     foreach ($cart as $product) {
         foreach ($product as $size) {
