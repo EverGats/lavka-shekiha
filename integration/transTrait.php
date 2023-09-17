@@ -2,7 +2,7 @@
 namespace ivan;
 
 trait trans{
-    public function transliteseo(stringG $s1){
+    public function transliteseo(string $s1){
         $s = $s1->getString();
         $logOffer= new Logger( $_SERVER['DOCUMENT_ROOT']."/integration/TEMPLOGS.txt");
         $logOffer->log($s);
