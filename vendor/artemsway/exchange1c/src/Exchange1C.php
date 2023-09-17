@@ -285,7 +285,7 @@ class Exchange1C
      */
     protected function clearDirectory($path)
     {
-       /* if (is_dir($path)) {
+        if (is_dir($path)) {
             $files = scandir($path);
 
             foreach ($files as $file) {
@@ -297,7 +297,7 @@ class Exchange1C
             rmdir($path);
         } else {
             unlink($path);
-        }*/
+        }
     }
 
     protected function unzip($dir, $filePath)

@@ -13,6 +13,16 @@ if (isset($_GET['id'])) {
     exit("Вы зашли на страницу без параметра!");
 }
 include ("blocks/header.php");
+
+
+
+$sql = "SELECT * FROM `tovari_foto` where id_tovar = {$product['id']}";
+$res = $db->query($sql);
+if ($res && $res->num_rows > 0){
+    $product['image'] = $res->fetch_array()[0]['img'];
+}else{
+    $product['image'] ='/img/default.jpeg';
+}
 ?>
 
 <div class="content">
@@ -21,7 +31,7 @@ include ("blocks/header.php");
 
     <div class="product-card">
 
-        <img class="product-img" src="<? if (!empty($product['image'])){echo('foto/mini/' . $product['image'] .'.jpg');} else { echo('img/default.jpeg');}  ?>">
+        <img class="product-img" src="<?= $product['image'] ?>">
 
         <div class="product-info">
 

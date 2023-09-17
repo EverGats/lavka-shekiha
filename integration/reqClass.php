@@ -4,7 +4,7 @@ namespace ivan;
 
 require('transTrait.php');
 
-class string
+class Gstring
 {
     private $string;
 
@@ -84,7 +84,7 @@ class reqClass
             case 'insert':
                 $sql = 'INSERT INTO `post_cat1`(`kolvo_zametok`,`map_block`,`text1`,`text2`,`view`,`id_cat1`,
                 `id_group`,`description`,`sort`,`name`, `title`, `zagolovok_h1`, `seo_url`, `keywords`, `uid`) VALUES 
-                (0,0,"","",0,0,0,"",0,"' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $this->transliteseo(new string($cat->name)) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $cat->id . '")';
+                (0,0,"","",0,0,0,"",0,"' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $this->transliteseo(new Gstring($cat->name)) . '","' . iconv('UTF-8', 'utf-8', $cat->name) . '","' . $cat->id . '")';
 
                 $res = mysqli_query($this->link, $sql);
 
@@ -95,7 +95,7 @@ class reqClass
                 } else {
                     $result_us = mysqli_query($this->link, "SELECT id FROM post_cat1 ORDER by id DESC LIMIT 1");
                     $myrow_us = mysqli_fetch_array($result_us);
-                    $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,name_url,url,id_post,lastmod) VALUES('" . $this->transliteseo(new string($nazvanie)) . "/','" . $this->transliteseo(new string($nazvanie)) . "','tovar_cat.php?id=" . $myrow_us['id'] . "','" . $myrow_us['id'] . "',NOW())");
+                    $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,name_url,url,id_post,lastmod) VALUES('" . $this->transliteseo(new Gstring($nazvanie)) . "/','" . $this->transliteseo(new Gstring($nazvanie)) . "','tovar_cat.php?id=" . $myrow_us['id'] . "','" . $myrow_us['id'] . "',NOW())");
                     if (!$add_infa) {
                         $message = 'bad request: ' . mysqli_error($this->link) . "\n";
                         $message .= 'Self request: ' . $sql;
@@ -161,7 +161,7 @@ class reqClass
             switch ($method) {
                 case 'insert':
                     $sql = 'INSERT INTO `tovari`(`opisanie`, `seo_url`,`nazvanie`, `date_add`, `date_time_add`, `uid`,`po_ml`, `status`) VALUES 
-                ("' . $good->description . '","' . $this->transliteseo(new string($nazvanie)) . '","' . iconv('UTF-8', 'utf-8', $nazvanie) . '","' . date('Y-m-d') . '","' . date('Y-m-d H:i:s') . '","|' . $good->id . '|","-' . $ml . '-", "0")';
+                ("' . $good->description . '","' . $this->transliteseo(new Gstring($nazvanie)) . '","' . iconv('UTF-8', 'utf-8', $nazvanie) . '","' . date('Y-m-d') . '","' . date('Y-m-d H:i:s') . '","|' . $good->id . '|","-' . $ml . '-", "0")';
 
                     $res = mysqli_query($this->link, $sql);
 
@@ -194,7 +194,7 @@ class reqClass
 
                         $result_us = mysqli_query($this->link, "SELECT id FROM tovari ORDER by id DESC LIMIT 1");
                         $myrow_us = mysqli_fetch_array($result_us);
-                        $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,name_url,url,id_post,lastmod) VALUES('" . $this->transliteseo(new string($nazvanie)) . "/','" . $this->transliteseo(new string($nazvanie)) . "','tovar.php?id=" . $myrow_us['id'] . "','" . $myrow_us['id'] . "',NOW())");
+                        $add_infa = mysqli_query($this->link, "INSERT INTO site_pages (translit_url,name_url,url,id_post,lastmod) VALUES('" . $this->transliteseo(new Gstring($nazvanie)) . "/','" . $this->transliteseo(new Gstring($nazvanie)) . "','tovar.php?id=" . $myrow_us['id'] . "','" . $myrow_us['id'] . "',NOW())");
 
                         return $res;
                     }

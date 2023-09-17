@@ -47,20 +47,7 @@ if ($myrow_all_stat['id']){
 echo"</div>
 <!--/noindex--> 
 ";
-    if ($iterator == 0){
-        echo"
-<div style='height:10px;'></div>
-<div align='center'><strong>В данной категории товары с таким фильтром отсутствуют!</strong></div>
-<div style='height:10px;'></div>
-";
 
-    }
-}else{
-echo"
-<div style='height:10px;'></div>
-<div align='center'><strong>В данной категории товары отсутствуют!</strong></div>
-<div style='height:10px;'></div>
-";
 }
 
 ?>
