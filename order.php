@@ -17,8 +17,6 @@ foreach ($cart as $product) {
     }
 }
 
-$jsCard = json_encode($cart);
-
 
 echo("
 <head>
@@ -577,8 +575,6 @@ $(document).ready(function() {
     var clientsecondname = $('#client-input-second-name').val();
     var domain = window.location.hostname;
     
- 
-    
     
     if (store == 'store1'){
         store = 'Анапа, Краснодарская 64 бк.1';
@@ -587,11 +583,6 @@ $(document).ready(function() {
     } else {
         data.store = 'Не выбран магазин самовывоза';
         }
-    
-    var cartData = {
-        'cart' : {$jsCard},
-        'store' : store
-    };
     
     const checkout = new cp.Checkout({
         publicId: 'pk_f3f9eb422c1eb680e2a3a49222aa8',
@@ -621,8 +612,7 @@ checkout.createPaymentCryptogram(fieldValues)
             'FirstName': clientname,
             'LastName': clientsecondname,
             'Phone': phone,
-        },
-        'JsonData' : cartData
+        }
     };
 
     return paymentData;  
