@@ -51,10 +51,10 @@ do {
 
 
 
-        $image_path = "../foto/mini/$myrow_all_stat[image].jpg";
+        $image_path = "/foto/mini/$myrow_all_stat[image].jpg";
         $default_image_path = "/img/default.jpeg";
 
-        if (!file_exists($image_path)) {
+        if (!file_exists('./'.$image_path)) {
             $image_path = $default_image_path;
         }
 
@@ -148,7 +148,7 @@ function $sluch5(){
 
 if (confirm('Предупреждение!!!\\r\\nВы уверены, что хотите отредактировать этот товар -  $myrow_all_stat[nazvanie]!?')) {
 	
-window.open('../admin/?edit=$myrow_all_stat[id]','_blank'); }
+window.open('/admin/?edit=$myrow_all_stat[id]','_blank'); }
 	
 else {}
 }

@@ -352,9 +352,9 @@ if(isset($_FILES['fupload'])) {
 		move_uploaded_file($source, $target);
 
 
-        saveImageWithMaxResolution($filename);
+        saveImageWithMaxResolution1($filename);
 		createThumbnail2($filename);	
-		        unlink ($target);
+
 				
 $add_infa = $db->query("UPDATE tovari SET image='$new_image' WHERE id='$edit' "); 					
 	 }
@@ -434,14 +434,13 @@ $_FILES['fupload']['name'])) {
 		$target = $path_to_image_directory.$filename;
 
 	
-require '../plupload-old/examples/jquery/foto_process_obrabotka.php'; //Подключаем файл-обработчик
       //  require '../foto/process.php';
 //copy($source, $target);
 
 $new_filename=$privz.'.jpg';
 move_uploaded_file($source, $target);
 
-saveImageWithMaxResolution($filename,$new_filename,$final_width_of_image_mini,$path_to_image_directory,$path_to_mini_directory);
+saveImageWithMaxResolution1($filename,$new_filename,$final_width_of_image_mini,$path_to_image_directory,$path_to_mini_directory);
 createThumbnail2($filename,$new_filename,$final_width_of_image_full,$path_to_image_directory,$path_to_full_directory);
 if($full_znak_on==1)
 	{

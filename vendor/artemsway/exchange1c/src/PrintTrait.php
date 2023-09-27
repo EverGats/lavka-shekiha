@@ -11,8 +11,8 @@ trait PrintTrait
      */
     protected function printStatus($response)
     {
-        list($status, $message) = $response;
-
+        $status = $response['status'];
+        $message = $response['message'];
         switch ($status) {
             case 'success':
                 return $this->printSuccess($message);

@@ -22,7 +22,7 @@ while($brand = $result->fetch_assoc()){
     $check_query = "SELECT * FROM tovari WHERE cat = $brand_id AND status = 0";
     $check_result = $db->query($check_query);
     if($check_result->num_rows > 0){
-        echo("<div class='brand-item' style='text-align: center; font-size: 35px; font-weight: 500'><a style='text-decoration: none;' href='http://localhost/catalog/parfum/".$brand_seo_url."'>".strtoupper($brand_name)."</a></div>");  // Тут мы добавляем ссылку
+        echo("<div class='brand-item' style='text-align: center; font-size: 35px; font-weight: 500'><a style='text-decoration: none;' href='http://localhost/catalog/brands/".$brand_seo_url."'>".strtoupper($brand_name)."</a></div>");  // Тут мы добавляем ссылку
     }
 }
 

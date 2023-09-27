@@ -6,8 +6,8 @@ if ($id) {
     $myrow_brand = $result_brand->fetch_array();
 }
 
-$img_off = "<img src='/img/checkbox-off.png' id='chkbxpol' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
-$img_on = "<img src='/img/checkbox-on.png' id='chkbxpol' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
+$img_off = "<img src='/img/checkbox-off.png' class='chkbxpol' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
+$img_on = "<img src='/img/checkbox-on.png' class='chkbxpol' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
 
 if ($_GET['id']) {
     $brand_view = "../$myrow_brand[seo_url]";
@@ -41,7 +41,7 @@ do {
         $view_vibor_pol = $img_off;
     }
 
-    echo "<li><a style='position: relative' href='$url'>$myrow_pol[name] $view_vibor_pol </a></li>";
+    echo "<li><a style='position: relative; display: flex; justify-content: space-between; padding-left: 15px;' href='$url'>$myrow_pol[name] <span class='img-container'>$view_vibor_pol</span></a></li>";
 
 } while ($myrow_pol = $result_pol->fetch_array());
 
@@ -100,7 +100,7 @@ margin-bottom: 7px;
     }
     
     @media screen and (max-width: 1024px) {
-        #chkbxpol{
+        .chkbxpol{
             right: -25px !important;
         }
         li {
