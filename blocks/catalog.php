@@ -20,35 +20,35 @@
         </div>
 
         <div class='catalog-tovarov-block catalog-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-            <a class='catalog-tovarov-block-text'>Уход для<br> волос</a>
+            <a href="/catalog/hair-care/"class='catalog-tovarov-block-text'>Уход для<br> волос</a>
             <div class='image-wrapper'>
                 <img class='catalog-tovarov-img' src='/img/glavnaya-hair.jpg'>
             </div>
         </div>
 
         <div class='catalog-tovarov-block catalog-left col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-            <a class='catalog-tovarov-block-text'>Уход для<br> лица</a>
+            <a href="/catalog/face-care"class='catalog-tovarov-block-text'>Уход для<br> лица</a>
             <div class='image-wrapper'>
                 <img class='catalog-tovarov-img' src='/img/glavnaya-face.jpg'>
             </div>
         </div>
 
         <div class='catalog-tovarov-block catalog-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-            <a class='catalog-tovarov-block-text'>Уход для<br> тела</a>
+            <a href="/catalog/body-care/" class='catalog-tovarov-block-text'>Уход для<br> тела</a>
             <div class='image-wrapper'>
                 <img class='catalog-tovarov-img' src='/img/glavnaya-body.jpg'>
             </div>
         </div>
 
         <div class='catalog-tovarov-block catalog-left col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-            <a class='catalog-tovarov-block-text'>Декоративная<br>косметика</a>
+            <a href="/catalog/cosmetics"class='catalog-tovarov-block-text'>Декоративная<br>косметика</a>
             <div class='image-wrapper'>
                 <img class='catalog-tovarov-img' src='/img/glavnaya-body.jpg'>
             </div>
         </div>
 
         <div class='catalog-tovarov-block catalog-right col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6'>
-            <a class='catalog-tovarov-block-text'>Ароматы для<br>дома</a>
+            <a href="/catalog/home" class='catalog-tovarov-block-text'>Ароматы для<br>дома</a>
             <div class='image-wrapper'>
                 <img class='catalog-tovarov-img' src='/img/glavnaya-aromati.jpg'>
             </div>
