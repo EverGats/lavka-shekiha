@@ -1,8 +1,24 @@
 <?php
 // Симуляция запроса на сервер и получение ответа.
 // В реальности здесь будет ваш запрос к серверу.
-sleep(3); // Задержка в 3 секунды для демонстрации.
+
 $response = false;
+var_dump($_POST);
+
+if ($_POST['MD'] != '' && $_POST['PaRes'] != '') {
+
+    $MD = (string)$_POST['MD'];
+    $PaRes = (string)$_POST['PaRes'];
+
+} else {
+
+    $MD = 000;
+    $PaRes = 'null';
+
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +32,9 @@ $response = false;
     <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap' rel='stylesheet''>
     <link rel='stylesheet' href='/fonts/Tupo-Vyaz/Tupo-Vyaz_Bold.css' type='text/css' charset='utf-8'>
     <link rel='stylesheet' href='/fonts/Tupo-Vyaz/Tupo-Vyaz_Regular.css' type='text/css' charset='utf-8'>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <style>
         .middlePage,
         .middlePage2{
@@ -28,10 +46,20 @@ $response = false;
         }
         .nf{
             font-weight: 500;
-            font-size: 100px;
+            font-size: 120px;
             letter-spacing: 6px;
             text-align: center;
             margin-top: 40px;
+        }
+
+        @media (max-width: 999px ) {
+            .nf{
+                font-weight: 500;
+                font-size: 60px;
+                letter-spacing: 6px;
+                text-align: center;
+                margin-top: 40px;
+            }
         }
 
         html, body {
@@ -110,23 +138,47 @@ $response = false;
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let response = <?php echo json_encode($response); ?>;
 
-            // Симулируем асинхронный запрос, используя setTimeout.
-            // В реальности здесь будет ваш AJAX-запрос или fetch к API.
-            setTimeout(function() {
-                if (response) {
-                    document.querySelector(".loader").style.display = "none";
-                    document.querySelector(".topPage").style.display = "block";
-                    document.querySelector(".middlePage").style.display = "block";
-                    document.querySelector(".bottomPage").style.display = "block";
-                } else {
-                    document.querySelector(".loader").style.display = "none";
-                    document.querySelector(".topPage2").style.display = "block";
-                    document.querySelector(".middlePage2").style.display = "block";
-                    document.querySelector(".bottomPage2").style.display = "block";
-                }
-            }, 3000);
+            let MD = <?=$MD?>;
+            let PaRes = '<?=$PaRes?>';
+
+            if (MD != 000 && PaRes != 'null') {
+
+                let payment = {
+                    'TransactionId' : MD,
+                    'RaRes' : PaRes
+                };
+
+                $.ajax({
+                    url: 'blocks/order_api.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: JSON.stringify(payment),
+                    success: function(data) {
+                        if (data.Success === true) {
+                            document.querySelector(".loader").style.display = "none";
+                            document.querySelector(".topPage").style.display = "";
+                            document.querySelector(".middlePage").style.display = "";
+                            document.querySelector(".bottomPage").style.display = "";
+                            console.log(data);
+                        } else {
+                            console.log(data);
+                            document.querySelector(".loader").style.display = "none";
+                            document.querySelector(".topPage2").style.display = "";
+                            document.querySelector(".middlePage2").style.display = "";
+                            document.querySelector(".bottomPage2").style.display = "";
+                        }
+                    }
+                });
+
+            } else {
+                console.log("Payment data is required")
+                document.querySelector(".loader").style.display = "none";
+                document.querySelector(".topPage2").style.display = "";
+                document.querySelector(".middlePage2").style.display = "";
+                document.querySelector(".bottomPage2").style.display = "";
+            }
+
         });
     </script>
 

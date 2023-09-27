@@ -1,5 +1,5 @@
 <title>Главная</title>
-<meta name="Robots" content="NOINDEX" />
+<meta name="Robots" content="NOINDEX"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -21,7 +21,7 @@ echo "
 
 <div class='background-black'>
     <div class='backgroundContainer'>
-    
+    <div class='backgroundImage'></div>
         <div class='backgroundContainerHeader'>
         <div class='container'>  
             <div class='row'>  
@@ -67,9 +67,9 @@ echo "
 
     <div class='items-container container'>";
 
-            include "blocks/spisok_tovara_novinky.php";
-            
-     echo "       
+include "blocks/spisok_tovara_novinky.php";
+
+echo "       
     </div>
     
 </div>
@@ -272,18 +272,19 @@ body {
     overflow: hidden;
 }
 
-.backgroundContainer::before {
-    content: '';
+.backgroundImage {
+    content: ''; /* Следует отметить, что свойство content обычно используется с псевдоэлементами ::before и ::after. Для обычного div, это свойство не требуется. */
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url('/img/bg-glavnaya.svg');
+    background-image: url('/img/bg_glavnaya2.png');
     background-size: cover;
     filter: blur(1px);
     z-index: -1;
 }
+
 
 .backgroundContainer::after {
     content: '';
@@ -468,7 +469,13 @@ padding-left: 65px;
 
 
 <script>
-$(document).ready(function() {
+const backgroundImage = document.querySelector('.backgroundImage');
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        backgroundImage.style.backgroundPositionY = -scrolled + `px`;
+    });
+$(document).ready(function() {    
   $('.search-container input').on('input', function() {
     var searchText = $(this).val();
     $.ajax({

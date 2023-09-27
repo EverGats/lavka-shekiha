@@ -107,9 +107,9 @@ $exchange->on('query', function () {
                         $sql = "SELECT * FROM `tovari_po_ml` where name = {$size} and id_tovar = {$productId}";
                         $res = $db->query($sql);
                         if ($res) {
-                            $good = $res->fetch_array()[0];
+                            $good = $res->fetch_array();
                             $products[] = [
-                                'id' => $good->uid,
+                                'id' => $good['uid'],
                                 'price' => $pricePerOne,
                                 'count' => $quantity,
                                 'total' => $quantity * $pricePerOne,

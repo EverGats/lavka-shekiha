@@ -17,15 +17,15 @@ if ($_SESSION['id_admin'] and $_SESSION['login_admin']){
     }
 /////////////////////////////////////////////////////////
 
-function random($count){
-$pass = str_shuffle('abcdefghedfiklmnoprstufhckfpaldmvnrywiwjsnaqpemfkvil');
-return substr($pass,3,$count);
-}
+    function random($count){
+        $pass = str_shuffle('abcdefghedfiklmnoprstufhckfpaldmvnrywiwjsnaqpemfkvil');
+        return substr($pass,3,$count);
+    }
 
 }
 
-    $result_all_stat = $db->query("SELECT * FROM tovari ORDER BY id DESC LIMIT 8");
-    $myrow_all_stat = $result_all_stat->fetch_array();
+$result_all_stat = $db->query("SELECT * FROM tovari ORDER BY id DESC LIMIT 8");
+$myrow_all_stat = $result_all_stat->fetch_array();
 
 $iterator = 0;
 
@@ -44,7 +44,7 @@ if ($myrow_all_stat['id']){
     include 'product_block.php';
 
 
-echo"</div>
+    echo"</div>
 <!--/noindex--> 
 ";
 
