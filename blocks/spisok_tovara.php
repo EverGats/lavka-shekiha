@@ -1,8 +1,4 @@
-
-
-
 <style>
-
 
 
     a.blok_stat_knopka {
@@ -35,12 +31,13 @@
 
 
     @media (min-width: 1000px) {
-        #filters_tovar{
-            display:none;
+        #filters_tovar {
+            display: none;
         }
-        #blok_stat  {
+
+        #blok_stat {
             height: 650px;
-            position:relative;
+            position: relative;
             justify-content: center;
         }
 
@@ -52,70 +49,77 @@
             text-align: left;
             font-size: 18px;
             text-decoration: none;
-            font-weight:700;
+            font-weight: 700;
             text-transform: uppercase;
             min-height: 67px;
             margin-top: 5px;
         }
+
         #blok_stat_img img {
             /*height:300px;*/
             /*max-width:94%;*/
             width: 95%;
-            padding:2px;
-            background:#fff;
+            padding: 2px;
+            background: #fff;
         }
+
         #blok_stat_img {
             height: 350px;
             background-color: #fff;
-            display:flex;
+            display: flex;
             justify-content: center;
             align-items: center;
         }
     }
+
     @media (max-width: 1000px) {
 
-        #blok_stat  {
-            position:relative;
+        #blok_stat {
+            position: relative;
         }
 
         a.blok_stat_zag {
             text-align: left;
             font-size: 17px;
             text-decoration: none;
-            font-weight:700;
+            font-weight: 700;
             text-transform: uppercase;
         }
+
         #blok_stat_img img {
-            height:300px;
-            max-width:94%;
-            padding:2px;
-            background:#fff;
+            height: 300px;
+            max-width: 94%;
+            padding: 2px;
+            background: #fff;
         }
+
         #blok_stat_img {
             height: 350px;
             background-color: #fff;
-            display:flex;
+            display: flex;
             justify-content: center;
             align-items: center;
         }
     }
-    #filters_tovar a{
+
+    #filters_tovar a {
         text-decoration: none;
     }
 
 </style>
 <?
-if ($_SESSION['id_admin'] and $_SESSION['login_admin']){
+if ($_SESSION['id_admin'] and $_SESSION['login_admin']) {
 
-    function random($count){
+    function random($count)
+    {
         $pass = str_shuffle('abcdefghedfiklmnoprstufhckfpaldmvnrywiwjsnaqpemfkvil');
-        return substr($pass,3,$count);
+        return substr($pass, 3, $count);
     }
 
 }
 
 
-echo"<div id='filters_tovar'>
+echo "<div id='filters_tovar'>
 <div style='height:3px;'></div>";
 
 $currentParams = $_GET;
@@ -130,44 +134,49 @@ if (isset($currentParams['filters']) && $currentParams['filters'] == 1) {
     echo "<div><a href='?{$queryString}'><img src='/img/filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;'/>Показать фильтры</a></div>";
 }
 
-echo"<div style='float:right; margin-top:-22px;'>";
+echo "<div style='float:right; margin-top:-22px;'>";
 
-if ($_GET['poisk']==1){ echo"<a href='../catalog/?poisk=2'><img src='/img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Скрыть поиск</a>";}
-if ($_GET['poisk']==2 || !$_GET['poisk']){ echo"<a href='../catalog/?poisk=1'><img src='/img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Октрыть поиск</a>";}
+if ($_GET['poisk'] == 1) {
+    echo "<a href='../catalog/?poisk=2'><img src='/img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Скрыть поиск</a>";
+}
+if ($_GET['poisk'] == 2 || !$_GET['poisk']) {
+    echo "<a href='../catalog/?poisk=1'><img src='/img/poisk_filters.png' width='25' height='25' align='top' border='0' style='margin-top:-2px;' />&nbsp;Октрыть поиск</a>";
+}
 
-echo"
+echo "
 </div>
 <div style='height:3px;'></div>
 </div>";
 
 
 ///////////////////////////////////////////////////////
-if ($_GET['poisk']==1){
+if ($_GET['poisk'] == 1) {
 
-    include ("blocks/poisk_tovara.php");
+    include("blocks/poisk_tovara.php");
 }
 ////////////////////////////////////////////////////
 
-if ( $_GET['filters']==1){
-    echo"<div style='height:7px;'></div>";
+if ($_GET['filters'] == 1) {
+    echo "<div style='height:7px;'></div>";
 
-    include ("blocks/filters_tovar.php");
+    include("blocks/filters_tovar.php");
 }
 
 /////////////////////////////////////////////
-if ($_GET['filters']==1){
-    echo"
+if ($_GET['filters'] == 1) {
+    echo "
 <a name='tovar_gal'></a>
 <div style='height:15px;'></div>
-";}
+";
+}
 
 $iterator = 0;
 
 
-if ($myrow_all_stat['id']){
+if ($myrow_all_stat['id']) {
 
 
-    echo"
+    echo "
 <a name='tovar_gal'></a>
 
 <!--noindex-->  
@@ -176,19 +185,19 @@ if ($myrow_all_stat['id']){
     include 'product_block.php';
 
 
-    echo"</div>
+    echo "</div>
 <!--/noindex--> 
 ";
-    if ($iterator == 0){
-        echo"
+    if ($iterator == 0) {
+        echo "
 <div style='height:10px;'></div>
 <div align='center'><strong>В данной категории товары с таким фильтром отсутствуют!</strong></div>
 <div style='height:10px;'></div>
 ";
 
     }
-}else{
-    echo"
+} else {
+    echo "
 <div style='height:10px;'></div>
 <div align='center'><strong>В данной категории товары отсутствуют!</strong></div>
 <div style='height:10px;'></div>

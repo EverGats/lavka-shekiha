@@ -125,13 +125,24 @@ if ($poisk==1 and !$pol and !$id){
     if ($nazvanie){$parametr="nazvanie  like '%".$nazvanie."%'";}
     if ($artikul){$parametr="id='$artikul'";}
 }
-if(!empty($where_view) && !empty($parametr)){
-$result_all_stat = $db->query("SELECT * FROM tovari $where_view $parametr ORDER BY id DESC LIMIT 16");
-$myrow_all_stat = $result_all_stat->fetch_array();
-}else{
-    $result_all_stat = $db->query("SELECT * FROM tovari ORDER BY id DESC LIMIT 16");
+
+if(!empty($_GET['realcat'])) {
+
+    $realcat = (string)$_GET['realcat'];
+    $result_all_stat = $db->query("SELECT * FROM tovari WHERE realcat='$realcat' ORDER BY id DESC LIMIT 16");
     $myrow_all_stat = $result_all_stat->fetch_array();
+
+} else {
+
+    if(!empty($where_view) && !empty($parametr)){
+        $result_all_stat = $db->query("SELECT * FROM tovari $where_view $parametr ORDER BY id DESC LIMIT 16");
+        $myrow_all_stat = $result_all_stat->fetch_array();
+    } else {
+        $result_all_stat = $db->query("SELECT * FROM tovari ORDER BY id DESC LIMIT 16");
+        $myrow_all_stat = $result_all_stat->fetch_array();
+    }
 }
+
 include ("blocks/spisok_tovara.php");
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -169,9 +180,17 @@ echo"
 ?>
 
 <style>
+    #container_site {
+        height: auto !important;
+    }
     @media screen and (max-width: 1024px) {
         #content {
-            width: 100% !important;
+            width: 80% !important;
+            margin-right: 100px;
+
+        }
+        .grid {
+            border-left: none;
         }
     }
 
