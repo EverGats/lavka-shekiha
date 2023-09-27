@@ -3,7 +3,7 @@
 
 html, body {
 background-color: #FFFCF1;
-font-size: 16px;	
+font-size: 16px;
 margin: 0;
 padding: 0;
 color:#000000;
@@ -11,7 +11,7 @@ color:#000000;
 
 
 h1 {
-font-size: 25px;	
+font-size: 25px;
 margin:4px;
 color: #241515;
 padding-bottom:4px;
@@ -20,7 +20,7 @@ padding-top:10px;
 
 
 h2 {
-font-size: 21px;	
+font-size: 21px;
 margin:4px;
 color: #241515;
 padding-bottom:6px;
@@ -29,7 +29,7 @@ padding-top:6px;
 
 
 h3 {
-font-size: 19px;	
+font-size: 19px;
 margin:4px;
 color: #241515;
 padding-bottom:4px;
@@ -38,14 +38,14 @@ padding-top:10px;
 
 
 a {
-  text-decoration: underline; 
+  text-decoration: underline;
   color: #241515;
-} 
+}
 
-a:hover { 
-  text-decoration: none; 
+a:hover {
+  text-decoration: none;
   color: #241515;
-} 
+}
 
 
 
@@ -77,8 +77,8 @@ width: 100%;
 height: 253px;
 background: #FFFCF1 url(../img/logo_3500.jpg) no-repeat center top;
 }
- 
- 
+
+
 #footer {
 background: #eedf8e url(../img/uzor.png);
 	color:#FFFCF1;
@@ -92,8 +92,8 @@ background: #eedf8e url(../img/uzor.png);
      background: #FFFCF1 !important;
      margin: auto auto;
      width: 80%;
-     height: 100%; 
-	 
+     height: 100%;
+
 }
 
 
@@ -102,7 +102,7 @@ background: #eedf8e url(../img/uzor.png);
 width: 100%;
 height: 100%;
 }
- 
+
 
 /*--------------------------------------------------------*/
 
@@ -122,8 +122,8 @@ background-color: #FFFCF1;
 
 .grid > *{
 /*background-color: #ffbf94; border: 5px solid #d1e231;*/
-} 
-	
+}
+
 /*--------------------------------------------------------*/
 
 
@@ -156,7 +156,7 @@ h2 { font-size: 19px;}
 }
 
 @media screen and (max-width: 700px) {
-body {font-size: 15px;} 
+body {font-size: 15px;}
 h1 { font-size: 22px;}
 h2 { font-size: 19px;}
 #container_site {width: 98%;}

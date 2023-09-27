@@ -471,10 +471,13 @@ padding-left: 65px;
 <script>
 const backgroundImage = document.querySelector('.backgroundImage');
 
-    window.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
+    if (window.innerWidth > 992) { // проверка ширины окна
         const scrolled = window.scrollY;
-        backgroundImage.style.backgroundPositionY = -scrolled + `px`;
-    });
+        backgroundImage.style.backgroundPositionY = -scrolled + 'px';
+    }
+});
+
 $(document).ready(function() {    
   $('.search-container input').on('input', function() {
     var searchText = $(this).val();

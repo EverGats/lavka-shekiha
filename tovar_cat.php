@@ -60,13 +60,10 @@ if (!$id and !$pol and !$ml){$title="Каталог нишевой европе�
 
 
 echo"
-$myr_html[doctupe]
-<head>
-$myr_html[kodirovka]";
+<head>";
 
 
 echo"
-<title>$title</title>
 <meta name='keywords' content='$myrow_tovar_cat[keywords]'/>
 <meta name='description' content='$myrow_tovar_cat[description]/'/>
 ";
@@ -80,12 +77,18 @@ $myr_html[styl_skript_icon]
 include ("blocks/header.php");
 
 echo"
-<div id='container_site'>	
-<div id='sidebar'>";
-include ("blocks/left_meny.php");
-echo"
-</div> 
-<div id='content'>";
+<div id='container_site'>
+";
+    $isDesktop = !preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i', $_SERVER['HTTP_USER_AGENT']);
+
+if ($isDesktop) {
+    echo "
+    <div id='sidebar'>";
+    include("blocks/left_meny.php");
+    echo"
+    </div>";
+}
+echo "<div id='content'>";
 
 
 
@@ -93,7 +96,6 @@ echo"
 echo"
 <div align='center'><h1>";
 
-echo "<div class='title'>$title</div>";
 
 echo"</h1></div>
 

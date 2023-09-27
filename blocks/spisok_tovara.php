@@ -35,7 +35,9 @@
 
 
     @media (min-width: 1000px) {
-
+        #filters_tovar{
+            display:none;
+        }
         #blok_stat  {
             height: 650px;
             position:relative;
@@ -146,7 +148,7 @@ if ($_GET['poisk']==1){
 }
 ////////////////////////////////////////////////////
 
-if ($_GET['filters']==1){
+if ( $_GET['filters']==1){
     echo"<div style='height:7px;'></div>";
 
     include ("blocks/filters_tovar.php");
