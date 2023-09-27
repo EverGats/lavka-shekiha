@@ -6,8 +6,8 @@ if ($id) {
     $myrow_brand = $result_brand->fetch_array();
 }
 
-$img_off = "<img src='/img/checkbox-off.png' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
-$img_on = "<img src='/img/checkbox-on.png' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
+$img_off = "<img src='/img/checkbox-off.png' id='chkbxpol' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
+$img_on = "<img src='/img/checkbox-on.png' id='chkbxpol' style='position: absolute; right: 0; bottom: 0;' height='20' border='0'/>";
 
 if ($_GET['id']) {
     $brand_view = "../$myrow_brand[seo_url]";
@@ -97,6 +97,18 @@ margin-bottom: 7px;
     }
     .slider-range {
         width: 100%;
+    }
+    
+    @media screen and (max-width: 1024px) {
+        #chkbxpol{
+            right: -25px !important;
+        }
+        li {
+    list-style-type: none;
+}
+a{
+text-decoration: none;
+}
     }
 </style>
 

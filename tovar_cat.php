@@ -164,5 +164,15 @@ include ("blocks/footer.php");
 
 echo"
 </body>
-</html>";
+</html>
+";
 ?>
+
+<style>
+    @media screen and (max-width: 1024px) {
+        #content {
+            width: 100% !important;
+        }
+    }
+
+</style>
