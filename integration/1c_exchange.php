@@ -105,9 +105,9 @@ $exchange->on('query', function () {
                         $amount += (int)$pricePerOne * (int)$quantity;
 
                         $sql = "SELECT * FROM `tovari_po_ml` where name = {$size} and id_tovar = {$productId}";
-                        $res = $db->query($sql);
-                        if ($res) {
-                            $good = $res->fetch_array();
+                        $res1 = $db->query($sql);
+                        if ($res1) {
+                            $good = $res1->fetch_array();
                             $products[] = [
                                 'id' => $good['uid'],
                                 'price' => $pricePerOne,
@@ -143,9 +143,10 @@ $exchange->on('query', function () {
  * massage - текст сообщения который будет оправлен в 1С
  */
 $exchange->on('success', function () {
-    $orders = 'sql запрос для получения заказов';
-
-    return $orders;
+    return [
+        'status' => 'success',
+        'message' => "Успешно"
+        ];
 });
 
 

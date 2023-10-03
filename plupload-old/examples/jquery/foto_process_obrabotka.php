@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 
 class SimpleImage {
 
@@ -68,7 +67,7 @@ class SimpleImage {
    }
 }
 
-function saveImageWithMaxResolution($filename) {
+function saveImageWithMaxResolution1($filename) {
     require '../foto/config.php'; // Подключаем файл конфигурации
     global $privz;
 
@@ -82,7 +81,7 @@ function saveImageWithMaxResolution($filename) {
         echo 'Неподдерживаемый формат изображения.';
         return;
     }
-
+    $path_to_image_directory = $_SERVER['DOCUMENT_ROOT'] . '/foto/original/';
     $imagePath = $path_to_image_directory . $filename; // Полный путь к изображению
 
 
@@ -91,7 +90,7 @@ function saveImageWithMaxResolution($filename) {
     list($width, $height) = getimagesize($imagePath);
 
     // Проверяем размеры изображения
-    if ($width === false || $height === false) {
+    if ($width === null || $height === null) {
         echo 'Не удалось получить размеры изображения.';
         return;
     }
@@ -99,6 +98,7 @@ function saveImageWithMaxResolution($filename) {
     // Получаем максимальное разрешение по ширине и высоте
     $maxResolution = max($width, $height);
 
+    $path_to_thumbs_directory = $_SERVER['DOCUMENT_ROOT'] . '/foto/full/';
     // Проверяем наличие папки для сохранения изображений
     if (!file_exists($path_to_thumbs_directory)) {
         if (!mkdir($path_to_thumbs_directory)) {
@@ -116,8 +116,8 @@ function saveImageWithMaxResolution($filename) {
 
 function createThumbnail2($filename) {
 
-    require '../foto/config.php'; //Подключаем файл конфигурации
-
+    require $_SERVER['DOCUMENT_ROOT'] . '/foto/config.php'; //Подключаем файл конфигурации
+    $path_to_image_directory = $_SERVER['DOCUMENT_ROOT'] . '/foto/original/';
     global $privz;
 
 
@@ -161,7 +161,7 @@ function createThumbnail2($filename) {
     imagecopyresampled($nm, $im, 0,0,0,0,$nx,$ny,$ox,$oy);
 
 
-
+    $path_to_mini_directory = $_SERVER['DOCUMENT_ROOT'] . '/foto/mini/';
     if(!file_exists($path_to_mini_directory)) {
         if(!mkdir($path_to_mini_directory)) {
             die("Возникли проблемы! попробуйте снова1!");

@@ -129,7 +129,7 @@ if ($poisk==1 and !$pol and !$id){
 if(!empty($_GET['realcat'])) {
 
     $realcat = (string)$_GET['realcat'];
-    $result_all_stat = $db->query("SELECT * FROM tovari WHERE realcat='$realcat' ORDER BY id DESC LIMIT 16");
+    $result_all_stat = $db->query("SELECT * FROM tovari WHERE po_ml!= '--' and realcat='$realcat' ORDER BY id DESC LIMIT 16");
     $myrow_all_stat = $result_all_stat->fetch_array();
 
 } else {
