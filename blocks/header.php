@@ -24,8 +24,8 @@ echo "
                 <a href='/' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Главная</a>
                 <a href='/catalog' class='item-header item-header-catalog col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Каталог</a>
                 <a href='/?anchor=news-magazine' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Новинки</a>
-                <a href='/blocks/coming_soon.php' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
-                <a href='/blocks/coming_soon.php' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
+                <a href='../about' class='item-header no-wrap col-xs-4 col-sm-4 col-lg-2 col-xl-2'>О продавце</a>
+                <a href='../reviews' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>Отзывы</a>
                 <a href='/cart' style='margin-right: -28px;' class='item-header col-xs-4 col-sm-4 col-lg-2 col-xl-2'>
                 Корзина
                 <span id='cart-items-badge' class='cart-badge'>{$_SESSION['cart_quantity']}</span></a>                    
